@@ -1,5 +1,8 @@
 # SOEX Beroepsproduct
+
 Casusbeschrijving voor SOEX: Solution Exploration
+
+<img src="https://github.com/user-attachments/assets/fd8d1008-fcce-4545-8103-9aa66c6b7d26" align="right">
 
 ## Vakantieplan app: Triptop
 
@@ -92,4 +95,8 @@ Gegroepeerd op quality attribute uit het software guidebook:
 * Hoe implementeer je logging van API-aanroepen op een manier die gevoelige informatie niet blootstelt?
 * Hoe waarborg je de integriteit van data die via externe APIs wordt verzonden of ontvangen?
 * Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe APIs?
+
+<hr>
+
+![trip-top-splash-screen](https://github.com/user-attachments/assets/5c76f731-3c67-4865-a92f-6dfb2af5e736)
 

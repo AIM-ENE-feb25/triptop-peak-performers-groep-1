@@ -1,0 +1,3 @@
+- Gebruik een technology die past bij de container
+- Volgorde technology moet een logica achter zitten en mocht dit afwijken moet hier uitleg bij
+- Zet bij de relatie pijl (indien mogelijk) het type wat je verwacht om te returnen/sturen (json bijvoorbeeld)

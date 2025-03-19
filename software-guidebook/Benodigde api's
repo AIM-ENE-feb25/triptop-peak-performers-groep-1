@@ -1,0 +1,39 @@
+1. Authenticatie & Authorisatie API
+Naam: IdentityProviderAPI
+Functionaliteit: Gebruikers laten inloggen en toegang tot applicaties controleren
+Aangeroepen vanuit: Back-end
+
+2. Reisdata API
+Naam: TriptopReisAPI
+Functionaliteit: Reisinformatie ophalen en gebruikersreizen opslaan en beheren
+Aangeroepen vanuit: Back-end en Browser
+
+3. Overnachtingen API
+Naam: OvernachtingenAPI
+Functionaliteit: Hotels en verblijfopties ophalen
+Aangeroepen vanuit: Back-end
+
+4. Autoverhuur API
+Naam: VerhuurAPI
+Functionaliteit: Autoverhuurmogelijkheden ophalen
+Aangeroepen vanuit: Back-end
+
+5. Eten & Drinken API
+Naam: EtenEnDrinkenAPI
+Functionaliteit: Restaurants en bezorgopties ophalen
+Aangeroepen vanuit: Back-end
+
+6. Activiteiten API
+Naam: ActiviteitenAPI
+Functionaliteit: Activiteiten en bezienswaardigheden ophalen
+Aangeroepen vanuit: Back-end
+
+7. Betaalsystemen API
+Naam: BetaalSystemenAPI
+Functionaliteit: Online betalingen verwerken
+Aangeropen vanuit: Back-end
+
+8. Vervoer API
+Naam: VervoerAPI
+Functionaliteit: Openbaar vervoer en tickets ophalen
+Aangeroepen vanuit: Back-end

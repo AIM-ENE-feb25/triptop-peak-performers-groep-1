@@ -1,0 +1,44 @@
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class WireMockLoginTest {
+    public static void main(String[] args) {
+        String apiUrl = "https://triptop-identity.wiremockapi.cloud/login";
+        String username = "edevries";
+        String password = "3g2Rw9sT1x";
+
+        String jsonInputString = "{"username": \"" + username + "\", "password": \"" + password + "\"}";
+
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    System.out.println("Response: " + response.toString());
+                }
+            } else {
+                System.out.println("Error: " + responseCode);
+            }
+
+            connection.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

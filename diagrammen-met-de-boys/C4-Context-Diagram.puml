@@ -1,0 +1,34 @@
+@startuml
+!include <C4/C4_Container>
+
+title C4 Model Example - Simple Web Application
+
+Person(Reiziger, "Reiziger", "Iemand die de app gebruikt voor reizen")
+Person(ReisAgent, "ReisAgent", "Iemand die de reiziger helpt bij de reis")
+
+
+Container(system, "Triptop App", "Systeem", "De webapplicatie waarop reizigers hun eigen reis kunnen samenstellen")
+ContainerDb(db, "Database", "PostgreSQL", "Stores user data")
+Container_Ext("OvernachtingenAPI", "OvernachtingenAPI", "Extern systeem","Bijvoorbeeld Booking.com/Airbnb")
+Container_Ext(VerhuurAPI, "VerhuurAPI", "Extern systeem","Deze API is voor autoverhuur zoals Bijvoorbeeld: Sixt en hertx")
+Container_Ext(EtenEnDrinkenAPI, "EtenEnDrinkenAPI", "ExternSysteem","Deze API is voor het TakeAway en thuis bezorgt")
+Container_Ext(ActiviteitenAPI, "ActiviteitenAPI", "ExternSysteem","Deze API is voor activiteiten zoals tripAdvisor")
+Container_Ext(BetaalSystemenAPI, "BetaalSystemenAPI", "ExternSysteem","Is voor IDEAL en credit card ect")
+Container_Ext(InloggenAPI, "InloggenAPI", "ExternSysteem","Om in te loggen")
+Container_Ext(VervoerAPI, "VervoerAPI", "ExternSysteem","Voor vervoer zoals NS deutschebhan ect")
+
+Container_Ext(Leeg, "leeg", "Leeg","LEeg")
+
+Rel(Reiziger,system, "Gebruikt")
+Rel("ReisAgent",system, "Gebruikt")
+Rel(system,OvernachtingenAPI,"Haalt data op van")
+Rel(system,"VerhuurAPI","Haalt data op van" )
+Rel(system,"EtenEnDrinkenAPI","Haalt data op van" )
+Rel(system,"ActiviteitenAPI","Haalt data op van" )
+Rel(system,"BetaalSystemenAPI","Haalt data op van" )
+Rel(system,"InloggenAPI","Haalt data op van" )
+Rel(system,"VervoerAPI","Haalt data op van" )
+
+
+
+@enduml

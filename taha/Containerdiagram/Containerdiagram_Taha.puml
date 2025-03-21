@@ -1,0 +1,33 @@
+@startuml
+!include <C4/C4_Container>
+
+title Container diagram van Triptop App
+
+Boundary(system, "Triptop App") {
+    ContainerDb(db, "Database", "?", "Slaat gebruikersgegevens en reisplannen op")
+    Container(webapp, "Frontend", "?", "Biedt een UI voor reizigers om reizen samen te stellen")
+    Container(api, "Backend", "?", "Handelt businesslogica af en communiceert met externe systemen en database")
+}
+
+Person(Reiziger, "Reiziger", "Gebruikt de webapplicatie om reizen te plannen")
+Person(ReisAgent, "ReisAgent", "Helpt reizigers bij het samenstellen van reizen")
+
+Container_Ext(BookingAPI, "BookingAPI", "Extern systeem", "Hier kan je hotels, vluchten, auto verhuur en taxi's mee ophalen")
+Container_Ext(TripAdvisorAPI, "TripAdvisorAPI", "Extern systeem", "Takeaway en bezorgdiensten")
+Container_Ext(ActiviteitenAPI, "ActiviteitenAPI", "Extern systeem", "Activiteiten zoals TripAdvisor")
+Container_Ext(BetaalSystemenAPI, "BetaalSystemenAPI", "Extern systeem", "Betaalsystemen zoals iDEAL en creditcards")
+Container_Ext(InloggenAPI, "InloggenAPI", "Extern systeem", "?")
+Container_Ext(VervoerAPI, "VervoerAPI", "Extern systeem", "Vervoer zoals NS en Deutsche Bahn")
+
+Rel(Reiziger, webapp, "Gebruikt via browser")
+Rel(ReisAgent, webapp, "Gebruikt via browser")
+Rel(api, db, "SQL Queries over JDBC")
+Rel(webapp, api, "REST API calls (JSON over HTTP)")
+Rel(api, BookingAPI, "REST API calls (JSON over HTTP)")
+Rel(api, TripAdvisorAPI, "REST API calls (JSON over HTTP)")
+Rel(api, ActiviteitenAPI, "REST API calls (JSON over HTTP)")
+Rel(api, BetaalSystemenAPI, "REST API calls (JSON over HTTP)")
+Rel(api, InloggenAPI, "?")
+Rel(api, VervoerAPI, "REST API calls (JSON over HTTP)")
+
+@enduml

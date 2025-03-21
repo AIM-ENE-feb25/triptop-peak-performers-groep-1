@@ -1,0 +1,30 @@
+@startuml
+!include <C4/C4_Container>
+
+title Context Diagram voor de ANS applicatie
+
+Person(Student, "Student", "Student die het systeem gebruikt om examens te maken")
+Person(Docent, "Docent", "Docent die het systeem gebruikt om examens te maken en te beoordelen")
+
+
+Container_Ext(Osiris, Osiris, "Extern systeem",Heeft de data met studenten registratie voor toetsen)
+
+
+System_Boundary(c1, "ANS omgeving") {
+Container_Ext(SchoolYear, SchoolYear, ,Secures ANS zodat het alleen in een safe browser kan worden gebruikt)
+Container(FrontendANS,FrontendANS,?,Frontend applicatie voor ANS)
+Container(BackendANS,BackendANS,?, "Hier kan je digitaal toetsen maken")
+ContainerDb(DatabaseANS, DatabaseANS,?,slaat de toesten en cijfers op)
+}
+
+
+Rel(Student,FrontendANS, "Gebruikt")
+Rel(Docent,FrontendANS, "Gebruikt")
+Rel(FrontendANS,BackendANS,stuurd data door naar)
+Rel(BackendANS,Osiris,checkt of de student is ingeschreven voor de toets)
+Rel(BackendANS,Osiris,exporteerd de cijfers naar osiris die ingevult zijn door de docent)
+Rel(BackendANS,SchoolYear,checkt)
+Rel(Docent,SchoolYear,docent zet de cijfers van ans naar)
+Rel(BackendANS,DatabaseANS,Stuurd de cijfers en toetsen op naar)
+
+@enduml

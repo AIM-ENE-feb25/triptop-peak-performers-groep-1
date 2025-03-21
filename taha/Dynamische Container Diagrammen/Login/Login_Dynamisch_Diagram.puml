@@ -1,0 +1,24 @@
+@startuml
+!include <C4/C4_Container>
+
+title Dynamisch Container Diagram van Login Functionaliteit
+
+' Definieer het systeem en containers
+LAYOUT_TOP_DOWN()
+System_Boundary(webapp, "Triptop App") {
+     Container(api, "Backend", "?", "Verwerkt login verzoeken en communiceert met externe API")
+    Container(web, "Frontend", "?", "Biedt de gebruikersinterface en stuurt login data naar backend")
+}
+
+System_Ext(auth_api, "Externe Auth API", "REST API", "Verifieert credentials en genereert token")
+System_Ext(access_api, "Externe Access API", "REST API", "Valideert token en geeft toegang")
+
+' Definieer de interacties
+web -right-> api : 1. Gebruiker stuurt credentials
+api -down-> auth_api : 2. Stuurt credentials voor validatie
+auth_api -up-> api : 3. Geeft token terug als credentials kloppen
+api -right-> access_api : 4. Vraagt toegang op basis van token
+access_api -left-> api : 5. Bevestigt of gebruiker toegang krijgt
+api -left-> web : 6. Stuur toegangsstatus naar de frontend
+
+@enduml

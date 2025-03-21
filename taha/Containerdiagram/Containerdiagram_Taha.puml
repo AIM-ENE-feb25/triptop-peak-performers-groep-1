@@ -5,8 +5,8 @@ title Container diagram van Triptop App
 
 Boundary(system, "Triptop App") {
     ContainerDb(db, "Database", "?", "Slaat gebruikersgegevens en reisplannen op")
-    Container(webapp, "Frontend", "React", "Biedt een UI voor reizigers om reizen samen te stellen")
-    Container(api, "Backend", "Spring Boot", "Handelt businesslogica af en communiceert met externe systemen en database")
+    Container(webapp, "Frontend", "?", "Biedt een UI voor reizigers om reizen samen te stellen")
+    Container(api, "Backend", "?", "Handelt businesslogica af en communiceert met externe systemen en database")
 }
 
 Person(Reiziger, "Reiziger", "Gebruikt de webapplicatie om reizen te plannen")

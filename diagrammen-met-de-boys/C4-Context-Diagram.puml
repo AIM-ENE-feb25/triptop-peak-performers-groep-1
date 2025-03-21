@@ -1,7 +1,7 @@
 @startuml
 !include <C4/C4_Container>
 
-title C4 Model Example - Simple Web Application
+title C4 Context Diagram - Triptop
 
 Person(Reiziger, "Reiziger", "Iemand die de app gebruikt voor reizen")
 Person(ReisAgent, "ReisAgent", "Iemand die de reiziger helpt bij de reis")

@@ -8,7 +8,6 @@ Person(ReisAgent, "ReisAgent", "Iemand die de reiziger helpt bij de reis")
 
 
 Container(system, "Triptop App", "Systeem", "De webapplicatie waarop reizigers hun eigen reis kunnen samenstellen")
-ContainerDb(db, "Database", "PostgreSQL", "Stores user data")
 Container_Ext("OvernachtingenAPI", "OvernachtingenAPI", "Extern systeem","Bijvoorbeeld Booking.com/Airbnb")
 Container_Ext(VerhuurAPI, "VerhuurAPI", "Extern systeem","Deze API is voor autoverhuur zoals Bijvoorbeeld: Sixt en hertx")
 Container_Ext(EtenEnDrinkenAPI, "EtenEnDrinkenAPI", "ExternSysteem","Deze API is voor het TakeAway en thuis bezorgt")
@@ -17,7 +16,6 @@ Container_Ext(BetaalSystemenAPI, "BetaalSystemenAPI", "ExternSysteem","Is voor I
 Container_Ext(InloggenAPI, "InloggenAPI", "ExternSysteem","Om in te loggen")
 Container_Ext(VervoerAPI, "VervoerAPI", "ExternSysteem","Voor vervoer zoals NS deutschebhan ect")
 
-Container_Ext(Leeg, "leeg", "Leeg","LEeg")
 
 Rel(Reiziger,system, "Gebruikt")
 Rel("ReisAgent",system, "Gebruikt")

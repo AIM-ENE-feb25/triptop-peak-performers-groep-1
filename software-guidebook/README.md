@@ -11,7 +11,7 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 
 De Triptop applicatie dient om reizigers te helpen met het plannen van een reis. De software zal door reisagenten gebruikt worden om verschillende reizen van te voren samen te stellen, waarbij reizigers deze kunnen kiezen en eventueel elk individuele bouwsteen van deze reis aanpassen (denk aan bijvoorbeeld de overnachting, vervoer en activiteiten). De software maakt gebruik van externe systemen zoals verschillende api's.
 
-![Context diagram](/diagrammen-met-de-boys/ContextDiagram.png)
+![Context diagram](/opdracht-diagrammen/C4-Diagrammen/ContextDiagram.png)
 _Afbeelding 1: Context diagram van de Triptop applicatie._
 
 ## 3. Functional Overview
@@ -77,13 +77,13 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 ###     7.1. Containers
 
 > [!IMPORTANT]
-![Container Diagram](/diagrammen-met-de-boys/Containerdiagram.png)
+![Container Diagram](/opdracht-diagrammen/C4-Diagrammen/Containerdiagram.png)
 > Afbeelding 2: Container diagram van de Triptop applicatie.
 
-![Dynamic Diagram Login](/diagrammen-met-de-boys/DynamicDiagramLogin.png)
+![Dynamic Diagram Login](/opdracht-diagrammen/C4-Diagrammen/DynamicDiagramLogin.png)
 > Afbeelding 3: Dynamic diagram van het inloggen in de Triptop applicatie.
 
-![Dynamic Diagram Reis boeken](/diagrammen-met-de-boys/DynamicDiagramReisBoeken.png)
+![Dynamic Diagram Reis boeken](/opdracht-diagrammen/C4-Diagrammen/DynamicDiagramReisBoeken.png)
 > Afbeelding 4: Dynamic diagram van het boeken van een reis in de Triptop applicatie.
 
 ###     7.2. Components
@@ -102,6 +102,12 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 > Voeg toe: 3 tot 5 ADR's die beslissingen beschrijven die zijn genomen tijdens het ontwerpen en bouwen van de software.
 
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes
+
+#### Status
+
+Voorgesteld
+
+
 #### Context 
 Als groep hebben wij prototypes moeten maken voor de API's die wij benoemen in het containerdiagram/C4-diagrammen.
 Als groep wouden wij een manier hebben hoe wij test's schreven voor de API's, Zodat we voorkomen dat de ene een hele Java-Applicatie gaat maken en de ander Postman gaat gebruiken. 
@@ -117,8 +123,6 @@ Als groep wouden wij een manier hebben hoe wij test's schreven voor de API's, Zo
 #### Decision
 Wij hebben besloten om Postman te gebruiken.  
 De reden hiervoor is dat iedereen in onze groep bekend is met Postman en dat het een snelle en eenvoudige manier biedt om te testen of endpoints werken.
-#### Status 
-**Voorgesteld**
 
 #### Consequences 
 ### Positief
@@ -135,6 +139,10 @@ De reden hiervoor is dat iedereen in onze groep bekend is met Postman en dat het
 
 
 ### 8.2. ADR-002 Opslaan van JDBC token
+
+#### Status
+
+Voorgesteld
 
 #### Context
 
@@ -157,7 +165,7 @@ Wij gaan de JDBC tokens opslaan in de session storage. Hier hebben wij voor geko
 
 #### Status
 
-Proposed
+Voorgesteld
 
 #### Consequences
 
@@ -167,6 +175,10 @@ We hebben deze optie nog niet toegepast. We kunnen dus nog niet de gevolgen die 
 > This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
 
 ### ADR-003 BookingAPI wordt gebruikt voor hotels, vluchten en autoverhuur
+
+#### Status
+
+Proposed
 
 #### Context
 
@@ -189,10 +201,6 @@ Booking.com en Priceline.com bieden uitgebreide documentatie, zijn betrouwbaar e
 #### Decision
 
 Wij hebben besloten om Booking.com te gebruiken voor het zoeken van hotels, vluchten en autoverhuur. Dit is omdat Booking.com uitgebreide documentatie biedt, betrouwbaar is en schaalbaar is door zijn grote gebruikersbasis en het is bekender binnen de team dan Priceline.com.
-
-#### Status
-
-Proposed
 
 #### Consequences
 

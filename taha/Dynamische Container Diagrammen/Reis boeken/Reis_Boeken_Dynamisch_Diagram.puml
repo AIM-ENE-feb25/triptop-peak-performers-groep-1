@@ -4,6 +4,7 @@
 title Dynamisch Container Diagram van Reis Boeken Functionaliteit
 
 LAYOUT_TOP_DOWN()
+Person(user, "Reiziger", "Boekt reizen via de app")
 System_Boundary(webapp, "Triptop App") {
     Container(api, "Backend", "?", "Verwerkt reis boeken verzoeken en communiceert met externe API")
     Container(web, "Frontend", "?", "Biedt de gebruikersinterface en stuurt reis data naar backend")
@@ -12,10 +13,11 @@ System_Boundary(webapp, "Triptop App") {
 System_Ext(betaal_api, "BetaalSystemenAPI", "REST API","Is voor IDEAL en credit card ect")
 System_Ext(booking_api, "Externe Booking API", "REST API", "Boekt reizen en geeft bevestiging")
 
-web -right-> betaal_api : 1. Gebruiker wordt doorgestuurd naar externe betaalpagina
-betaal_api -down-> api : 2. Betaal bewijs wordt doorgestuurd naar backend
-api -right-> booking_api : 3. Boekt reis op basis van betaalbewijs
-booking_api -left-> api : 4. Geeft bevestiging van boeking
-api -left-> web : 5. Stuur boekingsstatus naar de frontend
+user -right-> web : 1. Start boeking via frontend
+web -right-> betaal_api : 2. Gebruiker wordt doorgestuurd naar externe betaalpagina
+betaal_api -down-> api : 3. Betaal bewijs wordt doorgestuurd naar backend
+api -right-> booking_api : 4. Boekt reis op basis van betaalbewijs
+booking_api -left-> api : 5. Geeft bevestiging van boeking
+api -left-> web : 6. Stuur boekingsstatus naar de frontend
 
 @enduml

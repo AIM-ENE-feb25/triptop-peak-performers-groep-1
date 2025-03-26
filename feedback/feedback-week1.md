@@ -3,3 +3,4 @@
 - [x] status moet naar boven bij de ADR
 - [ ] consistentie
 - [ ] meer functioneel kijken bij ADR's
+- [x] Lijst met alle externe API's

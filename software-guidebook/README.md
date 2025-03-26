@@ -74,7 +74,13 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 ## 7. Software Architecture
 
-###     7.1. Containers
+### 7.1. Externe Api's
+| Naam           | Doel                                     |
+|----------------|------------------------------------------|
+| Booking.Com    | Hotels, Vluchten, Auto verhuur en taxi's |     
+| TripAdvisorApi | TakeAway en bezorg diensten              |     
+
+###     7.2. Containers
 
 > [!IMPORTANT]
 ![Container Diagram](/opdracht-diagrammen/C4-Diagrammen/Containerdiagram.png)
@@ -86,12 +92,12 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 ![Dynamic Diagram Reis boeken](/opdracht-diagrammen/C4-Diagrammen/DynamicDiagramReisBoeken.png)
 > Afbeelding 4: Dynamic diagram van het boeken van een reis in de Triptop applicatie.
 
-###     7.2. Components
+###     7.3. Components
 
 > [!IMPORTANT]
 > Voeg toe: Component Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
 
-###     7.3. Design & Code
+###     7.4. Design & Code
 
 > [!IMPORTANT]
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.

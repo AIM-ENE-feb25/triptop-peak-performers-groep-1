@@ -1,0 +1,44 @@
+@startuml
+!include <C4/C4_Container>
+
+title C4 Component - Triptop Backend
+
+Person(Eindgebruiker, Eindgebruiker, Iemand die de app gebruikt)
+
+System_Boundary(c3, Triptop: Component) {
+'controllers
+Container(BookingController, BookingController, Component: Sprint MVC Controller, Controller voor booking)
+
+'services
+Container(BookingService,BookingService,Component: Sprint MVC Service,Service voor booking)
+Container(BookingServicePort,BookingServicePort,Component: Sprint MVC Service,ServicePort voor booking)
+
+'repositories
+Container(BookingRepository,BookingRepository,Component: Sprint MVC Repository,Repo voor booking)
+
+'port
+Container(HotelAPIPort,HotelAPIPort,HotelAPIPort,)
+
+'adapter
+Container(HotelApiAdapter,HotelApiAdapter,HotelApiAdapter,HotelApiAdapter)
+
+}
+
+'api
+Container_Ext(BookingAPI,BookingAPI,Component: External API,Api om Hotels mee op te halen)
+'database
+ContainerDb(Database, Database,?,)
+'rel
+
+Rel(Eindgebruiker,BookingController,)
+
+Rel(BookingController,BookingService,)
+Rel(BookingService,BookingServicePort,)
+Rel(BookingServicePort,BookingRepository,)
+Rel(BookingRepository,Database,)
+Rel(BookingService,HotelAPIPort,)
+Rel(HotelAPIPort,HotelApiAdapter,)
+
+
+
+@enduml

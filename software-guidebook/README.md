@@ -102,11 +102,13 @@ Voorgesteld
 Als groep hebben wij prototypes moeten maken voor de API's die wij benoemen in het containerdiagram/C4-diagrammen.
 Als groep wouden wij een manier hebben hoe wij test's schreven voor de API's, Zodat we voorkomen dat de ene een hele Java-Applicatie gaat maken en de ander Postman gaat gebruiken. 
 
-#### Considered Options
+#### Overwogen opties
 |                       | Beveiligingsopties | Mocking Functionaliteit | Samenwerking & Delen | Ondersteuning voor verschillende API's | 
 |-----------------------|--------------------|-------------------------|----------------------|----------------------------------------|
 | Postman               | ++                 | ++                      | ++                   | ++                                     |
 | Eigen Java-Applicatie | *                  | *                       | *                    | *                                      |     
+
+_Tabel 1: ADR-001 Overwogen opties._
 
 ##### Beveiligingsopties
 - Postman ondersteunt OAuth, API keys, en certificaten direct.
@@ -182,7 +184,7 @@ We hebben deze optie nog niet toegepast. We kunnen dus nog niet de gevolgen die 
 
 #### Status
 
-Proposed
+Voorgesteld
 
 #### Context
 
@@ -190,15 +192,15 @@ Wij zochten API's die wij konden gebruiken voor het zoeken van hotels, vluchten 
 
 #### Considered Options
 
-|                 | Documentatie | Betrouwbaarheid | Schaalbaarheid |
-|-----------------|--------------|-----------------|----------------|
-| Booking.com     | ++           | ++              | ++             |
-| Flights scraper | -            | -               | -              |
-| Priceline.com   | ++           | ++              | ++             |
-| TravelData      | +            | +               | +              |
+|                 | Documentatie | Betrouwbaarheid | Schaalbaarheid | Api dekking |
+|-----------------|--------------|-----------------|----------------|-------------|
+| Booking.com     | ++           | ++              | ++             |             |
+| Flights scraper | -            | -               | -              |             | 
+| Priceline.com   | ++           | ++              | ++             |             | 
+| TravelData      | +            | +               | +              |             |
 
 
-_Tabel 3: ADR-003 Considered Options._
+_Tabel 3: ADR-003 Overwogen opties ._
 
 Booking.com en Priceline.com bieden uitgebreide documentatie, zijn betrouwbaar en schaalbaar door hun grote gebruikersbasis. Flights scraper is vaak minder betrouwbaar en schaalbaar, afhankelijk van het scrapen van gegevens. TravelData heeft gemiddelde documentatie, betrouwbaarheid en schaalbaarheid.
 

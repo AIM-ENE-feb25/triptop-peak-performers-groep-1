@@ -1,0 +1,4 @@
+- [ ] Component diagrammen samenvoegen/uitwerken
+- [ ] Scripts van postman in de REPO zetten en hiernaar verwijzen in SGB
+- [ ] Maak API lijst Groter en maak meer testen
+- [ ] ADR 3 er uit slopen en diagrammen fixen

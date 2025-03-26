@@ -113,32 +113,45 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 Voorgesteld
 
-
 #### Context 
 Als groep hebben wij prototypes moeten maken voor de API's die wij benoemen in het containerdiagram/C4-diagrammen.
 Als groep wouden wij een manier hebben hoe wij test's schreven voor de API's, Zodat we voorkomen dat de ene een hele Java-Applicatie gaat maken en de ander Postman gaat gebruiken. 
+
 #### Considered Options
-- Postman
-- Een eigen Java-applicatie maken om te testen
+|                       | Beveiligingsopties | Mocking Functionaliteit | Samenwerking & Delen | Ondersteuning voor verschillende API's | 
+|-----------------------|--------------------|-------------------------|----------------------|----------------------------------------|
+| Postman               | ++                 | ++                      | ++                   | ++                                     |
+| Eigen Java-Applicatie | *                  | *                       | *                    | *                                      |     
 
-|                       | Documentatie | Overzichtelijkheid | Geeft error's duidelijk weer |
-|-----------------------|--------------|--------------------|------------------------------|
-| Postman               | ++           | ++                 | ++                           |     
-| Eigen Java-Applicatie | +            | *                  | ++                           |     
+##### Beveiligingsopties
+- Postman ondersteunt OAuth, API keys, en certificaten direct.
+- Een eigen Java-Applicatie kan dit ook, maar moet handmatig worden geïmplementeerd.
 
-#### Decision
+##### Mocking Functionaliteit
+- Postman biedt mock servers om API-gedrag te simuleren.
+- Een eigen Java-Applicatie vereist extra frameworks zoals WireMock.
+
+##### Samenwerking & Delen 
+- Postman maakt het makkelijk om API-requests en testcases te delen via workspaces.
+- Een eigen Java-Applicatie vereist documentatie en code-reviews.
+
+##### Ondersteuning voor verschillende API's
+- Postman ondersteunt REST, SOAP, GraphQL, en WebSockets standaard.
+- Een eigen Java-Applicatie vereist extra code en bibliotheken. 
+
+#### Besluit
 Wij hebben besloten om Postman te gebruiken.  
 De reden hiervoor is dat iedereen in onze groep bekend is met Postman en dat het een snelle en eenvoudige manier biedt om te testen of endpoints werken.
 
-#### Consequences 
-### Positief
+#### Consequenties 
+##### Positief
 - In Postman kun je eenvoudig requests groeperen in een collectie. Dit zorgt voor meer overzicht, bijvoorbeeld door aparte collecties te maken voor hotels en vluchten.
 - Postman biedt de mogelijkheid om een Workspace te gebruiken en te delen met het team, zodat iedereen met dezelfde requests werkt.
 
-### Neutraal
+##### Neutraal
 - Requests kunnen een naam krijgen, waardoor ze eenvoudig terug te vinden en te onderscheiden zijn.
 
-### Negatief
+##### Negatief
 - Voor mensen die nog nooit met Postman hebben gewerkt, kan het in het begin onduidelijk zijn.
 - Als Postman niet beschikbaar is, kunnen we de API's niet testen, omdat alles binnen Postman staat.
 - Wij gebruiken de gratis versie van Postman, mocht het veranderen dat wij moeten betalen moeten wij overstappen naar een andere optie. 

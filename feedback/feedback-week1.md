@@ -2,5 +2,5 @@
 - [x] actors bij container hoeft niet perse bij component
 - [x] status moet naar boven bij de ADR
 - [x] consistentie
-- [ ] meer functioneel kijken bij ADR's
+- [x] meer functioneel kijken bij ADR's
 - [x] Lijst met alle externe API's

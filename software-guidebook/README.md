@@ -186,7 +186,7 @@ Wij gaan de JWT tokens opslaan in de session storage. Hier hebben wij voor gekoz
 
 #### Status
 
-Proposed
+Voorgesteld
 
 #### Context
 
@@ -194,15 +194,15 @@ Wij zochten API's die wij konden gebruiken voor het zoeken van hotels, vluchten 
 
 #### Considered Options
 
-|                 | Documentatie | Betrouwbaarheid | Schaalbaarheid |
-|-----------------|--------------|-----------------|----------------|
-| Booking.com     | ++           | ++              | ++             |
-| Flights scraper | -            | -               | -              |
-| Priceline.com   | ++           | ++              | ++             |
-| TravelData      | +            | +               | +              |
+|                 | Documentatie | Betrouwbaarheid | Schaalbaarheid | Api dekking |
+|-----------------|--------------|-----------------|----------------|-------------|
+| Booking.com     | ++           | ++              | ++             |             |
+| Flights scraper | -            | -               | -              |             | 
+| Priceline.com   | ++           | ++              | ++             |             | 
+| TravelData      | +            | +               | +              |             |
 
 
-_Tabel 3: ADR-003 Considered Options._
+_Tabel 3: ADR-003 Overwogen opties ._
 
 Booking.com en Priceline.com bieden uitgebreide documentatie, zijn betrouwbaar en schaalbaar door hun grote gebruikersbasis. Flights scraper is vaak minder betrouwbaar en schaalbaar, afhankelijk van het scrapen van gegevens. TravelData heeft gemiddelde documentatie, betrouwbaarheid en schaalbaarheid.
 

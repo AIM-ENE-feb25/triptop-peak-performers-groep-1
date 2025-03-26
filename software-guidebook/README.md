@@ -88,25 +88,21 @@ _Afbeelding 7: Dynamic Diagram reis boeken._
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
 
 ## 8. Architectural Decision Records
-
-> [!IMPORTANT]
-> Voeg toe: 3 tot 5 ADR's die beslissingen beschrijven die zijn genomen tijdens het ontwerpen en bouwen van de software.
-
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes
-
 #### Status
-
 Voorgesteld
 
 #### Context 
 Als groep hebben wij prototypes moeten maken voor de API's die wij benoemen in het containerdiagram/C4-diagrammen.
 Als groep wouden wij een manier hebben hoe wij test's schreven voor de API's, Zodat we voorkomen dat de ene een hele Java-Applicatie gaat maken en de ander Postman gaat gebruiken. 
 
-#### Considered Options
+#### Overwogen opties
 |                       | Beveiligingsopties | Mocking Functionaliteit | Samenwerking & Delen | Ondersteuning voor verschillende API's | 
 |-----------------------|--------------------|-------------------------|----------------------|----------------------------------------|
 | Postman               | ++                 | ++                      | ++                   | ++                                     |
 | Eigen Java-Applicatie | *                  | *                       | *                    | *                                      |     
+
+_Tabel 2: Overwogen opties prototypes._
 
 ##### Beveiligingsopties
 - Postman ondersteunt OAuth, API keys, en certificaten direct.
@@ -141,15 +137,11 @@ De reden hiervoor is dat iedereen in onze groep bekend is met Postman en dat het
 - Als Postman niet beschikbaar is, kunnen we de API's niet testen, omdat alles binnen Postman staat.
 - Wij gebruiken de gratis versie van Postman, mocht het veranderen dat wij moeten betalen moeten wij overstappen naar een andere optie. 
 
-
-### 8.2. ADR-002 Opslaan van JDBC token
-
+### 8.2. ADR-002 Opslaan van JWT token
 #### Status
-
 Voorgesteld
 
 #### Context
-
 Voor de authenticatie en authorisatie in de software maken we gebruik van een externe API. Deze API geeft een token terug bij een succesvolle login die wij kunnen opslaan en versturen naar andere API's om aan te tonen dat het een geautoriseerde gebruiker is en wat zijn rechten zijn in de software. Er zijn verschillende mogelijkheden voor waar we deze token willen opslaan, elk met zijn eigen voor- en nadelen.
 
 #### Considered Options
@@ -159,24 +151,36 @@ Voor de authenticatie en authorisatie in de software maken we gebruik van een ex
 | Local Storage     | --            | ++                | --            |
 | Session Storage   | ++            | +                 | ++            |
 
-_Tabel 2: ADR-002 Considered Options._
+_Tabel 3: Overwogen opties JWT token._
 
 Het is handig om te vermelden dat alhoewel we bedoelen met persistentie of dat de token bewaard blijft als de browser sluit is dit juist een nadeel. De plusjes betekenen dat dit niet wordt bewaard en de minnetjes dus dat het wel bewaard blijft.
 
-#### Decision
+##### Veiligheid
+- **Local Storage**: Tokens opgeslagen in de local storage zijn kwetsbaarder voor XSS-aanvallen omdat ze toegankelijk zijn via JavaScript. Dit maakt het erg onveilig.
+- **Session Storage**: Tokens opgeslagen in Session Storage zijn veiliger omdat ze alleen toegankelijk zijn binnen de sessie van de browser en worden verwijderd zodra de sessie eindigt. Dit maakt ze erg veilig.
 
-Wij gaan de JDBC tokens opslaan in de session storage. Hier hebben wij voor gekozen sinds dit een veiligere optie is dan de Local Storage terwijl het niet veel minder toegankelijk is. Daarnaast hebben wij in het team ook meer kennis over session storage dan local storage.
+##### Toegankelijkheid
+- **Local Storage**: Tokens in local storage zijn gemakkelijk toegankelijk voor JavaScript en blijven beschikbaar tussen verschillende plekken op de website, wat de toegankelijkheid verhoogt.
+- **Session Storage**: Tokens in session storage zijn alleen toegankelijk binnen de huidige sessie, en van zichzelf op dezelfde plek. Mocht je deze willen gebruiken op andere plekken op de website, zal je ze moeten doorsturen. Dit vermindert de toegankelijkheid wel.
 
-#### Status
+##### Persistentie
+- **Local Storage**: Tokens in local storage blijven bewaard zelfs als de browser wordt gesloten en opnieuw geopend, wat de persistentie verhoogt. Maar de veiligheid aanzienlijk vermindert.
+- **Session Storage**: Tokens in session storage worden verwijderd zodra de browser of tabblad wordt gesloten. Dit betekent dat ze niet persistent zijn, maar daardoor wel een flink stuk veiliger.
 
-Voorgesteld
+#### Besluit
+Wij gaan de JWT tokens opslaan in de session storage. Hier hebben wij voor gekozen sinds dit een veiligere optie is dan de Local Storage terwijl het niet veel minder toegankelijk is. Daarnaast hebben wij in het team ook meer kennis over session storage dan local storage.
 
-#### Consequences
+#### Consequenties
+##### Positief
+- Verhoogde veiligheid doordat tokens niet toegankelijk zijn na het sluiten van de browser of het tabblad.
+- Minder risico op XSS-aanvallen omdat tokens niet toegankelijk zijn via JavaScript buiten de sessie.
 
-We hebben deze optie nog niet toegepast. We kunnen dus nog niet de gevolgen die dit heeft opgeleverd noteren.
+##### Neutraal
+- Toegankelijkheid is iets verminderd, maar nog steeds voldoende voor de meeste gebruiksscenario's.
+- Bekendheid en kennis binnen het team over session storage maakt implementatie eenvoudiger.
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+##### Negatief
+- Tokens moeten opnieuw worden opgehaald na het sluiten en heropenen van de browser, wat een extra stap kan zijn voor de gebruiker.
 
 ### ADR-003 BookingAPI wordt gebruikt voor hotels, vluchten en autoverhuur
 

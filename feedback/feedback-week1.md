@@ -1,6 +1,6 @@
 - [x] context diagram, 2 losse boxes
 - [x] actors bij container hoeft niet perse bij component
 - [x] status moet naar boven bij de ADR
-- [ ] consistentie
+- [x] consistentie
 - [ ] meer functioneel kijken bij ADR's
 - [x] Lijst met alle externe API's

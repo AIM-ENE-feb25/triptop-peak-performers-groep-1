@@ -7,7 +7,7 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 4. De architectuur van de infrastructuur en hoe de software kan worden geinstalleerd. 
 
 ## 2. Context
-De Triptop applicatie dient om reizigers te helpen met het plannen van een reis. De software zal door reisagenten gebruikt worden om verschillende reizen van te voren samen te stellen, waarbij reizigers deze kunnen kiezen en eventueel elk individuele bouwsteen van deze reis aanpassen (denk aan bijvoorbeeld de overnachting, vervoer en activiteiten). De software maakt gebruik van externe systemen zoals verschillende api's.
+De Triptop applicatie dient om reizigers te helpen met het plannen van een reis. De software zal door reisagenten gebruikt worden om verschillende reizen van te voren samen te stellen, waarbij reizigers deze kunnen kiezen en eventueel elk individuele bouwsteen van deze reis aanpassen (denk aan bijvoorbeeld de overnachting, vervoer en activiteiten). De software maakt gebruik van externe systemen zoals verschillende api's (zie afbeelding 1).
 
 ![Context diagram](/opdracht-diagrammen/C4-Diagrammen/ContextDiagram.png)
 _Afbeelding 1: Context diagram van de Triptop applicatie._
@@ -40,6 +40,8 @@ _Afbeelding 2: Domain Story AS IS._
 _Afbeelding 3: Domain Story TO BE._
 
 ### 3.4 Domain Model
+
+
 ![Domain Model](../opdracht-diagrammen/DomainModel/Domain%20Model.png)
 _Afbeelding 4: Domain Model._
 

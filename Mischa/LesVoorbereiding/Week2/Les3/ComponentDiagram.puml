@@ -1,0 +1,144 @@
+/'
+     Lijst van componenten:
+ 
+     - Identity Provider (IDP)
+       Verantwoordelijkheid: Beheert de authenticatie van gebruikers via login (bijv. Google, Microsoft of Airbnb)
+ 
+     - Backend
+       Verantwoordelijkheid: Centrale plek voor alle API-verzoeken. Werkt ook als tussenlaag tussen de frontend en de API's.
+ 
+     - Authenticatie Service
+       Verantwoordelijkheid: Verwerkt alle gebruikersauthenticatie en autorisatie in het systeem.
+ 
+     - API Client voor externe services
+       Verantwoordelijkheid: Beheert de communicatie met specifieke externe services.
+ 
+     - Service Layer
+       Verantwoordelijkheid: Verwerkt verzoeken van de frontend en handelt deze af.
+ '/
+ 
+ /'
+     Lijst van interfaces:
+ 
+     - Identity Provider Interface (IIDentityProvider)
+         Authenticate(String provider, String authorizationCode) -> Token
+         getUserInfo(String accessToken) -> UserInfo
+ 
+     - Backend Interface (IBackend)
+         handleRequest(Request request, String userToken) -> Response
+ 
+     - Authenticatie Service Interface (IAuthService)
+         validateToken(String token) -> boolean
+         getUserRoles(String userId) -> UserRoles
+ 
+     - API Client Interface (IApiClient)
+         callApi(String endpoint, HttpMethod method, String authToken, Map<String, Object> params) -> ApiResponse
+ 
+     - Service Layer Interface (IServiceLayer)
+         processRequest(ServiceRequest request, String userToken) -> ServiceResponse
+ '/
+ 
+ /'
+     Scenario: Reiziger wilt een reis samenstellen en boeken
+     
+     1. De gebruiker logt in via een externe identity provider (Google, Microsoft, etc.).
+     2. De gebruiker stelt een reis samen via de frontend.
+     3. De backend verwerkt het verzoek en vraagt autorisatie bij de Authenticatie Service.
+     4. De backend roept externe services aan voor overnachtingen, vervoer, etc. via de API Client
+     5. De backend retourneert het resultaat aan de frontend.
+ 
+ @startuml
+ title Dynamic Diagram - Samenwerking Componenten
+ 
+ actor Reiziger
+ participant "Frontend" as Frontend
+ participant "Backend" as Backend
+ participant "Authenticatie Service" as AuthService
+ participant "Identity Provider" as IDP
+ participant "API Client" as API
+ participant "Externe Services" as Ext
+ 
+ Reiziger -> Frontend: Logt in met Google/Microsoft
+ Frontend -> IDP: OAuth2 Auth Request
+ IDP -> Frontend: JWT Token teruggeven
+ Frontend -> Backend: Stuur reisaanvraag met JWT token
+ Backend -> AuthService: Validatie van Token
+ AuthService -> Backend: Token geldig
+ Backend -> API: Ophalen overnachtingsopties
+ API -> Ext: Vraag data op (bijv. Booking.com)
+ Ext -> API: Overnachtingsdata
+ API -> Backend: Data teruggeven
+ Backend -> API: Ophalen vervoersopties
+ API -> Ext: Vraag data op (bijv. NS)
+ Ext -> API: Vervoersdata
+ API -> Backend: Data teruggeven
+ Backend -> Frontend: Stuur samengestelde reis terug
+ 
+ @enduml
+ '/
+ 
+ @startuml
+ title Class Diagram  - Triptop C4
+ 
+ class IdentityProvider {
+     + authenticateUser(credentials: Credentials): Token
+ }
+ 
+ class AuthenticationService {
+     - tokenValidator: TokenValidator
+     + validateToken(token: Token): User
+     + authorizeUser(user: User, action: String): boolean
+ }
+ 
+ class Backend {
+     - authService: AuthenticationService
+     - apiClient: APIClient
+     + processRequest(request: Request, token: Token): Response
+ }
+ 
+ class APIClient {
+     + fetchAccommodation(options: SearchParams): AccommodationData
+     + fetchTransport(options: SearchParams): TransportData
+     + fetchFood(options: SearchParams): FoodData
+     + fetchActivities(options: SearchParams): ActivitiesData
+ }
+ 
+ class ExternalService {
+     + fetchData(endpoint: String, params: SearchParams): Data
+ }
+ 
+ Class TripService {
+     - apiClient: APIClient
+     + planTrip(options: TripOptions): Trip
+     + updateTrip(tripId: String, options: TripOptions): Trip
+ }
+ 
+ class User {
+     - id: String
+     - name: String
+     - roles: List<String>
+ }
+ 
+ class Token {
+     - value: String
+     - expiry: Date
+ }
+ 
+ Class Request {
+     - userId: String
+     - requestData: Map<String, String>
+ }
+ 
+ Class Response {
+     - status: integer
+     - data: Map<String, Object>
+ }
+ 
+ IdentityProvider --> AuthenticationService: Gebruikt voor validatie
+ AuthenticationService --> Backend: Valideert gebruikers
+ Backend --> APIClient: Vraagt externe data op
+ APIClient --> ExternalService: Roept api's aan
+ TripService --> APIClient: Gebruikt om reisinformatie op te halen
+ Backend --> TripService: Handelt reislogica af
+ 
+ @enduml

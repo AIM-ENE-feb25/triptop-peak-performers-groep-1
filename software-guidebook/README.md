@@ -331,3 +331,46 @@ Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar bli
 ## 9. Deployment, Operation and Support
 > [!TIP]
 > Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
+
+### 8.5. ADR-006 Voorkeur voor externe api communicatie met authenticatie
+
+#### Status
+
+Voorgesteld
+
+#### Context
+
+Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
+- Vanuit de frontend direct communiceren met de IdentityProvider
+- Vanuit de frontend met een eigen backend communiceren die vervolgens met de IdentityProvider communiceert
+- Een hybride oplossing waarbij de frontend en backend beide communiceren met de IdentityProvider
+
+#### Overwogen opties
+
+- Directe communicatie vanuit de frontend
+    - Voordelen: Snel, geen extra laag
+    - Nadelen: Minder veilig, minder controle
+- Communicatie via een eigen backend
+    - Voordelen: Meer controle, veiliger
+    - Nadelen: Langzamer, extra laag
+- Hybride oplossing
+    - Voordelen: Controle, snelheid
+    - Nadelen: Complexer, extra laag
+
+#### Besluit
+
+Wij kiezen ervoor om zo min mogelijk afhankelijk te zijn van één enkele API.
+Het doel is om te voorkomen dat de applicatie grotendeels niet meer werkt wanneer één API uitvalt of volledig verdwijnt.
+Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar blijft, kunnen we de risico’s beperken door meerdere API's te gebruiken voor verschillende doeleinden.
+
+#### Consequenties
+
+##### Positief
+- Als een API niet werkt, ligt niet heel de applicatie plat
+
+##### Negatief
+- Hiervoor moeten wij wel veel herschrijven/opnieuw doen
+
+## 9. Deployment, Operation and Support
+> [!TIP]
+> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.

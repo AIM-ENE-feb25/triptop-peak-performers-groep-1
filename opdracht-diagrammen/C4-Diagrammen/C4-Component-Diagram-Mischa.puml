@@ -1,59 +1,26 @@
 @startuml
-title C4 Component Diagram - Triptop applicatie
+!include <C4/C4_Container>
 
-class AuthenticationController {
-    - authenticateService: AuthenticateService
-    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
-    + authorize(endpoint: String, httpMethod: HttpMethods, token: Token): Boolean
+title C4 Component Diagram - Triptop Applicatie
+
+Person(User, "Reiziger", "Iemand die de app gebruikt voor reizen")
+
+System_Boundary(c3, "Triptop Applicatie") {
+    Container(Frontend, "Frontend", "Web Applicatie", "Geeft UI weer en verstuurt requests")
+    Container(Backend, "Backend", "Spring Boot API", "Verwerkt requests en voert logica uit")
+    Container(AuthenticationService, "Authentication Service", "Component: Spring Boot Service", "Behandeld Authenticatie")
 }
 
-class AuthenticationService {
-    - IAuthenticateStrategie: IAuthenticateStrategie
-    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
-    + authorize(endpoint: String, httpMethod: HttpMethods, token: Token): Boolean
+System_Boundary(c4, "Externe API's") {
+    Container(ExternelAPI1, "External API 1", "Extern Systeem", "Ontvangt geauthenticeerde verzoeken")
+    Container(ExternalAPI2, "External API 2", "Extern Systeem", "Ontvangt geauthenticeerde verzoeken")
 }
 
-interface IAuthenticateStrategie {
-    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
-}
-
-class UsernameAuthentication {
-    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
-}
-
-class KeyAuthentication {
-    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
-}
-
-class SecretAuthentication {
-    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
-}
-
-class Credentials {
-    - username: String
-    - password: String
-    - key: String
-    - secret: String
-}
-
-class Token {
-    - value: String
-    - expireDate: Date
-}
-
-enum HttpMethods {
-    GET
-    POST
-    PUT
-    DELETE
-}
-
-AuthenticationController --> AuthenticationService: Maakt gebruik van
-AuthenticationService --> IAuthenticateStrategie: Maakt gebruik van
-IAuthenticateStrategie <|-- UsernameAuthentication: Implementeert
-IAuthenticateStrategie <|-- KeyAuthentication: Implementeert
-IAuthenticateStrategie <|-- SecretAuthentication: Implementeert
-AuthenticationController --> Credentials: Gebruikt
-AuthenticationService --> Token: Maakt gebruik van
+Rel(User, Frontend, "Interactie met de")
+Rel(Frontend, Backend, "Stuurt requests naar")
+Rel(Backend, AuthenticationService, "Maakt gebruik van")
+Rel(AuthenticationService, Backend, "Stuurt geauthenticeerde token terug naar de")
+Rel(Backend, ExternelAPI1, "Stuurt geauthenticeerde token naar")
+Rel(Backend, ExternalAPI2, "Stuurt geauthenticeerde token naar")
 
 @enduml

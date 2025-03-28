@@ -10,12 +10,6 @@ interface HotelServicePort {
     + getHotelDetails(int HotelId) : Hotel
 }
 
-interface HotelRepositoryPort {
-}
-
-class CrudRepository {
-}
-
 class Hotel {
     - int: Id
     - String: Naam
@@ -43,8 +37,6 @@ HotelController --> Hotel : : Maakt gebruik van
 
 HotelServicePort <|.. HotelServiceImpl : Implementeert
 
-HotelServiceImpl --> HotelRepositoryPort : Maakt gebruik van
 HotelServiceImpl --> HotelServiceAdapter : Haalt data op van
 HotelServiceAdapter --> BookingAPI : Haalt data op van
-CrudRepository --> HotelRepositoryPort : extends
 @enduml

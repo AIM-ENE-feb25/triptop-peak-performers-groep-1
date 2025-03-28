@@ -68,7 +68,7 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 |-------------------|---------------|
 | Booking.Com       | Hotels        |     
 | TripAdvisorApi    | Restaurants   |     
-| GoogleFlightsAPI  | Voor vluchten |  
+| GoogleFlightsAPI  | Vluchten |  
 
 _Tabel 1: Externe api's._
 
@@ -103,7 +103,7 @@ _Afbeelding 9: Dynamisch diagram authenticeren._
 > [!IMPORTANT]
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
 
-#### 7.5.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
+#### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
 ##### Klasse diagram
 Voor deze onderzoeksvraag heb ik met gebruik van het component diagram (zie afbeelding 8) een klasse diagram gemaakt. Voor dit klasse diagram heb ik gebruik gemaakt van het strategy pattern. Dit heb ik gedaan met het idee dat er makkelijk gewisseld kan worden tussen verschillende manieren voor authenticatie voor de verschillende API's zonder veel code aan te hoeven passen (zie afbeelding 10).
 
@@ -115,6 +115,17 @@ Het sequence diagram laat duidelijk de interacties tussen de verschillende klass
 
 ![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
 _Afbeelding 11: Sequence diagram authenticeren._
+
+
+#### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?
+##### Klasse diagram
+Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen inplaats van de gehele applicatie
+
+![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
+
+#### Sequence diagram
+Moet nog gerealiseerd worden
+
 
 ## 8. Architectural Decision Records
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes

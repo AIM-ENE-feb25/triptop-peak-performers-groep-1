@@ -1,0 +1,4 @@
+- [ ] Sequentie diagrammen uitwerken 
+- [ ] Klasse diagrammen verder uitwerken
+- [ ] Dynamische diagrammen uitwerken
+- [ ] API's voor vervoer en betaal systeem verder uitwerken

@@ -1,5 +1,5 @@
 - [ ] Component diagrammen samenvoegen/uitwerken
 - [ ] Scripts van postman in de REPO zetten en hiernaar verwijzen in SGB
 - [ ] Maak API lijst Groter en maak meer testen
-- [ ] ADR 3 er uit slopen en diagrammen fixen
-- [ ] (jamiro's component diagram) maak van de port en adapter 1 component!
+- [x] ADR 3 er uit slopen en diagrammen fixen
+- [x] (jamiro's component diagram) maak van de port en adapter 1 component!

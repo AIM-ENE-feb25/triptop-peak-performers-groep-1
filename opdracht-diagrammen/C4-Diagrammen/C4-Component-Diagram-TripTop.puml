@@ -17,11 +17,7 @@ Container(BookingServicePort,BookingServicePort,Component: Sprint MVC Service,Se
 Container(BookingRepository,BookingRepository,Component: Sprint MVC Repository,Repo voor booking)
 
 'port
-Container(HotelAPIPort,HotelAPIPort,HotelAPIPort,)
-
-'adapter
-Container(HotelApiAdapter,HotelApiAdapter,HotelApiAdapter,HotelApiAdapter)
-
+Container(HotelAPI,HotelAPI,HotelAPI,)
 }
 
 'api
@@ -36,9 +32,8 @@ Rel(BookingController,BookingService,)
 Rel(BookingService,BookingServicePort,)
 Rel(BookingServicePort,BookingRepository,)
 Rel(BookingRepository,Database,)
-Rel(BookingService,HotelAPIPort,)
-Rel(HotelAPIPort,HotelApiAdapter,)
-
+Rel(BookingService,HotelAPI,)
+Rel(HotelAPI,BookingAPI,)
 
 
 @enduml

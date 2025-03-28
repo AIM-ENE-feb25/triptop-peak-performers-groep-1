@@ -146,12 +146,12 @@ Voorgesteld
 #### Context
 Voor de authenticatie en authorisatie in de software maken we gebruik van een externe API. Deze API geeft een token terug bij een succesvolle login die wij kunnen opslaan en versturen naar andere API's om aan te tonen dat het een geautoriseerde gebruiker is en wat zijn rechten zijn in de software. Er zijn verschillende mogelijkheden voor waar we deze token willen opslaan, elk met zijn eigen voor- en nadelen.
 
-#### Considered Options
+#### Overwogen opties
 
-|                   | Veiligheid    | Toegankelijkheid  | Persistentie  |
-|-----------------  |------------   |------------------ |-------------- |
-| Local Storage     | --            | ++                | --            |
-| Session Storage   | ++            | +                 | ++            |
+|                 | Veiligheid | Toegankelijkheid | Persistentie |
+|-----------------|------------|------------------|--------------|
+| Local Storage   | --         | ++               | --           |
+| Session Storage | ++         | +                | ++           |
 
 _Tabel 3: Overwogen opties JWT token._
 
@@ -184,17 +184,17 @@ Wij gaan de JWT tokens opslaan in de session storage. Hier hebben wij voor gekoz
 ##### Negatief
 - Tokens moeten opnieuw worden opgehaald na het sluiten en heropenen van de browser, wat een extra stap kan zijn voor de gebruiker.
 
-### ADR-003 BookingAPI wordt gebruikt voor hotels, vluchten en autoverhuur
+### 8.3. ADR-003 BookingAPI wordt gebruikt voor hotels, vluchten en autoverhuur
 
 #### Status
 
-Voorgesteld
+Niet meer van toepassing
 
 #### Context
 
 Wij zochten API's die wij konden gebruiken voor het zoeken van hotels, vluchten en autoverhuur.
 
-#### Considered Options
+#### Overwogen opties
 
 |                 | Documentatie | Betrouwbaarheid | Schaalbaarheid | Api dekking |
 |-----------------|--------------|-----------------|----------------|-------------|
@@ -208,76 +208,99 @@ _Tabel 3: ADR-003 Overwogen opties ._
 
 Booking.com en Priceline.com bieden uitgebreide documentatie, zijn betrouwbaar en schaalbaar door hun grote gebruikersbasis. Flights scraper is vaak minder betrouwbaar en schaalbaar, afhankelijk van het scrapen van gegevens. TravelData heeft gemiddelde documentatie, betrouwbaarheid en schaalbaarheid.
 
-#### Decision
+#### Besluit
 
 Wij hebben besloten om Booking.com te gebruiken voor het zoeken van hotels, vluchten en autoverhuur. Dit is omdat Booking.com uitgebreide documentatie biedt, betrouwbaar is en schaalbaar is door zijn grote gebruikersbasis en het is bekender binnen de team dan Priceline.com.
 
-#### Consequences
+#### Consequenties
 
-We hebben deze optie nog niet toegepast. We kunnen dus nog niet de gevolgen die dit heeft opgeleverd noteren.
+##### Positief
+- Kan hierdoor veel in bij dezelfde API afhandelen
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
 
-### 8.4. ADR-004 TITLE
+##### Negatief
+- Mocht deze API ooit veranderen moeten we alles veranderen wat onder vluchten, hotels en auto verhuur valt.
+- Mocht deze API ooit vervallen/out of business gaan, werkt veel van onze applicatie niet meer
 
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
-
-#### Context
-
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
-
-#### Considered Options
-
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
-
-#### Decision
-
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+### 8.4. ADR-004 Voor exterene Api's gebruiken wij de adapter pattern 
 
 #### Status
 
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
-
-#### Consequences
-
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
-
-### 8.5. ADR-005 TITLE
-
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
+Voorgesteld
 
 #### Context
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+Bij de ontwerpvraag: 
 
-#### Considered Options
+```Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?```
 
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+Hebben wij onderzocht hoe wij kunnen voorkomen dat wij de gehele applicatie zouden moeten aanpassen als een externe service wordt aangepast.
 
-#### Decision
+#### Overwogen opties
 
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+- State pattern
+- Adapter pattern
+- Strategy pattern
+- Facade pattern
+- Factory method
+
+
+#### Besluit
+
+Na ons onderzoek bleek het *__Adapter Pattern__* de beste keuze te zijn.
+We hebben hiervoor gekozen omdat een adapter ervoor zorgt dat wijzigingen in de externe API of een overstap naar een andere API-provider slechts aanpassingen in één klasse vereisen.
+Dit minimaliseert de impact op de rest van de applicatie en maakt onderhoud eenvoudiger.
+Dit beantwoordt ook de ontwerpvraag.
+
+#### Consequenties
+
+##### Positief
+- Minimaliseert impact van API-wijzigingen
+- Makkelijker testen doordat je de mock-adapter kan aanmaken zonder echte API calls
+- Maakt overstappen naar een andere provider makkelijker
+
+##### Neutraal
+- Extra code nodig 
+- Kan overkill zijn als een API nooit verandert
+- 
+##### Negatief
+- Voegt complexiteit toe
+
+
+### 8.5. ADR-005 Herziening van ADR-003 - Minder afhankelijkheid van Booking.com
 
 #### Status
 
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+Voorgesteld
 
-#### Consequences
+#### Context
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+Bij [ADR-003](#83-adr-003-bookingapi-wordt-gebruikt-voor-hotels-vluchten-en-autoverhuur)
+wouden wij het besluit maken om de booking.com api te gebruiken voor hotels, vluchten en autoverhuur.
+Als groep gaan wij hier van af zien. De reden hiervoor is als deze API er uit ligt. 3 groten delen van onze applicatie niet meer werkt
+
+Het idee is dus dat wij niet geheel of grotendeels afhankelijk willen zijn van 1 API. 
+De regel die wij willen hanteren is dat een API maar voor 1 onderdeel gebruikt mag worden. Voorbeeld: Booking.com regels alles voor Hotels.
+Je mag hotels ophalen boeken ect. Maar je mag Booking.com niet gebruiken voor vluchten of auto verhuur.
+
+#### Overwogen opties
+
+- Veel afhankelijkheden van dezelfde API
+- Weinig afhankelijkheid van een API
+
+#### Besluit
+
+Wij kiezen ervoor om zo min mogelijk afhankelijk te zijn van één enkele API. 
+Het doel is om te voorkomen dat de applicatie grotendeels niet meer werkt wanneer één API uitvalt of volledig verdwijnt.
+Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar blijft, kunnen we de risico’s beperken door meerdere API's te gebruiken voor verschillende doeleinden.
+
+#### Consequenties
+
+##### Positief
+- Als een API niet werkt, ligt niet heel de applicatie plat
+
+##### Negatief
+- Hiervoor moeten wij wel veel herschrijven/opnieuw doen
 
 ## 9. Deployment, Operation and Support
 > [!TIP]

@@ -1,0 +1,87 @@
+@startuml
+!include <C4/C4_Container>
+
+title C4 Model Example - Simple Web Application
+
+Person(Reiziger, "Reiziger", "Iemand die de app gebruikt voor reizen")
+Person(ReisAgent, "ReisAgent", "Iemand die de reiziger helpt bij de reis")
+
+
+
+System_Boundary(c3, Triptop system) {
+'frontend
+Container(TriptopFrontend,TriptopFrontend,Component: React Application,De webapplicatie waarop reizigers hun eigen reis kunnen samenstellen)
+
+'backend
+'controller
+Container(TriptopController,TriptopController,Component: Sprint MVC Controller, Hier worden de calls van de frontend naar de backend in afgehandeld)
+'service
+Container(TriptopService,TriptopService,Component: Sprint MVC Service,Hier word de business logica van de endpoints in afgehandeld)
+
+'database
+ContainerDb(db, TriptopDatabase, Component: ? , Slaat Data op)
+
+'Externe API Adapters
+Container(BookingAdapter,BookingAdapter,Component: Sprint MVC Adapter,Adapter voor de BookingAPI)
+Container(VluchtenAdapter,VluchtenAdapter,Component: Sprint MVC Adapter,Adapter voor de VluchtenAPI)
+Container(VerhuurAdapter,VerhuurAdapter,Component: Sprint MVC Adapter,Adapter voor de VerhuurAPI)
+Container(VervoerAdapter,VervoerAdapter,Component: Sprint MVC Adapter,Adapter voor de VervoerAPI)
+Container(RestaurantAdapter,RestaurantAdapter,Component: Sprint MVC Adapter,Adapter voor de RestaurantAPI)
+Container(ActiviteitenAdapter,ActiviteitenAdapter,Component: Sprint MVC Adapter,Adapter voor de ActiviteitenAPI)
+Container(BetaalsysteemAdapter,BetaalsysteemAdapter,Component: Sprint MVC Adapter,Adapter voor de BetaalSystemenAPI)
+}
+
+
+
+'Externe API's
+Container_Ext(Booking.comAPI, Booking.comAPI,Component: ExterneAPI,"Hier kan je hotels vinden")
+Container_Ext(VluchtenAPI, VluchtenAPI,Component: ExterneAPI,VluchtenAPI)
+Container_Ext(VerhuurAPI, "VerhuurAPI",Component: ExterneAPI,"Deze API is voor autoverhuur zoals Bijvoorbeeld: Sixt en hertx")
+Container_Ext(RestaurantAPI, RestaurantAPI,Component: ExterneAPI,"Deze API is voor het TakeAway en thuis bezorgt")
+Container_Ext(ActiviteitenAPI, "ActiviteitenAPI",Component: ExterneAPI,"Deze API is voor activiteiten zoals tripAdvisor")
+Container_Ext(BetaalSystemenAPI, "BetaalSystemenAPI",Component: ExterneAPI,"Is voor IDEAL en credit card ect")
+Container_Ext(VervoerAPI, "VervoerAPI",Component: ExterneAPI,"Voor vervoer zoals NS deutschebhan ect")
+
+
+
+
+
+
+'Relaties gebruikers
+Rel(Reiziger,TriptopFrontend, "Gebruikt")
+Rel("ReisAgent",TriptopFrontend, "Gebruikt")
+
+'frontend -> controller
+Rel(TriptopFrontend,TriptopController,)
+
+'controller -> service
+Rel(TriptopController,TriptopService,)
+
+'service -> database
+Rel(TriptopService,db,)
+
+'backend -> adapters
+Rel(TriptopService,BookingAdapter,)
+Rel(TriptopService,VluchtenAdapter,)
+Rel(TriptopService,VerhuurAdapter,)
+Rel(TriptopService,RestaurantAdapter,)
+Rel(TriptopService,ActiviteitenAdapter,)
+Rel(TriptopService,BetaalsysteemAdapter,)
+Rel(TriptopService,VervoerAdapter,)
+
+'adapter -> api
+Rel(BookingAdapter,Booking.comAPI,)
+Rel(VluchtenAdapter,VluchtenAPI,)
+Rel(VerhuurAdapter,VerhuurAPI,)
+Rel(VervoerAdapter,VervoerAPI,)
+Rel(RestaurantAdapter,RestaurantAPI,)
+Rel(ActiviteitenAdapter,ActiviteitenAPI,)
+Rel(BetaalsysteemAdapter,BetaalSystemenAPI,)
+
+
+
+
+
+
+
+@enduml

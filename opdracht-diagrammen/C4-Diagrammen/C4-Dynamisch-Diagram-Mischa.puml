@@ -1,0 +1,26 @@
+@startuml
+!include <C4/C4_Container>
+
+title C4 Dynamic Diagram - Authenticatie flow
+
+LAYOUT_TOP_DOWN()
+Person(User, "Reiziger", "Logt in")
+System_Boundary(Webapp, "Triptop app") {
+    Container(Frontend, "Frontend", "Web Applicatie", "Biedt de gebruikersinterface en stuurt login requests naar de backend")
+    Container(Backend, "Backend", "Spring Boot API", "Verwerkt login requests")
+    Container(AuthenticationService, "Authentication Service", "Spring Boot Service", "Behandelt authenticatie")
+}
+
+System_Ext(ExternalAPI1, "Externe API 1", "Extern Systeem", "Ontvangt geauthenticeerde verzoeken")
+
+User -right-> Frontend: 1. Gebruiker logt in met credentials
+Frontend -right-> Backend: 2. Stuurt credentials door naar
+Backend -down-> AuthenticationService: 3. Controleert credentials
+AuthenticationService -up-> Backend: 4. Stuurt geauthenticeerde token terug naar
+Backend -left-> Frontend: 5. Stuurt token terug naar de
+Frontend -right-> Backend: 6. Verstuurt geauthenticeerde API-aanvraag naar
+Backend -right-> ExternalAPI1: 7. Verstuurt request met token naar
+ExternalAPI1 -left-> Backend: 8. Verstuurt response naar
+Backend -left-> Frontend: 9. Stuurt response terug naar de
+
+@enduml

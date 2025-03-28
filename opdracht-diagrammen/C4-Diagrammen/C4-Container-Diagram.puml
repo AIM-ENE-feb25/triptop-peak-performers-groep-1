@@ -1,33 +1,31 @@
 @startuml
 !include <C4/C4_Container>
 
-title Container diagram van Triptop App
+title C4 Model Example - Simple Web Application
 
-Boundary(system, "Triptop App") {
-    ContainerDb(db, "Database", "?", "Slaat gebruikersgegevens en reisplannen op")
-    Container(webapp, "Frontend", "?", "Biedt een UI voor reizigers om reizen samen te stellen")
-    Container(api, "Backend", "?", "Handelt businesslogica af en communiceert met externe systemen en database")
-}
+Person(Reiziger, "Reiziger", "Iemand die de app gebruikt voor reizen")
+Person(ReisAgent, "ReisAgent", "Iemand die de reiziger helpt bij de reis")
 
-Person(Reiziger, "Reiziger", "Gebruikt de webapplicatie om reizen te plannen")
-Person(ReisAgent, "ReisAgent", "Helpt reizigers bij het samenstellen van reizen")
 
-Container_Ext(BookingAPI, "BookingAPI", "Extern systeem", "Hier kan je hotels, vluchten, auto verhuur en taxi's mee ophalen")
-Container_Ext(TripAdvisorAPI, "TripAdvisorAPI", "Extern systeem", "Takeaway en bezorgdiensten")
-Container_Ext(ActiviteitenAPI, "ActiviteitenAPI", "Extern systeem", "Activiteiten zoals TripAdvisor")
-Container_Ext(BetaalSystemenAPI, "BetaalSystemenAPI", "Extern systeem", "Betaalsystemen zoals iDEAL en creditcards")
-Container_Ext(InloggenAPI, "InloggenAPI", "Extern systeem", "?")
-Container_Ext(VervoerAPI, "VervoerAPI", "Extern systeem", "Vervoer zoals NS en Deutsche Bahn")
+Container(system, "Triptop App", "Systeem", "De webapplicatie waarop reizigers hun eigen reis kunnen samenstellen")
+Container_Ext(Booking.comAPI, Booking.comAPI, "Extern systeem","Hier kan je hotels,vluchten,auto verhuur en taxis mee vinden")
+Container_Ext(VerhuurAPI, "VerhuurAPI", "Extern systeem","Deze API is voor autoverhuur zoals Bijvoorbeeld: Sixt en hertx")
+Container_Ext(EtenEnDrinkenAPI, "EtenEnDrinkenAPI", "ExternSysteem","Deze API is voor het TakeAway en thuis bezorgt")
+Container_Ext(ActiviteitenAPI, "ActiviteitenAPI", "ExternSysteem","Deze API is voor activiteiten zoals tripAdvisor")
+Container_Ext(BetaalSystemenAPI, "BetaalSystemenAPI", "ExternSysteem","Is voor IDEAL en credit card ect")
+Container_Ext(InloggenAPI, "InloggenAPI", "ExternSysteem","Om in te loggen")
+Container_Ext(VervoerAPI, "VervoerAPI", "ExternSysteem","Voor vervoer zoals NS deutschebhan ect")
 
-Rel(Reiziger, webapp, "Gebruikt via browser")
-Rel(ReisAgent, webapp, "Gebruikt via browser")
-Rel(api, db, "SQL Queries over JDBC")
-Rel(webapp, api, "REST API calls (JSON over HTTP)")
-Rel(api, BookingAPI, "REST API calls (JSON over HTTP)")
-Rel(api, TripAdvisorAPI, "REST API calls (JSON over HTTP)")
-Rel(api, ActiviteitenAPI, "REST API calls (JSON over HTTP)")
-Rel(api, BetaalSystemenAPI, "REST API calls (JSON over HTTP)")
-Rel(api, InloggenAPI, "?")
-Rel(api, VervoerAPI, "REST API calls (JSON over HTTP)")
+Rel(Reiziger,system, "Gebruikt")
+Rel("ReisAgent",system, "Gebruikt")
+Rel(system,Booking.comAPI,"Haalt data op van")
+Rel(system,"VerhuurAPI","Haalt data op van" )
+Rel(system,"EtenEnDrinkenAPI","Haalt data op van" )
+Rel(system,"ActiviteitenAPI","Haalt data op van" )
+Rel(system,"BetaalSystemenAPI","Haalt data op van" )
+Rel(system,"InloggenAPI","Haalt data op van" )
+Rel(system,"VervoerAPI","Haalt data op van" )
+
+
 
 @enduml

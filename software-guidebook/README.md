@@ -86,9 +86,35 @@ _Afbeelding 7: Dynamic Diagram reis boeken._
 > [!IMPORTANT]
 > Voeg toe: Component Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
 
+#### 7.3.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
+##### Component diagram
+Voor deze onderzoeksvraag heb ik als eerste een component diagram gemaakt. Dit diagram toont de architectuur van de Triptop applicatie, inclusief de interactie tussen de gebruiker en het systeem. Dit diagram is gefocust op het authenticeren van een gebruiker voor het versturen van API verzoeken (zie afbeelding 8).
+
+![Component Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramMischa.png)
+_Afbeelding 8: Component diagram authenticeren._
+
+##### Dynamisch diagram
+Dit dynamisch diagram toont de authenticatieflow binnen de Triptop applicatie (zie afbeelding 9). De gebruiker logt in via de frontend, die de inloggegevens doorstuurt naar de backend. De backend valideert deze gegevens via de Authentication Service, die op zijn beurt een externe authenticatie service aanroept. Na successvolle validatie wordt een token gegenereerd en teruggestuurd naar de gebruiker. Deze token wordt vervolgens gebruikt om (geauthenticeerde) verzoeken naar de externe API's te versturen.
+
+![Dynamisch Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramMischa.png)
+_Afbeelding 9: Dynamisch diagram authenticeren._
+
 ### 7.4. Design & Code
 > [!IMPORTANT]
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
+
+#### 7.5.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
+##### Klasse diagram
+Voor deze onderzoeksvraag heb ik met gebruik van het component diagram (zie afbeelding 8) een klasse diagram gemaakt. Voor dit klasse diagram heb ik gebruik gemaakt van het strategy pattern. Dit heb ik gedaan met het idee dat er makkelijk gewisseld kan worden tussen verschillende manieren voor authenticatie voor de verschillende API's zonder veel code aan te hoeven passen (zie afbeelding 10).
+
+![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
+_Afbeelding 10: Klasse diagram authenticeren._
+
+#### Sequence diagram
+Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 11). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze verwerkt en doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een token gegenereerd en teruggestuurd. Deze token wordt vervolgens gebruikt voor geauthenticeerde verzoeken.
+
+![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
+_Afbeelding 11: Sequence diagram authenticeren._
 
 ## 8. Architectural Decision Records
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes
@@ -292,6 +318,49 @@ Je mag hotels ophalen boeken ect. Maar je mag Booking.com niet gebruiken voor vl
 #### Besluit
 
 Wij kiezen ervoor om zo min mogelijk afhankelijk te zijn van één enkele API. 
+Het doel is om te voorkomen dat de applicatie grotendeels niet meer werkt wanneer één API uitvalt of volledig verdwijnt.
+Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar blijft, kunnen we de risico’s beperken door meerdere API's te gebruiken voor verschillende doeleinden.
+
+#### Consequenties
+
+##### Positief
+- Als een API niet werkt, ligt niet heel de applicatie plat
+
+##### Negatief
+- Hiervoor moeten wij wel veel herschrijven/opnieuw doen
+
+## 9. Deployment, Operation and Support
+> [!TIP]
+> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
+
+### 8.5. ADR-006 Voorkeur voor externe api communicatie met authenticatie
+
+#### Status
+
+Voorgesteld
+
+#### Context
+
+Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
+- Vanuit de frontend direct communiceren met de IdentityProvider
+- Vanuit de frontend met een eigen backend communiceren die vervolgens met de IdentityProvider communiceert
+- Een hybride oplossing waarbij de frontend en backend beide communiceren met de IdentityProvider
+
+#### Overwogen opties
+
+- Directe communicatie vanuit de frontend
+    - Voordelen: Snel, geen extra laag
+    - Nadelen: Minder veilig, minder controle
+- Communicatie via een eigen backend
+    - Voordelen: Meer controle, veiliger
+    - Nadelen: Langzamer, extra laag
+- Hybride oplossing
+    - Voordelen: Controle, snelheid
+    - Nadelen: Complexer, extra laag
+
+#### Besluit
+
+Wij kiezen ervoor om zo min mogelijk afhankelijk te zijn van één enkele API.
 Het doel is om te voorkomen dat de applicatie grotendeels niet meer werkt wanneer één API uitvalt of volledig verdwijnt.
 Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar blijft, kunnen we de risico’s beperken door meerdere API's te gebruiken voor verschillende doeleinden.
 

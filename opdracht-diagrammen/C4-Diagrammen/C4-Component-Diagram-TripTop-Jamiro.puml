@@ -34,8 +34,8 @@ Container(BetaalsysteemAdapter,BetaalsysteemAdapter,Component: Sprint MVC Adapte
 
 
 'Externe API's
-Container_Ext(Booking.comAPI, Booking.comAPI,Component: ExterneAPI,"Hier kan je hotels vinden")
-Container_Ext(VluchtenAPI, VluchtenAPI,Component: ExterneAPI,VluchtenAPI)
+Container_Ext(Booking.comAPI, Booking.comAPI,Component: ExterneAPI,API om hotels op te halen)
+Container_Ext(VluchtenAPI, GoogleFlightsAPI,Component: ExterneAPI,API om vluchten op te halen)
 Container_Ext(VerhuurAPI, "VerhuurAPI",Component: ExterneAPI,"Deze API is voor autoverhuur zoals Bijvoorbeeld: Sixt en hertx")
 Container_Ext(RestaurantAPI, RestaurantAPI,Component: ExterneAPI,"Deze API is voor het TakeAway en thuis bezorgt")
 Container_Ext(ActiviteitenAPI, "ActiviteitenAPI",Component: ExterneAPI,"Deze API is voor activiteiten zoals tripAdvisor")

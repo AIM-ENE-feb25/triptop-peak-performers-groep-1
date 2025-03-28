@@ -7,10 +7,17 @@ Person(Reiziger, "Reiziger", "Iemand die de app gebruikt voor reizen")
 Person(ReisAgent, "ReisAgent", "Iemand die de reiziger helpt bij de reis")
 
 
+System_Boundary(c1, Triptop Systeem) {
+'Systeem
 Container(system, "Triptop App", "Systeem", "De webapplicatie waarop reizigers hun eigen reis kunnen samenstellen")
-Container_Ext("OvernachtingenAPI", "OvernachtingenAPI", "Extern systeem","Bijvoorbeeld Booking.com/Airbnb")
+'Database
+}
+
+'Externe systemen
+Container_Ext("OvernachtingenAPI", Booking.comAPI, "Extern systeem",Dit is de booking.com API om hotels mee op te halen)
+Container_Ext(VluchtenAPI,GoogleFlightsAPI,"ExternSysteem",Dit is de Googleflights API om vluchten mee op te halen)
+Container_Ext(RestaurantAPI, TripadvisorAPI, "ExternSysteem",Dit is de TripAdvisor API om restaurants mee op te halen)
 Container_Ext(VerhuurAPI, "VerhuurAPI", "Extern systeem","Deze API is voor autoverhuur zoals Bijvoorbeeld: Sixt en hertx")
-Container_Ext(EtenEnDrinkenAPI, "EtenEnDrinkenAPI", "ExternSysteem","Deze API is voor het TakeAway en thuis bezorgt")
 Container_Ext(ActiviteitenAPI, "ActiviteitenAPI", "ExternSysteem","Deze API is voor activiteiten zoals tripAdvisor")
 Container_Ext(BetaalSystemenAPI, "BetaalSystemenAPI", "ExternSysteem","Is voor IDEAL en credit card ect")
 Container_Ext(InloggenAPI, "InloggenAPI", "ExternSysteem","Om in te loggen")
@@ -20,8 +27,10 @@ Container_Ext(VervoerAPI, "VervoerAPI", "ExternSysteem","Voor vervoer zoals NS d
 Rel(Reiziger,system, "Gebruikt")
 Rel("ReisAgent",system, "Gebruikt")
 Rel(system,OvernachtingenAPI,"Haalt data op van")
+Rel(system,VluchtenAPI,Haalt data op van)
+Rel(system,RestaurantAPI,"Haalt data op van" )
+
 Rel(system,"VerhuurAPI","Haalt data op van" )
-Rel(system,"EtenEnDrinkenAPI","Haalt data op van" )
 Rel(system,"ActiviteitenAPI","Haalt data op van" )
 Rel(system,"BetaalSystemenAPI","Haalt data op van" )
 Rel(system,"InloggenAPI","Haalt data op van" )

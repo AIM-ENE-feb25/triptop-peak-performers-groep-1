@@ -64,10 +64,11 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 ## 7. Software Architecture
 ### 7.1. Externe api's
-| Naam           | Doel                                     |
-|----------------|------------------------------------------|
-| Booking.Com    | Hotels, Vluchten, Auto verhuur en taxi's |     
-| TripAdvisorApi | TakeAway en bezorg diensten              |     
+| Naam              | Doel          |
+|-------------------|---------------|
+| Booking.Com       | Hotels        |     
+| TripAdvisorApi    | Restaurants   |     
+| GoogleFlightsAPI  | Voor vluchten |  
 
 _Tabel 1: Externe api's._
 

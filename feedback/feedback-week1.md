@@ -1,5 +1,5 @@
 - [x] context diagram, 2 losse boxes
-- [x] actors bij container hoeft niet perse bij component
+- [x] actors bij container diagram moeten toegevoegd worden
 - [x] status moet naar boven bij de ADR
 - [x] consistentie
 - [x] meer functioneel kijken bij ADR's

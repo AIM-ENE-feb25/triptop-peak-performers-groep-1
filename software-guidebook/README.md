@@ -360,17 +360,21 @@ Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een e
 
 #### Besluit
 
-Wij kiezen ervoor om zo min mogelijk afhankelijk te zijn van één enkele API.
-Het doel is om te voorkomen dat de applicatie grotendeels niet meer werkt wanneer één API uitvalt of volledig verdwijnt.
-Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar blijft, kunnen we de risico’s beperken door meerdere API's te gebruiken voor verschillende doeleinden.
+Wij hebben uiteindelijk besloten om niet de externe IdentityProvider direct vanuit de frontend te benaderen, maar wel om een eigen backend te gebruiken die vervolgens met de IdentityProvider communiceert.
 
 #### Consequenties
 
-##### Positief
-- Als een API niet werkt, ligt niet heel de applicatie plat
+Positief
+- Verhoogde veiligheid doordat de backend de communicatie met de IdentityProvider afhandelt.
+- Meer controle over de authenticatie- en autorisatieprocessen.
+- Backend kan extra validaties en logging toevoegen voor betere monitoring.
+
+Neutraal
+- Extra laag in de architectuur kan de complexiteit verhogen, maar biedt ook meer flexibiliteit.
 
 ##### Negatief
-- Hiervoor moeten wij wel veel herschrijven/opnieuw doen
+- Mogelijk langzamere prestaties door de extra communicatielaag.
+- Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
 
 ## 9. Deployment, Operation and Support
 > [!TIP]

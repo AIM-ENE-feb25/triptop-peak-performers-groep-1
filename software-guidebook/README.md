@@ -359,15 +359,35 @@ Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een e
 
 #### Overwogen opties
 
-- Directe communicatie vanuit de frontend
-    - Voordelen: Snel, geen extra laag
-    - Nadelen: Minder veilig, minder controle
-- Communicatie via een eigen backend
-    - Voordelen: Meer controle, veiliger
-    - Nadelen: Langzamer, extra laag
-- Hybride oplossing
-    - Voordelen: Controle, snelheid
-    - Nadelen: Complexer, extra laag
+Directe communicatie vanuit de frontend:
+  - **Voordelen**: 
+    - Sneller, omdat de frontend direct een token ophaalt en geen extra tussenlaag hoeft te wachten.
+    - Minder infrastructuur nodig, wat het eenvoudiger maakt om te implementeren.
+  - **Nadelen**:
+    - De client-secret zou mogelijk in de frontend terecht kunnen komen, wat kwetsbaar is voor aanvallen.
+    - Als een token gevaar gebracht raakt, kan de frontend niet eenvoudig de toegang intrekken zonder afhankelijk te zijn van de IdentityProvider.
+    - Moeilijker om misbruik of foutieve authenticatiepogingen te detecteren. 
+
+Communicatie via een eigen backend:
+- Voordelen:
+  - De client-secret blijft veilig op de backend en wordt nooit blootgesteld aan de frontend.
+  - De backend kan extra validaties uitvoeren, zoals IP-beperkingen, rolgebaseerde toegang of extra logging.
+  - De backend kan tokens opslaan en vernieuwen zonder de IdentityProvider onnodig te belasten.
+- Nadelen:
+  - Extra latentie, omdat de frontend eerst de backend moet aanroepen, en de backend daarna de IdentityProvider, kan er een vertraging optreden.
+  - De backend moet correct worden geconfigureerd en beveiligd, wat extra ontwikkel- en onderhoudswerk vraagt.
+  - Problemen zoals netwerkfouten, timeouts of verlopen tokens moeten correct door de backend worden afgehandeld en teruggekoppeld naar de frontend.
+
+Hybride oplossing
+- Voordelen:
+  - De frontend kan bijvoorbeeld een publieke endpoint van de IdentityProvider direct benaderen, terwijl de backend geavanceerde autorisatiecontrole uitvoert.
+  - Afhankelijk van de use case kan bepaald worden of authenticatie volledig via de backend of deels via de frontend verloopt.
+- Nadelen:
+  - Hogere complexiteit in architectuur:
+    - Frontend en backend moeten goed op elkaar afgestemd zijn om te voorkomen dat inconsistenties ontstaan in sessiebeheer.
+    - Meerdere authenticatiestromen (bijv. OAuth, JWT, API-sleutels) moeten worden beheerd, wat foutgevoelig is.
+    - Mogelijk extra configuratie vereist voor Cross-Origin Resource Sharing (CORS) en beveiligingsheaders.
+  - Aangezien meerdere componenten moeten samenwerken, kan het langer duren om een stabiele oplossing te implementeren en te testen.
 
 #### Besluit
 

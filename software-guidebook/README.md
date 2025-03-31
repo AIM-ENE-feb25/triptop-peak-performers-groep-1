@@ -64,11 +64,11 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 ## 7. Software Architecture
 ### 7.1. Externe api's
-| Naam              | Doel          |
-|-------------------|---------------|
-| Booking.Com       | Hotels        |     
-| TripAdvisorApi    | Restaurants   |     
-| GoogleFlightsAPI  | Vluchten |  
+| Naam              | Doel        | Links | 
+|-------------------|-------------|-------|
+| Booking.Com       | Hotels      |       |    
+| TripAdvisorApi    | Restaurants |       |   
+| GoogleFlightsAPI  | Vluchten    |       |
 
 _Tabel 1: Externe api's._
 
@@ -99,6 +99,29 @@ Dit dynamisch diagram toont de authenticatieflow binnen de Triptop applicatie (z
 ![Dynamisch Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramMischa.png)
 _Afbeelding 9: Dynamisch diagram authenticeren._
 
+#### 7.3.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
+Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. Om de onderzoeksvraag op te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
+
+Het "Adapter pattern" houdt in dat er een "Adapter"-klasse is die tussen een externe service en de hoofdlogica van de applicatie zit. Deze klasse formateert de data die naar de externe service wordt doorgestuurd, maar ook de data die wij opvragen van de externe service. Als de externe service iets verandert met de data die ze opsturen, of de data die ze opgestuurd willen krijgen. Kan je dit afvangen in de "Adapter"-klasse
+
+Voordelen
+- Decoupling, De hoofdlogica van de applicatie blijft onafhankelijk van externe API's of systemen
+- Eenvoudig van externe API's en systemen wisselen
+- Je kan de adapter mocken waardoor je beter kan testen
+
+Nadelen
+- Door de extra "Adapter" laag wordt de applicatie complexer
+- Door het extra formateren en transformeren van data kan dit zorgen voor een kleine vertraging
+
+Verdere uitleg voor waarom wij voor het "Adapter pattern" hebben gekozen wordt behandeld in 
+[ADR-004](#84-adr-004-voor-exterene-apis-gebruiken-wij-de-adapter-pattern-)
+
+##### Component diagram
+![Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramJamiro.png)
+_Afbeelding 10: Component diagram Adapter pattern._
+
+##### Dynamisch diagram
+
 ### 7.4. Design & Code
 > [!IMPORTANT]
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
@@ -117,11 +140,13 @@ Het sequence diagram laat duidelijk de interacties tussen de verschillende klass
 _Afbeelding 11: Sequence diagram authenticeren._
 
 
-#### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?
+#### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 ##### Klasse diagram
-Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen inplaats van de gehele applicatie
+Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. 
+De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen in plaats van de gehele applicatie.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
+_Afbeelding 12: Klasse diagram adapter pattern._
 
 #### Sequence diagram
 Moet nog gerealiseerd worden
@@ -340,11 +365,7 @@ Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar bli
 ##### Negatief
 - Hiervoor moeten wij wel veel herschrijven/opnieuw doen
 
-## 9. Deployment, Operation and Support
-> [!TIP]
-> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
-
-### 8.5. ADR-006 Voorkeur voor externe api communicatie met authenticatie
+### 8.6. ADR-006 Voorkeur voor externe api communicatie met authenticatie
 
 #### Status
 

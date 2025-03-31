@@ -1,0 +1,42 @@
+@startuml
+
+class AuthFacade {
+    +login(username: String, password: String): String
+    +checkAppAccess(token: String, username: String, application: String): String
+}
+
+class UserService {
+    +login(username: String, password: String): String
+}
+
+class TokenService {
+    +checkAppAccess(token: String, username: String, application: String): String
+}
+
+class LoggerService {
+    +log(message: String)
+}
+
+class AuthController {
+    +login(username: String, password: String): String
+    +checkAppAccess(token: String, username: String, application: String): String
+}
+
+class AuthRequest {
+    -username: String
+    -password: String
+    +toJson(): String
+}
+
+class Main {
+    +main(args: String[])
+}
+
+AuthFacade --> UserService : maakt instantie van
+AuthFacade --> TokenService : maakt instantie van
+AuthFacade --> LoggerService : maakt instantie van
+AuthController --> AuthFacade : maakt instantie van
+Main --> AuthController : maakt instantie van
+UserService --> AuthRequest : gebruikt
+
+@enduml

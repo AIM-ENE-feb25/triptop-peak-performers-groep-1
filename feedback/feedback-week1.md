@@ -1,6 +1,6 @@
-- [ ] context diagram, 2 losse boxes
-- [ ] actors bij container diagram moeten toegevoegd worden
-- [ ] status moet naar boven bij de ADR
+- [x] context diagram, 2 losse boxes
+- [x] actors bij container diagram moeten toegevoegd worden
+- [x] status moet naar boven bij de ADR
 - [ ] consistentie
 - [ ] meer functioneel kijken bij ADR's
-- [ ] Lijst met alle externe API's
+- [x] Lijst met alle externe API's

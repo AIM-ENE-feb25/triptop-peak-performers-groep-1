@@ -1,0 +1,19 @@
+@startuml
+
+package "Spring Boot Application" {
+    component "Controller Layer" as Controllers
+    component "Service Layer" as Services
+    component "DAO Layer" as DAOs
+    component "Domain Models" as Domains
+    component "Exception Handling" as Exceptions
+
+    database "SQL Server Database" as Database
+
+    Controllers --> Services : Calls
+    Services --> DAOs : Uses
+    DAOs --> Database : Queries
+    Services --> Domains : Uses
+    Services --> Exceptions : Throws
+}
+
+@enduml

@@ -40,8 +40,6 @@ _Afbeelding 2: Domain Story AS IS._
 _Afbeelding 3: Domain Story TO BE._
 
 ### 3.4 Domain Model
-
-
 ![Domain Model](../opdracht-diagrammen/DomainModel/Domain%20Model.png)
 _Afbeelding 4: Domain Model._
 

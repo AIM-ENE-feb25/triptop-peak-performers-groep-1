@@ -1,0 +1,21 @@
+@startuml
+actor User
+participant TriptopFrontend
+participant HotelController
+participant HotelService
+participant HotelApiAdapter
+participant ExternalHotelAPI
+
+
+User -> TriptopFrontend: Goes to hotel detail page
+TriptopFrontend -> HotelController : getHotelDetail(hotelId)
+HotelController -> HotelService : retrieveHotelDetail(hotelId)
+HotelService -> HotelApiAdapter : fetchHotelDetail(hotelId)
+HotelApiAdapter -> ExternalHotelAPI : ?(hotelId)
+ExternalHotelAPI --> HotelApiAdapter : returns raw hotel data
+HotelApiAdapter --> HotelService : returns adapted hotel data
+HotelService --> HotelController : returns processed hotel details
+HotelController --> TriptopFrontend : returns hotel details
+TriptopFrontend --> User : shows hotel details
+
+@enduml

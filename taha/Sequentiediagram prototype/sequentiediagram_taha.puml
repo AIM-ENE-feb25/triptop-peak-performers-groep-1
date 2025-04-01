@@ -1,0 +1,26 @@
+@startuml
+actor User
+participant "AuthController" as AC
+participant "AuthFacade" as AF
+participant "UserService" as US
+participant "TokenService" as TS
+participant "LoggerService" as LS
+
+User -> AC: POST /auth/login (username, password)
+AC -> AF: login(username, password)
+AF -> US: login(username, password)
+US -> US: Send HTTP request to login URL
+US -> AF: Return token
+AF -> LS: log("Login successful/failed")
+AF -> AC: Return token
+AC -> User: Return token
+
+User -> AC: POST /auth/checkAccess (token, username, application)
+AC -> AF: checkAppAccess(token, username, application)
+AF -> TS: checkAppAccess(token, username, application)
+TS -> TS: Send HTTP request to check access URL
+TS -> AF: Return access response
+AF -> AC: Return access response
+AC -> User: Return access response
+
+@enduml

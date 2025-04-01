@@ -40,8 +40,6 @@ _Afbeelding 2: Domain Story AS IS._
 _Afbeelding 3: Domain Story TO BE._
 
 ### 3.4 Domain Model
-
-
 ![Domain Model](../opdracht-diagrammen/DomainModel/Domain%20Model.png)
 _Afbeelding 4: Domain Model._
 
@@ -165,28 +163,23 @@ Wij hebben besloten om Postman te gebruiken.
 De reden hiervoor is dat iedereen in onze groep bekend is met Postman en dat het een snelle en eenvoudige manier biedt om te testen of endpoints werken.
 
 #### Consequenties 
-
 ##### Positief
 - In Postman kun je eenvoudig requests groeperen in een collectie. Dit zorgt voor meer overzicht, bijvoorbeeld door aparte collecties te maken voor hotels en vluchten.
 - Postman biedt de mogelijkheid om een Workspace te gebruiken en te delen met het team, zodat iedereen met dezelfde requests werkt.
+
+##### Neutraal
+- Requests kunnen een naam krijgen, waardoor ze eenvoudig terug te vinden en te onderscheiden zijn.
 
 ##### Negatief
 - Voor mensen die nog nooit met Postman hebben gewerkt, kan het in het begin onduidelijk zijn.
 - Als Postman niet beschikbaar is, kunnen we de API's niet testen, omdat alles binnen Postman staat.
 - Wij gebruiken de gratis versie van Postman, mocht het veranderen dat wij moeten betalen moeten wij overstappen naar een andere optie. 
 
-
-##### Neutraal
-- Requests kunnen een naam krijgen, waardoor ze eenvoudig terug te vinden en te onderscheiden zijn.
-
 ### 8.2. ADR-002 Opslaan van JWT token
-
 #### Status
 Voorgesteld
 
 #### Context
-Voor de authenticatie en authorisatie in de software maken we gebruik van een externe API. Deze API geeft een token terug bij een succesvolle login die wij kunnen opslaan en versturen naar andere API's om aan te tonen dat het een geautoriseerde gebruiker is en wat zijn rechten zijn in de software. Er zijn verschillende mogelijkheden voor waar we deze token willen opslaan, elk met zijn eigen voor- en nadelen.
-
 Voor de authenticatie en authorisatie in de software maken we gebruik van een externe API. Deze API geeft een token terug bij een succesvolle login die wij kunnen opslaan en versturen naar andere API's om aan te tonen dat het een geautoriseerde gebruiker is en wat zijn rechten zijn in de software. Er zijn verschillende mogelijkheden voor waar we deze token willen opslaan, elk met zijn eigen voor- en nadelen.
 
 #### Overwogen opties
@@ -196,36 +189,25 @@ Voor de authenticatie en authorisatie in de software maken we gebruik van een ex
 | Local Storage   | --         | ++               | --           |
 | Session Storage | ++         | +                | ++           |
 
-|                 	| Veiligheid 	| Toegankelijkheid 	| Persistentie 	|
-|-----------------	|------------	|------------------	|--------------	|
-| Local Storage   	| --         	| ++               	| --           	|
-| Session Storage 	| ++         	| +                	| ++           	|
-
 _Tabel 3: Overwogen opties JWT token._
 
 Het is handig om te vermelden dat alhoewel we bedoelen met persistentie of dat de token bewaard blijft als de browser sluit is dit juist een nadeel. De plusjes betekenen dat dit niet wordt bewaard en de minnetjes dus dat het wel bewaard blijft.
 
 ##### Veiligheid
-
 - **Local Storage**: Tokens opgeslagen in de local storage zijn kwetsbaarder voor XSS-aanvallen omdat ze toegankelijk zijn via JavaScript. Dit maakt het erg onveilig.
 - **Session Storage**: Tokens opgeslagen in Session Storage zijn veiliger omdat ze alleen toegankelijk zijn binnen de sessie van de browser en worden verwijderd zodra de sessie eindigt. Dit maakt ze erg veilig.
 
 ##### Toegankelijkheid
-
 - **Local Storage**: Tokens in local storage zijn gemakkelijk toegankelijk voor JavaScript en blijven beschikbaar tussen verschillende plekken op de website, wat de toegankelijkheid verhoogt.
 - **Session Storage**: Tokens in session storage zijn alleen toegankelijk binnen de huidige sessie, en van zichzelf op dezelfde plek. Mocht je deze willen gebruiken op andere plekken op de website, zal je ze moeten doorsturen. Dit vermindert de toegankelijkheid wel.
 
 ##### Persistentie
-
 - **Local Storage**: Tokens in local storage blijven bewaard zelfs als de browser wordt gesloten en opnieuw geopend, wat de persistentie verhoogt. Maar de veiligheid aanzienlijk vermindert.
 - **Session Storage**: Tokens in session storage worden verwijderd zodra de browser of tabblad wordt gesloten. Dit betekent dat ze niet persistent zijn, maar daardoor wel een flink stuk veiliger.
 
 #### Besluit
 Wij gaan de JWT tokens opslaan in de session storage. Hier hebben wij voor gekozen sinds dit een veiligere optie is dan de Local Storage terwijl het niet veel minder toegankelijk is. Daarnaast hebben wij in het team ook meer kennis over session storage dan local storage.
 
-We hebben deze optie nog niet toegepast. We kunnen dus nog niet de gevolgen die dit heeft opgeleverd noteren.
-
-=======
 #### Consequenties
 ##### Positief
 - Verhoogde veiligheid doordat tokens niet toegankelijk zijn na het sluiten van de browser of het tabblad.
@@ -406,9 +388,3 @@ Neutraal
 ## 9. Deployment, Operation and Support
 > [!TIP]
 > Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
-
-## 10. Bronvermelding
-
-We hebben in dit document gebruik gemaakt van de volgende bronnen:
-
-- 

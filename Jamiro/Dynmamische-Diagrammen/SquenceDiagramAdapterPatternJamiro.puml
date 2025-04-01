@@ -8,9 +8,9 @@ participant ExternalHotelAPI
 
 
 User -> TriptopFrontend: Goes to hotel detail page
-TriptopFrontend -> HotelController : getHotelDetail(hotelId)
-HotelController -> HotelService : retrieveHotelDetail(hotelId)
-HotelService -> HotelApiAdapter : fetchHotelDetail(hotelId)
+TriptopFrontend -> HotelController : getHotelDetails(hotelId)
+HotelController -> HotelService : retrieveHotelDetails(hotelId)
+HotelService -> HotelApiAdapter : fetchHotelDetails(hotelId)
 HotelApiAdapter -> ExternalHotelAPI : ?(hotelId)
 ExternalHotelAPI --> HotelApiAdapter : returns raw hotel data
 HotelApiAdapter --> HotelService : returns adapted hotel data

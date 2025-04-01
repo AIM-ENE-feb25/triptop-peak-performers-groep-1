@@ -107,14 +107,12 @@ public class Main {
     public static void main(String[] args) {
         AuthController authController = new AuthController();
 
-        // Login
         String loginResponse = authController.login("edevries", "3g2Rw9sT1x");
         System.out.println("Login Response: " + loginResponse);
 
         String token = loginResponse.split("\"token\":\"")[1].split("\"")[0];
         System.out.println("Extracted Token: " + token);
 
-        // Check App Access
         String accessResponse = authController.checkAppAccess(token, "edevries", "triptop");
         System.out.println("Access Response: " + accessResponse);
     }

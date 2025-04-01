@@ -116,6 +116,7 @@ _Afbeelding 10: Component diagram Adapter pattern._
 Dit dynamische diagram laat zien hoe een de gebruiker de details van een hotel binnen krijgt. 
 Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speelt in deze applicatie. 
 ![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
+_Afbeelding 10: Sequence Diagram Adapter pattern._
 ### 7.4. Design & Code
 > [!IMPORTANT]
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
@@ -125,13 +126,13 @@ Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speel
 Voor deze onderzoeksvraag heb ik met gebruik van het component diagram (zie afbeelding 8) een klasse diagram gemaakt. Voor dit klasse diagram heb ik gebruik gemaakt van het strategy pattern. Dit heb ik gedaan met het idee dat er makkelijk gewisseld kan worden tussen verschillende manieren voor authenticatie voor de verschillende API's zonder veel code aan te hoeven passen (zie afbeelding 10).
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
-_Afbeelding 10: Klasse diagram authenticeren._
+_Afbeelding 11: Klasse diagram authenticeren._
 
 #### Sequence diagram
 Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 11). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze verwerkt en doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een token gegenereerd en teruggestuurd. Deze token wordt vervolgens gebruikt voor geauthenticeerde verzoeken.
 
 ![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
-_Afbeelding 11: Sequence diagram authenticeren._
+_Afbeelding 12: Sequence diagram authenticeren._
 
 
 #### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
@@ -140,7 +141,7 @@ Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter 
 De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen in plaats van de gehele applicatie.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
-_Afbeelding 12: Klasse diagram adapter pattern._
+_Afbeelding 13: Klasse diagram adapter pattern._
 
 #### Sequence diagram
 Het sequence diagram laat zien waar de adapter klasse komt te staan en hoe deze gebruikt wordt.
@@ -155,6 +156,7 @@ En de responses die je krijgt worden steeds meer geformatteerd.
 Totdat het weer op de frontend aankomt en de gebruiker de data ziet.
 
 ![Sequence Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/SquenceDiagramAdapterPatternJamiro.png)
+_Afbeelding 14: Sequence Diagram Adapter pattern._
 
 ## 8. Architectural Decision Records
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes

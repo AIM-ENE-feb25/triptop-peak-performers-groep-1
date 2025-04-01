@@ -1,0 +1,36 @@
+@startuml
+!include <C4/C4_Container>
+
+title C4 Model Example - Simple Web Application
+
+Person(Eindgebruiker, Eindgebruiker, Iemand die de app gebruikt)
+
+System_Boundary(c3, FSWD: Expenses) {
+'controllers
+Container(AuthenticationController, AuthenticationController, Component: Sprint MVC Controller, Controller voor authenticatie)
+Container(ExpenseController, ExpenseController, Component: Sprint MVC Controller, Controller voor Expenses)
+
+'services
+Container(AuthenticationService,AuthenticationService,Component: Sprint MVC Service,Service voor Authenticatie)
+Container(ExpenseService,ExpenseService,Component: Sprint MVC Service,Service voor Expense)
+
+
+'repositories
+Container(AuthenticationRepository,AuthenticationRepository,Component: Sprint MVC Repository,Repo voor auth)
+Container(ExpenseRepository,ExpenseRepository,Component: Sprint MVC Repository,Repository voor Expense)
+
+}
+'database
+ContainerDb(Database, Database,?,)
+'rel
+Rel(AuthenticationController,AuthenticationService,)
+Rel(ExpenseController,ExpenseService,)
+Rel(AuthenticationService,AuthenticationRepository,)
+Rel(ExpenseService,ExpenseRepository,)
+Rel(Eindgebruiker,AuthenticationController,)
+Rel(Eindgebruiker,ExpenseController,)
+Rel(ExpenseRepository,Database,)
+Rel(AuthenticationRepository,Database,)
+
+
+@enduml

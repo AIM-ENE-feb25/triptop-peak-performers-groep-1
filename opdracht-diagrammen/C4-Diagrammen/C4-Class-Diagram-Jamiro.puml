@@ -1,0 +1,42 @@
+@startuml
+title C4 Class Diagram - Triptop applicatie
+
+class HotelController {
+    - final HotelServicePort: HOTELSERVICEPORT
+    + getHotelDetails(int HotelId) : Hotel
+}
+
+interface HotelServicePort {
+    + getHotelDetails(int HotelId) : Hotel
+}
+
+class Hotel {
+    - int: Id
+    - String: Naam
+    - String: Beschrijving
+    - String: Locatie
+}
+
+class HotelServiceImpl {
+    - final HOTELSERVICEADAPTER : HotelServiceAdapter
+    + getHotelDetails(int HotelId) : Hotel
+}
+
+class HotelServiceAdapter {
+    - final BOOKINGAPI : BookingAPI
+    + getHotelDetails(int HotelId) : Hotel
+    + GetHotelReviews(int HotelId) : ?json?
+}
+
+class BookingAPI {
+    <<external>>
+}
+
+HotelController --> HotelServicePort : Maakt gebruik van
+HotelController --> Hotel : : Maakt gebruik van
+
+HotelServicePort <|.. HotelServiceImpl : Implementeert
+
+HotelServiceImpl --> HotelServiceAdapter : Haalt data op van
+HotelServiceAdapter --> BookingAPI : Haalt data op van
+@enduml

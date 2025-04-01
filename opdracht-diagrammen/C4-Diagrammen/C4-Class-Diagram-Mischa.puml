@@ -1,0 +1,59 @@
+@startuml
+title C4 Component Diagram - Triptop applicatie
+
+class AuthenticationController {
+    - authenticateService: AuthenticateService
+    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
+    + authorize(endpoint: String, httpMethod: HttpMethods, token: Token): Boolean
+}
+
+class AuthenticationService {
+    - IAuthenticateStrategie: IAuthenticateStrategie
+    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
+    + authorize(endpoint: String, httpMethod: HttpMethods, token: Token): Boolean
+}
+
+interface IAuthenticateStrategie {
+    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
+}
+
+class UsernameAuthentication {
+    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
+}
+
+class KeyAuthentication {
+    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
+}
+
+class SecretAuthentication {
+    + authenticate(endpoint: String, httpMethod: HttpMethods, credentials: Credentials): Token
+}
+
+class Credentials {
+    - username: String
+    - password: String
+    - key: String
+    - secret: String
+}
+
+class Token {
+    - value: String
+    - expireDate: Date
+}
+
+enum HttpMethods {
+    GET
+    POST
+    PUT
+    DELETE
+}
+
+AuthenticationController --> AuthenticationService: Maakt gebruik van
+AuthenticationService --> IAuthenticateStrategie: Maakt gebruik van
+IAuthenticateStrategie <|-- UsernameAuthentication: Implementeert
+IAuthenticateStrategie <|-- KeyAuthentication: Implementeert
+IAuthenticateStrategie <|-- SecretAuthentication: Implementeert
+AuthenticationController --> Credentials: Gebruikt
+AuthenticationService --> Token: Maakt gebruik van
+
+@enduml

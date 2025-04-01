@@ -1,0 +1,39 @@
+@startuml
+!define C4_COMPONENTS
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+title Backend die met externe service communiceert met Facade Pattern
+
+skinparam Rectangle {
+    borderStyle dashed
+}
+
+Person(user, "Gebruiker")
+
+Container(frontend, "Frontend", "React App", "Stuurt verzoeken naar backend en externe service")
+
+rectangle "Triptop Backend" {
+    Component(controller, "AuthenticationController", "REST Controller", "Ontvangt authenticatieverzoeken")
+    Component(authenticationFacade, "AuthenticationFacade", "Facade", "Verwerkt authenticatieverzoeken")
+    Component(authenticationService, "AuthenticationService", "Service", "Handelt authenticatie logica af")
+    Component(userService, "UserService", "Service", "Handelt gebruiker logica af")
+    ContainerDb(db, "Database", "?", "Slaat gebruikersgegevens en reisplannen op")
+}
+
+Container_Ext(identityProvider, "Identity Provider", "?", "Verzorgt authenticatie en JWT-tokens")
+
+Rel(user, frontend, "Gebruikt")
+Rel(frontend, controller, "REST-verzoek")
+Rel(controller, authenticationFacade, "Verzoekt authenticatie")
+Rel(authenticationFacade, authenticationService, "Verwerkt aanvraag")
+Rel(authenticationFacade, userService, "Haalt gebruikersgegevens op")
+Rel(controller, frontend, "Geeft antwoord")
+
+Rel(authenticationService, identityProvider, "Authenticatieverzoek")
+Rel(authenticationService, authenticationFacade, "Geeft JWT-token")
+Rel(identityProvider, authenticationService, "Geeft JWT-token")
+
+Rel(userService, db, "Haalt gebruikersgegevens op")
+
+@enduml

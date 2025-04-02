@@ -61,8 +61,10 @@ Tijdens het maken van de keuzes zijn we op sommigen aspecten beperkt. Deze beper
 3. **Toetseringen**: Tijdens de laatste week, waarin we ons prototype moeten implementeren, is er ook een toets voor het vak professional skills. Dit zorgt ervoor dat we niet alleen maar kunnen focussen op het prototype en/of software guidebook, maar ons ook moeten focussen op het leren voor deze toets. Ook moeten we de laatste vrijdag een PAF inleveren, waardoor we ook tijd moeten inzetten om hier aan te werken in plaats van aan het software guidebook.
 
 ## 6. Principes
-> [!IMPORTANT]
-> Beschrijf zelf de belangrijkste architecturele en design principes die zijn toegepast in de software.
+Tijdens het maken van onze prototypes gaan we gebruik maken van de volgende architecturele en design principes:
+- **Open/closed principe**: Dit is een van de SOLID-principes en zegt dat een klasse, module of functie open moet zijn voor uitbreiding, maar gesloten voor aanpassing. Dit betekent dat we nieuwe functionaliteiten kunnen toevoegen zonder bestaande code te wijzigen, bijvoorbeeld door gebruik te maken van interfaces.
+
+- **Program to an Interface principe**: Dit houdt in dat je code schrijft die afhankelijk is van interfaces in plaats van concrete implementaties. Hierdoor wordt de code flexibeler en minder afhankelijk van specifieke implementaties. Dit vermakkelijkt onderhoudbaarheid en uitbreidbaarheid.
 
 ## 7. Software Architecture
 ### 7.1. Externe api's

@@ -119,20 +119,20 @@ _Afbeelding 10: Component diagram Adapter pattern._
 Dit dynamische diagram laat zien hoe een de gebruiker de details van een hotel binnen krijgt. 
 Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speelt in deze applicatie. 
 ![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
-_Afbeelding 10: Sequence Diagram Adapter pattern._
+_Afbeelding 11: Sequence Diagram Adapter pattern._
 ### 7.4. Design & Code
 #### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Klasse diagram
-Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 8) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders. Wij zullen tijdens het implementeren van het prototype gebruik maken van het **open/closed principe**. Dit betekent dat de klassen open staan voor uitbreiding, maar niet voor aanpassing. Dit principe sluit erg mooi aan met het strategy pattern, sinds je hier de strategieën wel kan uitbreiden met nieuwe strategieën maar je ze hier niet voor hoeft aan te passen.
+Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 12) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders. Wij zullen tijdens het implementeren van het prototype gebruik maken van het **open/closed principe**. Dit betekent dat de klassen open staan voor uitbreiding, maar niet voor aanpassing. Dit principe sluit erg mooi aan met het strategy pattern, sinds je hier de strategieën wel kan uitbreiden met nieuwe strategieën maar je ze hier niet voor hoeft aan te passen.
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
-_Afbeelding 11: Klasse diagram authenticeren._
+_Afbeelding 12: Klasse diagram authenticeren._
 
 #### Sequence diagram
-Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 11). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een implementatie van authStrategy aangeroepen die de inloggegevens controleert. Bij een succesvolle inlog wordt er een token gegenereerd en teruggestuurd. Deze token kan vervolgens gebruikt worden voor geauthenticeerde verzoeken.
+Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 13). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een implementatie van authStrategy aangeroepen die de inloggegevens controleert. Bij een succesvolle inlog wordt er een token gegenereerd en teruggestuurd. Deze token kan vervolgens gebruikt worden voor geauthenticeerde verzoeken.
 
 ![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
-_Afbeelding 12: Sequence diagram authenticeren._
+_Afbeelding 13: Sequence diagram authenticeren._
 
 
 #### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
@@ -141,7 +141,7 @@ Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter 
 De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen in plaats van de gehele applicatie.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
-_Afbeelding 13: Klasse diagram adapter pattern._
+_Afbeelding 14: Klasse diagram adapter pattern._
 
 #### Sequence diagram
 Het sequence diagram laat zien waar de adapter klasse komt te staan en hoe deze gebruikt wordt.
@@ -156,7 +156,7 @@ En de responses die je krijgt worden steeds meer geformatteerd.
 Totdat het weer op de frontend aankomt en de gebruiker de data ziet.
 
 ![Sequence Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/SquenceDiagramAdapterPatternJamiro.png)
-_Afbeelding 14: Sequence Diagram Adapter pattern._
+_Afbeelding 15: Sequence Diagram Adapter pattern._
 
 ## 8. Architectural Decision Records
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes
@@ -270,7 +270,7 @@ Wij zochten API's die wij konden gebruiken voor het zoeken van hotels, vluchten 
 | TravelData      | +            | +               | +              |             |
 
 
-_Tabel 3: ADR-003 Overwogen opties ._
+_Tabel 4: ADR-003 Overwogen opties ._
 
 Booking.com en Priceline.com bieden uitgebreide documentatie, zijn betrouwbaar en schaalbaar door hun grote gebruikersbasis. Flights scraper is vaak minder betrouwbaar en schaalbaar, afhankelijk van het scrapen van gegevens. TravelData heeft gemiddelde documentatie, betrouwbaarheid en schaalbaarheid.
 
@@ -307,7 +307,7 @@ Hebben wij onderzocht hoe wij kunnen voorkomen dat wij consistent authenticatie 
 | Facade pattern         	| -             	| +                 	| +            	|
 | Factory method pattern 	| +             	| +                 	| -            	|
 
-_Tabel 4: Overwogen opties authenticeren strategy._
+_Tabel 5: Overwogen opties authenticeren strategy._
 
 ##### Flexibiliteit
 - **State pattern**: Kan nuttig zijn voor toestandsafhankelijke authenticatie en autorisatie, maar is minder geschikt voor het toepassen van verschillende authenticatie- en autorisatiestrategieën.

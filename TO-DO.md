@@ -9,6 +9,7 @@
 - [ ] prototype maken
 - [ ] maak klasse diagram van vorige week
 - [ ] sequence diagram
+- [ ] Gebruikte design principe uitleggen in hoofdstuk Principes in het software guidebook
 
 ## Mischa
 - [x] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat

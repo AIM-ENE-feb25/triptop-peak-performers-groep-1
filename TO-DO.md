@@ -1,7 +1,7 @@
 # Nieuw lijstje
 ## Jamiro
 - [x] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat
-- [ ] prototype maken
+- [x] prototype maken
 - [x] maak dynamische diagrammen van vorige week
 - [x] sequence diagram
 ## Taha
@@ -20,6 +20,7 @@
 - [ ] loop de rubric-soex (exel bestand) langs om te kijken of we overal aan voldoen
 - [ ] Design principes toepassen en iedereen 1 benoemen
 - [ ] Context diagram na lopen op externe systemen
+
 - [ ] Component diagram samenvoegen??? vraag eerst na
 - [ ] Class/sequence diagrammen (component uitwerken??? ook navragen)
 - [ ] 

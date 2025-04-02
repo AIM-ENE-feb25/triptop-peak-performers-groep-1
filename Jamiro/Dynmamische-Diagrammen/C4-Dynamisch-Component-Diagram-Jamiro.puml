@@ -1,5 +1,5 @@
 @startuml
-!include <C4/C4_Container>
+!include <C4/C4_Component>
 
 title C4 Dynamic Diagram - ???
 
@@ -7,14 +7,14 @@ LAYOUT_TOP_DOWN()
 Person(User, "Reiziger", "Logt in")
 System_Boundary(Webapp, "Triptop app") {
     'frontend
-    Container(TriptopFrontend,TriptopFrontend,React Application,De webapplicatie waarop reizigers hun eigen reis kunnen samenstellen)
+    Component(TriptopFrontend,TriptopFrontend,React Application,De webapplicatie waarop reizigers hun eigen reis kunnen samenstellen)
     'backend
     'controller
-    Container(TriptopController,TriptopController,Spring MVC Controller, Hier worden de calls van de frontend naar de backend in afgehandeld)
+    Component(TriptopController,TriptopController,Spring MVC Controller, Hier worden de calls van de frontend naar de backend in afgehandeld)
     'service
-    Container(TriptopService,TriptopService,Spring MVC Service,Hier word de business logica van de endpoints in afgehandeld)
+    Component(TriptopService,TriptopService,Spring MVC Service,Hier word de business logica van de endpoints in afgehandeld)
     'adapter
-    Container(HotelApiAdapter,HotelApiAdapter,External API Adapter,Formatteert inkomende en uitgaande data van en naar de externe API)
+    Component(HotelApiAdapter,HotelApiAdapter,External API Adapter,Formatteert inkomende en uitgaande data van en naar de externe API)
 }
 
 System_Ext(ExternalAPI1, "Externe API 1", "Extern Systeem", "")

@@ -17,7 +17,7 @@
 - [ ] bekijk [feedback](./feedback/feedback-week2.md), en kruis alles af wat gedaan is en pas dingen aan indien nodig
 - [ ] mocht er tijd voor zijn, meer apis toevoegen (betekend wel dat we dus die ook moeten testen en diagrammen moeten aanpassen)
 - [ ] loop de rubric-soex (exel bestand) langs om te kijken of we overal aan voldoen
-
+- [ ] principes hoofdstuk in SGB invullen
 
 
 

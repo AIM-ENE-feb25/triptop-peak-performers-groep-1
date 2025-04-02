@@ -61,7 +61,8 @@ Tijdens het maken van de keuzes zijn we op sommigen aspecten beperkt. Deze beper
 3. **Toetseringen**: Tijdens de laatste week, waarin we ons prototype moeten implementeren, is er ook een toets voor het vak professional skills. Dit zorgt ervoor dat we niet alleen maar kunnen focussen op het prototype en/of software guidebook, maar ons ook moeten focussen op het leren voor deze toets. Ook moeten we de laatste vrijdag een PAF inleveren, waardoor we ook tijd moeten inzetten om hier aan te werken in plaats van aan het software guidebook.
 
 ## 6. Principes
-De belangrijkste architecturele en design principes die we hebben toegepast in de software/prototypes zijn de adapter, facade en strategy pattern. Deze hebben we elk aan één van de prototypes gekoppeld waar later meer over te lezen is.
+> [!IMPORTANT]
+> Beschrijf zelf de belangrijkste architecturele en design principes die zijn toegepast in de software.
 
 ## 7. Software Architecture
 ### 7.1. Externe api's

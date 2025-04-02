@@ -64,9 +64,9 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 ### 7.1. Externe api's
 | Naam              | Doel        | Links | 
 |-------------------|-------------|-------|
-| Booking.Com       | Hotels      |       |    
-| TripAdvisorApi    | Restaurants |       |   
-| GoogleFlightsAPI  | Vluchten    |       |
+| Booking.Com       | Hotels      | https://developers.booking.com/       |    
+| TripAdvisorApi    | Restaurants | https://www.tripadvisor.com/developers      |   
+| GoogleFlightsAPI  | Vluchten    | https://serpapi.com/google-flights-api      |
 
 _Tabel 1: Externe api's._
 
@@ -81,7 +81,7 @@ _Afbeelding 6: Dynamic Diagram login._
 _Afbeelding 7: Dynamic Diagram reis boeken._
 
 ### 7.3. Componenten
-#### 7.3.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
+#### 7.3.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Component diagram
 Voor deze onderzoeksvraag hebben we als eerste een component diagram gemaakt. Wij hebben voor het onderzoeken van deze onderzoeksvraag gebruik gemaakt van het strategy pattern. Dit houdt in dat er door een interface de juiste implementatie van de methode (om te authenticeren) wordt aangeroepen. Zo kan je verschillende strategieën (zoals username, key of secret) implementeren voor het authenticeren zonder andere code in je applicatie te hoeven wijzigen. Dit maakt het mogelijk om eenvoudig te schakelen tussen verschillende authenticatiemethoden.
 
@@ -117,7 +117,7 @@ Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speel
 ![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
 _Afbeelding 10: Sequence Diagram Adapter pattern._
 ### 7.4. Design & Code
-#### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
+#### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Klasse diagram
 Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 8) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders.
 

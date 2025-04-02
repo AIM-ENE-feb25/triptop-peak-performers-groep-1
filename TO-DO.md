@@ -9,7 +9,7 @@
 - [ ] maak klasse diagram van vorige week
 ## Mischa
 - [ ] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat
-- [ ] prototype maken
+- [x] prototype maken
 ## Iedereen
 - [ ] bekijk [feedback](./feedback/feedback-week2.md), en kruis alles af wat gedaan is en pas dingen aan indien nodig
 - [ ] mocht er tijd voor zijn, meer apis toevoegen (betekend wel dat we dus die ook moeten testen en diagrammen moeten aanpassen)

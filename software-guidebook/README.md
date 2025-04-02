@@ -103,7 +103,7 @@ _Afbeelding 9: Dynamisch diagram authenticeren._
 
 #### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
 ##### Klasse diagram
-Voor deze onderzoeksvraag heb ik met gebruik van het component diagram (zie afbeelding 8) een klasse diagram gemaakt. Voor dit klasse diagram heb ik gebruik gemaakt van het strategy pattern. Dit heb ik gedaan met het idee dat er makkelijk gewisseld kan worden tussen verschillende manieren voor authenticatie voor de verschillende API's zonder veel code aan te hoeven passen (zie afbeelding 10).
+Voor deze onderzoeksvraag heb ik met gebruik van het component diagram (zie afbeelding 8) een klasse diagram gemaakt. Voor dit klasse diagram heb ik gebruik gemaakt van het **strategy pattern**. Dit heb ik gedaan met het idee dat er makkelijk gewisseld kan worden tussen verschillende manieren voor authenticatie voor de verschillende API's zonder veel code aan te hoeven passen (zie afbeelding 10).
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
 _Afbeelding 10: Klasse diagram authenticeren._

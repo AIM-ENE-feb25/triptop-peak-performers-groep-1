@@ -4,20 +4,19 @@ title Sequence Diagram - Authenticatieproces
 
 autonumber
 actor User
-participant "Frontend" as Frontend
-participant "AuthenticationController" as AuthenticationController
-participant "AuthenticationService" as AuthenticationService
-participant "IAuthenticateStrategie" as IAuthenticateStrategie
-participant "UsernameAuthentication" as UsernameAuthentication
-participant "Token" as Token
+participant "TripTop: \nFrontend" as Frontend
+participant "authenticationController: \nAuthenticationController" as AuthenticationController
+participant "authenticationService: \nAuthenticationService" as AuthenticationService
+participant "authStrategy: \nIAuthenticateStrategie" as AuthStrategy
+participant "token: \nToken" as Token
 
-User -> Frontend: Voert gebruikersnaam en wachtwoord in
+User -> Frontend: Voert inloggegevens in
 Frontend -> AuthenticationController: authenticate(endpoint, httpMethod, credentials)
+AuthenticationController -> AuthenticationService: setAuthenticationMethod(method)
 AuthenticationController -> AuthenticationService: authenticate(endpoint, httpMethod, credentials)
-AuthenticationService -> IAuthenticateStrategie: authenticate(endpoint, httpMethod, credentials)
-IAuthenticateStrategie -> UsernameAuthentication: authenticate(endpoint, httpMethod, credentials)
-UsernameAuthentication -> Token: Genereert en retourneert een JWT token
-IAuthenticateStrategie -> AuthenticationService: Retourneert token
+AuthenticationService -> AuthStrategy: authenticate(endpoint, httpMethod, credentials)
+AuthStrategy -> Token: token = generateToken()
+AuthStrategy -> AuthenticationService: Retourneert token
 AuthenticationService -> AuthenticationController: Retourneert token
 AuthenticationController -> Frontend: Retourneert token naar gebruiker
 

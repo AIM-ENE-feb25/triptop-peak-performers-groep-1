@@ -1,0 +1,34 @@
+@startuml
+!include <C4/C4_Container>
+
+title C4 Dynamic Diagram - ???
+
+LAYOUT_TOP_DOWN()
+Person(User, "Reiziger", "Logt in")
+System_Boundary(Webapp, "Triptop app") {
+    'frontend
+    Container(TriptopFrontend,TriptopFrontend,React Application,De webapplicatie waarop reizigers hun eigen reis kunnen samenstellen)
+    'backend
+    'controller
+    Container(TriptopController,TriptopController,Spring MVC Controller, Hier worden de calls van de frontend naar de backend in afgehandeld)
+    'service
+    Container(TriptopService,TriptopService,Spring MVC Service,Hier word de business logica van de endpoints in afgehandeld)
+    'adapter
+    Container(HotelApiAdapter,HotelApiAdapter,External API Adapter,Formatteert inkomende en uitgaande data van en naar de externe API)
+}
+
+System_Ext(ExternalAPI1, "Externe API 1", "Extern Systeem", "")
+
+User -right-> TriptopFrontend: 1. Vraagt de details op van een hotel
+TriptopFrontend -right-> TriptopController: 2. Vraagt om de details van het hotel
+TriptopController -right-> TriptopService: 3. Vraagt data op van de Service laag
+TriptopService -right-> HotelApiAdapter: 4. Vraagt data op aan de Adapter
+HotelApiAdapter -right-> ExternalAPI1: 5. Vraagt data op aan de exterene API
+ExternalAPI1 -left-> HotelApiAdapter: 6. Verstuurd data op naar de Adapter
+HotelApiAdapter -left-> TriptopService: 7. stuurd geformateerde data naar de service laag
+TriptopService -left-> TriptopController: 8. stuurd data door naar de controller
+TriptopController -left-> TriptopFrontend: 9. Stuurd de opgevraagde data op
+TriptopFrontend -left-> User: 10. Laat de opgevraagde details zien
+
+
+@enduml

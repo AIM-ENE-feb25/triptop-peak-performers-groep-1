@@ -7,7 +7,7 @@ class HotelController {
 }
 
 interface HotelServicePort {
-    + getHotelDetails(int HotelId) : Hotel
+    + retrieveHotelDetails(int HotelId) : Hotel
 }
 
 class Hotel {
@@ -19,13 +19,12 @@ class Hotel {
 
 class HotelServiceImpl {
     - final HOTELSERVICEADAPTER : HotelServiceAdapter
-    + getHotelDetails(int HotelId) : Hotel
+    + retrieveHotelDetails(int HotelId) : Hotel
 }
 
 class HotelServiceAdapter {
     - final BOOKINGAPI : BookingAPI
-    + getHotelDetails(int HotelId) : Hotel
-    + GetHotelReviews(int HotelId) : ?json?
+    + fetchHotelDetails(int HotelId) : Hotel
 }
 
 class BookingAPI {

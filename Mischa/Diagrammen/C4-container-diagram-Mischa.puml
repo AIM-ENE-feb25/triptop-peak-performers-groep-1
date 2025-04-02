@@ -1,0 +1,31 @@
+@startuml
+ !include <C4/C4_Container>
+ 
+ title C4 Triptop Container Diagram
+ 
+ Person(Reiziger, "Reiziger", "Iemand die de app gebruikt voor reizen")
+ Person(ReisAgent, "ReisAgent", "Iemand die reizen van te voren samenstelt")
+ 
+ Container(App, "Backend", "?", "Reizigers kunnen hier hun reis samenstellen")
+ ContainerDb(Database, "Database", "?", "Opslag van gebruikers- en reisdata")
+ 
+ Container_Ext(OvernachtingenAPI, "OvernachtingenAPI", "?", "Bijv. Booking.com en Airbnb")
+ Container_Ext(VerhuurAPI, "Autoverhuur API", "?", "Bijv. Sixt en Hertz")
+ Container_Ext(EtenEnDrinkenAPI, "Eten & Drinken API", "?", "Bijv. Takeaway en Eet.nu")
+ Container_Ext(ActiviteitenAPI, "Activiteiten API", "?", "Bijv. TripAdvisor en GetYourGuide")
+ Container_Ext(BetaalSystemenAPI, "Betaalsystemen API", "?", "Bijv. iDEAL en creditcard services")
+ Container_Ext(InloggenAPI, "Identity Provider", "?", "Bijv. Google, Microsoft en Airbnb login")
+ Container_Ext(VervoerAPI, "Vervoer API", "?", "Bijv. NS, Deutsche Bahn en KLM")
+ 
+ Rel(Reiziger, App, "Gebruikt voor reisplanning")
+ Rel(ReisAgent, App, "Stelt reizen samen")
+ Rel(App, Database, "Opslaan en ophalen van reisdata")
+ Rel(App, OvernachtingenAPI, "Haalt overnachtingsopties op")
+ Rel(App, VerhuurAPI, "Haalt autoverhuuropties op")
+ Rel(App, EtenEnDrinkenAPI, "Haalt eet- en drinkopties op")
+ Rel(App, ActiviteitenAPI, "Haalt activiteiten en bezienswaardigheden op")
+ Rel(App, BetaalSystemenAPI, "Verwerkt betalingen")
+ Rel(App, InloggenAPI, "Authenticatie en login")
+ Rel(App, VervoerAPI, "Haalt vervoersopties op")
+ 
+ @enduml

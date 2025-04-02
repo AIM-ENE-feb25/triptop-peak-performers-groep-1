@@ -507,6 +507,7 @@ Positief
 - Backend kan extra validaties en logging toevoegen voor betere monitoring.
 - Eenvoudiger om misbruik of foutieve authenticatiepogingen te detecteren.
 - De client-secret blijft veilig op de backend en wordt nooit blootgesteld aan de frontend.
+- Dankzij het gebruik van de Facade pattern wordt het '**Encapsulate what varies**' principle toegepast, wat betekent dat de frontend niet hoeft te weten hoe de backend werkt of welke externe API's worden gebruikt. Dit maakt het eenvoudiger om de backend in de toekomst te wijzigen zonder dat de frontend hier iets van merkt.
 
 Neutraal
 - Extra laag in de architectuur kan de complexiteit verhogen, maar biedt ook meer flexibiliteit.

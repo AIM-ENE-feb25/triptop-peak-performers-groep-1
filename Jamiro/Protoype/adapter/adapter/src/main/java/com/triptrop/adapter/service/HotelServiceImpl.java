@@ -15,8 +15,7 @@ public class HotelServiceImpl implements HotelServicePort{
     }
 
     @Override
-    public HotelDto getHotelDetails(int hotelId) {
-        HOTELAPIADAPTER.fetchHotelDetail(hotelId);
-        return null;
+    public HotelDto getHotelDetails(int hotelId,String arrivalDate, String departureDate) {
+        return HOTELAPIADAPTER.fetchHotelDetail(hotelId ,arrivalDate, departureDate);
     }
 }

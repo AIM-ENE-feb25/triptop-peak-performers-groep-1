@@ -19,6 +19,7 @@
 - [ ] loop de rubric-soex (exel bestand) langs om te kijken of we overal aan voldoen
 - [ ] Design principes toepassen en iedereen 1 benoemen
 - [ ] Context diagram na lopen op externe systemen
+
 - [ ] Component diagram samenvoegen??? vraag eerst na
 - [ ] Class/sequence diagrammen (component uitwerken??? ook navragen)
 - [ ] 

@@ -4,4 +4,18 @@ public class HotelDto {
     private String Naam;
     private String Beschrijving;
     private String Locatie;
+
+    public void setHotelName(String hotelName) {
+        Naam = hotelName;
+    }
+    public String getNaam() {
+        return Naam;
+    }
+
+    public void setLocatie(String locatie) {
+        Locatie = locatie;
+    }
+    public String getLocatie() {
+        return Locatie;
+    }
 }

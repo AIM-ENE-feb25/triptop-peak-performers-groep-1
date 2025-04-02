@@ -18,7 +18,7 @@ public class KeyAuthentication implements IAuthenticateStrategie {
     }
 
     private Token generateToken() {
-        String tokenString = "2008BMW";
+        String tokenString = "Key2008BMW";
         Date expirationDate = new Date();
         Token token = new Token(tokenString, expirationDate);
         return token;

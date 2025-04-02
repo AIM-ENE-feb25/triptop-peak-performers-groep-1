@@ -19,7 +19,7 @@ public class UsernameAuthentication implements IAuthenticateStrategie {
     }
 
     private Token generateToken() {
-        String tokenString = "2008BMW";
+        String tokenString = "Username2008BMW";
         Date expirationDate = new Date();
         Token token = new Token(tokenString, expirationDate);
         return token;

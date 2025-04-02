@@ -53,8 +53,12 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 * Security -> Confidentiality (Degree to which a system, product or component ensures that data are accessible only to those authorized to have access)
 
 ## 5. Beperkingen
-> [!IMPORTANT]
-> Beschrijf zelf de beperkingen die op voorhand bekend zijn die invloed hebben op keuzes die wel of niet gemaakt kunnen of mogen worden.
+Tijdens het maken van de keuzes zijn we op sommigen aspecten beperkt. Deze beperkingen hebben we van te voren beschreven.
+1. **Beperkte tijd**: We hebben voor het maken van het prototype maar één week de tijd om het prototype te implementeren. Dit zorgt ervoor dat we geen tijd hebben voor erg gecomplexeerde prototypes.
+
+2. **Beperkte strategieën**: Voor het kiezen van de juiste strategie kregen we voornamelijk de keuze tussen vijf verschillende strategy patterns. Uiteraard hadden we wel de mogelijkheid om nog een andere strategy pattern te kiezen, maar het handigst was om een keuze te maken tussen één van deze vijf sinds we hier mee geoefend hebben en deze ook behandeld hebben in de les.
+
+3. **Toetseringen**: Tijdens de laatste week, waarin we ons prototype moeten implementeren, is er ook een toets voor het vak professional skills. Dit zorgt ervoor dat we niet alleen maar kunnen focussen op het prototype en/of software guidebook, maar ons ook moeten focussen op het leren voor deze toets. Ook moeten we de laatste vrijdag een PAF inleveren, waardoor we ook tijd moeten inzetten om hier aan te werken in plaats van aan het software guidebook.
 
 ## 6. Principes
 > [!IMPORTANT]
@@ -97,15 +101,21 @@ Dit dynamisch diagram toont de authenticatieflow binnen de Triptop applicatie (z
 _Afbeelding 9: Dynamisch diagram authenticeren._
 
 #### 7.3.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
-Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
+Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. 
+Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
+En Het design principe "Program to an interface".
 
 Het "Adapter pattern" houdt in dat er een "Adapter"-klasse is die tussen een externe service en de hoofdlogica van de applicatie zit.
 Deze klasse formateert de data die naar de externe service wordt doorgestuurd, maar ook de data die wij opvragen van de externe service. 
 Als de externe service iets verandert met de data die ze opsturen, of de data die ze opgestuurd willen krijgen. Kan je dit afvangen in de "Adapter"-klasse
-
-
 Verdere uitleg voor waarom wij voor het "Adapter pattern" hebben gekozen wordt behandeld in 
 [ADR-004](#84-adr-004-voor-exterene-apis-gebruiken-wij-de-adapter-pattern-)
+
+Het design principe "Program to an interface" houd in dat de code alleen weet van de interface van een component,
+en niet van de specifieke implementatie ervan.
+Dit houd in dat je niet een implementatie van een object aanroept maar een interface.
+Verdere uitleg voor waarom wij voor het design principe "Program to an interface" hebben gekozen wordt behandeld in
+[ADR-008](#88-adr-008-wij-gaan-het-desing-principe-program-to-an-interface-toepassen)
 
 ##### Component diagram
 ![Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramJamiro.png)
@@ -115,29 +125,30 @@ _Afbeelding 10: Component diagram Adapter pattern._
 Dit dynamische diagram laat zien hoe een de gebruiker de details van een hotel binnen krijgt. 
 Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speelt in deze applicatie. 
 ![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
-_Afbeelding 10: Sequence Diagram Adapter pattern._
+_Afbeelding 11: Sequence Diagram Adapter pattern._
 ### 7.4. Design & Code
 #### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Klasse diagram
-Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 8) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders.
+Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 12) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders. Wij zullen tijdens het implementeren van het prototype gebruik maken van het **open/closed principe**. Dit betekent dat de klassen open staan voor uitbreiding, maar niet voor aanpassing. Dit principe sluit erg mooi aan met het strategy pattern, sinds je hier de strategieën wel kan uitbreiden met nieuwe strategieën maar je ze hier niet voor hoeft aan te passen.
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
-_Afbeelding 11: Klasse diagram authenticeren._
+_Afbeelding 12: Klasse diagram authenticeren._
 
 #### Sequence diagram
-Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 11). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een implementatie van authStrategy aangeroepen die de inloggegevens controleert. Bij een succesvolle inlog wordt er een token gegenereerd en teruggestuurd. Deze token kan vervolgens gebruikt worden voor geauthenticeerde verzoeken.
+Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 13). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een implementatie van authStrategy aangeroepen die de inloggegevens controleert. Bij een succesvolle inlog wordt er een token gegenereerd en teruggestuurd. Deze token kan vervolgens gebruikt worden voor geauthenticeerde verzoeken.
 
 ![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
-_Afbeelding 12: Sequence diagram authenticeren._
+_Afbeelding 13: Sequence diagram authenticeren._
 
 
 #### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 ##### Klasse diagram
 Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. 
 De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen in plaats van de gehele applicatie.
+Stel de API veranderd of je wilt een hele andere API gebruiken hoef je alleen de logica van de methodes in de adapter klasse aan te passen.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
-_Afbeelding 13: Klasse diagram adapter pattern._
+_Afbeelding 14: Klasse diagram adapter pattern._
 
 #### Sequence diagram
 Het sequence diagram laat zien waar de adapter klasse komt te staan en hoe deze gebruikt wordt.
@@ -152,7 +163,7 @@ En de responses die je krijgt worden steeds meer geformatteerd.
 Totdat het weer op de frontend aankomt en de gebruiker de data ziet.
 
 ![Sequence Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/SquenceDiagramAdapterPatternJamiro.png)
-_Afbeelding 14: Sequence Diagram Adapter pattern._
+_Afbeelding 15: Sequence Diagram Adapter pattern._
 
 ## 8. Architectural Decision Records
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes
@@ -266,7 +277,7 @@ Wij zochten API's die wij konden gebruiken voor het zoeken van hotels, vluchten 
 | TravelData      | +            | +               | +              |             |
 
 
-_Tabel 3: ADR-003 Overwogen opties ._
+_Tabel 4: ADR-003 Overwogen opties ._
 
 Booking.com en Priceline.com bieden uitgebreide documentatie, zijn betrouwbaar en schaalbaar door hun grote gebruikersbasis. Flights scraper is vaak minder betrouwbaar en schaalbaar, afhankelijk van het scrapen van gegevens. TravelData heeft gemiddelde documentatie, betrouwbaarheid en schaalbaarheid.
 
@@ -303,25 +314,26 @@ Hebben wij onderzocht hoe wij kunnen voorkomen dat wij consistent authenticatie 
 | Facade pattern         	| -             	| +                 	| +            	|
 | Factory method pattern 	| +             	| +                 	| -            	|
 
-_Tabel 4: Overwogen opties authenticeren strategy._
+_Tabel 5: Overwogen opties authenticeren strategy._
 
 ##### Flexibiliteit
 - **State pattern**: Kan nuttig zijn voor toestandsafhankelijke authenticatie en autorisatie, maar is minder geschikt voor het toepassen van verschillende authenticatie- en autorisatiestrategieën.
 - **Adapter pattern**: Zorgt voor compatibiliteit tussen verschillende API-authenticatie- en autorisatiemethoden, maar biedt minder flexibiliteit in strategieën.
-- **Strategy pattern**: Biedt hoge flexibiliteit doordat verschillende authenticatie- en autorisatiestrategieën eenvoudig verwisselbaar zijn.
+- **Strategy pattern**: Biedt hoge flexibiliteit doordat verschillende authenticatie- en autorisatiestrategieën eenvoudig verwisselbaar zijn. In de [AuthenticationController](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/controllers/AuthenticationController.java) klasse van ons prototype is er één variabele die bepaalt welke methode om te authenticeren er wordt gebruikt. Deze aanpassen is alles wat je moet doen om een andere strategie te gebruiken.
 - **Facade pattern**: Vereenvoudigt de toegang tot authenticatie en autorisatie, maar beperkt de flexibiliteit.
+- **Factory method**: Nieuwe objecten kunnen simpel worden gecreeërt met behulp van de constructors, maar het zal vooral handig zijn in het maken van een nieuw object op basis van een ander object. Een compleet nieuw object maken zou wat ingewikkelder zijn, als niet moeilijk.
 
 ##### Onderhoudbaarheid
 - **State pattern**: Code blijft redelijk onderhoudbaar, maar kan complex worden bij veel toestanden.
 - **Adapter pattern**: Hoge onderhoudbaarheid doordat het bestaande implementaties hergebruikt zonder deze te wijzigen.
-- **Strategy pattern**: Hoge onderhoudbaarheid doordat strategieën los van elkaar ontwikkeld en aangepast kunnen worden.
+- **Strategy pattern**: Hoge onderhoudbaarheid doordat strategieën los van elkaar ontwikkeld en aangepast kunnen worden. In de [IAuthenticateStrategie](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/IAuthenticateStrategie.java) klasse van ons prototype staan alle functies die elke implementatie moet hebben. In de [KeyAuthentication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/KeyAuthentication.java) klasse van ons prototype kan je zien dat hij naast deze functie ook andere functies kan hebben zoals generateToken(). Ook is de implementatie van de authenticate functie ter eigen interpretatie zolang hij maar voldoet aan de return waarden van de interface. Hierdoor is het super gemakkelijk om bestaande strategieën aan te passen zonder andere code te hoeven aan te passen en ook is het erg makkelijk om nieuwe strategieën toe te voegen, sinds je alleen maar een nieuwe klasse hoeft te maken zoals de KeyAuthentication en deze method toevoegen aan de [AuthenticationService](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/services/AuthenticationService.java) klasse en aan de [AuthenticationMethods](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/domains/AuthenticationMethods.java) enum.
 - **Facade pattern**: Code blijft overzichtelijk, maar aanpassingen aan de onderliggende implementatie kunnen impact hebben op de gehele interface.
 - **Factory method**: Maakt het makkelijk om nieuwe strategieën toe te voegen, maar is minder gestructureerd dan het strategy pattern.
 
 ##### Complexiteit
 - **State pattern**: Hoge complexiteit bij meerdere authenticatie- en autorisatietoestanden.
 - **Adapter pattern**: Lage complexiteit, maar minder krachtig voor het wisselen van strategieën.
-- **Strategy pattern**: Gematigde complexiteit, maar de beste balans tussen flexibiliteit en onderhoudbaarheid.
+- **Strategy pattern**: Gematigde complexiteit, maar de beste balans tussen flexibiliteit en onderhoudbaarheid. Deze pattern is niet erg complex om te implementeren sinds het weinig verschilt van andere applicaties qua vorm en structuur. Het complexste aspect van dit pattern ligt bij hoe je ervoor zorgt dat de service laag weet welke strategie hij moet implementeren. Wij hebben dit zelf gedaan met behulp van een switch case (zie de [AuthenticationService](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/services/AuthenticationService.java) klasse).
 - **Facade pattern**: Lage complexiteit, maar beperkt in functionaliteit.
 - **Factory method**: Lage tot gematigde complexiteit, afhankelijk van het aantal gecreëerde objecten.
 
@@ -458,6 +470,36 @@ Neutraal
 - Mogelijk langzamere prestaties door de extra communicatielaag.
 - Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
 
+### 8.8. ADR-008 Wij gaan het desing principe "Program to an interface" toepassen
+#### Status
+Voorgesteld
+
+#### Context
+
+#### Overwogen opties
+
+#### Besluit
+
+#### Consequenties
+
+##### Negatief
+
+
 ## 9. Deployment, Operation and Support
-> [!TIP]
-> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
+### Prototype strategy pattern
+Om het prototype voor het strategy pattern en voor onderzoeksvraag "Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
+
+1. **Het prototype openen**: De eerste stap is vrij logisch, maar toch de moeite waard om te bespreken. Wij zullen dit uitleggen op basis van IntellIJ, andere IDE's kunnen hetzelfde zijn of wellicht iets anders gaan. Via IntellIJ moet je een project openen, ga hiervoor dan naar de [pom.xml](/Mischa/Prototype/triptop/pom.xml) in /Mischa/Prototype/triptop.pom.xml.
+
+2. **De prototype runnen**: Toen wij het prototype aan het bouwen waren, was het niet nodig om het te compilen voordat we het gingen runnen. Maar dit kan misschien anders zijn op een ander systeem. Om het te compilen moet je een terminal openen in IntelliJ en vervolgens de ```mvn clean install``` command runnen. Het prototype is te starten door de main te runnen in de [TriptopApplication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/TriptopApplication.java) klasse.
+
+3. **Authenticatie strategie instellen**: Standaard staat het prototype ingesteld om gebruik te maken van de [SecretAuthentication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/SecretAuthentication.java) methode. Als je een andere strategie wilt testen kan je in de [AuthenticationController](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/controllers/AuthenticationController.java) de AUTHENTICATIONMETHOD aanpassen naar een van de authenticatie methoden zoals ze in de [AuthenticationMethods](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/domains/AuthenticationMethods.java) enum staan.
+
+4. **Het prototype testen**: Via een externe applicatie om endpoints te testen (zoals bijvoorbeeld Postman) moet je een endpoint aanroepen voor de authenticate. De link zal er als volgt uit zien: http://localhost:8080/authenticate?endpoint=HAN&httpMethod=Post. Geef in de body de volgende body mee: 
+{
+  "username": "Mischa",
+  "password": "Lippmann",
+  "key": "12345",
+  "secret": "JohmaSalade"
+}.
+Roep deze endpoint aan met een POST en je zal als het goed is een token terugkrijgen. Als je wilt kan je ook nog een endpoint aanroepen voor de authorisatie. Deze zal er als volgt uit zien: http://localhost:8080/authorize?endpoint=HAN&httpMethod=Post. Hier wordt de token automatisch aan meegegeven, en zonder zal hij ook niet werken. Ongeacht de token zal deze endpoint altijd true zijn en aangeven dat je geautoriseerd bent.

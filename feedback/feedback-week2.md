@@ -18,8 +18,9 @@
 - [ ] Noem concreet wat gebruikerslogica is (in UserService) (Taha)
 - [ ] Formulering in ADR is erg kort.. Niet helemaal duidelijk wat je met extra laag bedoelt, ten opzichte van wat? De twee lagen zijn er toch sowieso al (in dit geval eigenlijk tiers ipv lagen) (Taha)
 - [ ] Ontwerpvraag: Hoe handel je als externe API verandert. Nieuwe versie? (Jamiro)
-- [ ] Je noemt net zoals Mischa je componenten containers. Aanpassen (Jamiro)
-- [ ] Er staat 'Sprint MVC Adapter'. Met sprint o.p.v. Spring. En verder, wat biedt Spring aan qua Adapter dan? (Jamiro)
-- [ ] Volgens mij is dit geen abstractie binnen dit framework. Dus er moet iets anders staan (Jamiro)
+- [x] Je noemt net zoals Mischa je componenten containers. Aanpassen (Jamiro)
+- [x] Er staat 'Sprint MVC Adapter'. Met sprint o.p.v. Spring. En verder, wat biedt Spring aan qua Adapter dan? (Jamiro)
+- [x] Volgens mij is dit geen abstractie binnen dit framework. Dus er moet iets anders staan (Jamiro)
 - [ ] Wat is concrete methode of endpoint name in de BookingAPI? Is BookingAPI een Class? (Jamiro)
 
+- [ ] FACADE PATTERN ADR (TAHA)

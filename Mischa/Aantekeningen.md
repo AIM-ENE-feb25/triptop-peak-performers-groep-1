@@ -2,21 +2,22 @@
 ## Onderzoeksvraag
 Mijn onderzoeksvraag is "Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?".
 
-## Les voorbereiding
-Ik heb (bijna) al mijn voorbereiding tot en met les 2_3 gemaakt in aparte branches. Ik heb les 2_3 ook in mijn persoonlijke map gezet op de main, en de volgende les voorbereidingen komen hier ook in. Ik ga nog overleggen met docenten of ik mijn vorige les voorbereidingen ook moet overzetten naar deze map of niet.
+## Lesvoorbereiding
+Ik had (bijna) al mijn voorbereiding tot en met les 2_3 gemaakt in aparte branches. Ik heb les 2_3 ook in mijn persoonlijke map gezet op de main, en ik heb later mijn eerdere voorbereidingen ook aan deze map toegevoegd. Alhoewel het nog steeds mogelijk is dat ik wat over het hoofd heb gezien.
 
 ## Planning week 3
 ### Maandag
-- Eerste versie prototype
+- Prototype maken
 
 ### Dinsdag
-- Verder werken aan prototype
+- Eerdere voorbereidingen toevoegen aan de main
 
 ### Woensdag
-- Verder werken aan prototype
+- Feedback verwerken in het Software Guidebook
 
 ### Donderdag
-- Laatste hand prototype
+- Verder werken aan feedback verwerken
+- Feedback op PAF verwerken (Professional Skills)
 
 ### Vrijdag
-- Laatste hand Software Guidebook
+- Presentatie voorbereiden

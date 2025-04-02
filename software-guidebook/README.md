@@ -62,11 +62,11 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 ## 7. Software Architecture
 ### 7.1. Externe api's
-| Naam              | Doel          |
-|-------------------|---------------|
-| Booking.Com       | Hotels        |     
-| TripAdvisorApi    | Restaurants   |     
-| GoogleFlightsAPI  | Vluchten |  
+| Naam              | Doel        | Links | 
+|-------------------|-------------|-------|
+| Booking.Com       | Hotels      | https://developers.booking.com/       |    
+| TripAdvisorApi    | Restaurants | https://www.tripadvisor.com/developers      |   
+| GoogleFlightsAPI  | Vluchten    | https://serpapi.com/google-flights-api      |
 
 _Tabel 1: Externe api's._
 
@@ -81,49 +81,78 @@ _Afbeelding 6: Dynamic Diagram login._
 _Afbeelding 7: Dynamic Diagram reis boeken._
 
 ### 7.3. Componenten
-> [!IMPORTANT]
-> Voeg toe: Component Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
-
-#### 7.3.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
+#### 7.3.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Component diagram
-Voor deze onderzoeksvraag heb ik als eerste een component diagram gemaakt. Dit diagram toont de architectuur van de Triptop applicatie, inclusief de interactie tussen de gebruiker en het systeem. Dit diagram is gefocust op het authenticeren van een gebruiker voor het versturen van API verzoeken (zie afbeelding 8).
+Voor deze onderzoeksvraag hebben we als eerste een component diagram gemaakt. Wij hebben voor het onderzoeken van deze onderzoeksvraag gebruik gemaakt van het strategy pattern. Dit houdt in dat er door een interface de juiste implementatie van de methode (om te authenticeren) wordt aangeroepen. Zo kan je verschillende strategieën (zoals username, key of secret) implementeren voor het authenticeren zonder andere code in je applicatie te hoeven wijzigen. Dit maakt het mogelijk om eenvoudig te schakelen tussen verschillende authenticatiemethoden.
+
+Dit diagram toont de architectuur van de Triptop applicatie, inclusief de interactie tussen de gebruiker en het systeem. Dit diagram is gefocust op het authenticeren van een gebruiker voor het versturen van API verzoeken (zie afbeelding 8). Het is hierbij belangrijk om te vermelden dat de authentication service, ondanks dat hij los staat van de backend, wel in de backend hoort. Deze hebben wij hier losgekoppeld om duidelijk de interactie aan te geven tussen de 'controller'/frontend en de authenticatie service.
 
 ![Component Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramMischa.png)
 _Afbeelding 8: Component diagram authenticeren._
 
 ##### Dynamisch diagram
-Dit dynamisch diagram toont de authenticatieflow binnen de Triptop applicatie (zie afbeelding 9). De gebruiker logt in via de frontend, die de inloggegevens doorstuurt naar de backend. De backend valideert deze gegevens via de Authentication Service, die op zijn beurt een externe authenticatie service aanroept. Na successvolle validatie wordt een token gegenereerd en teruggestuurd naar de gebruiker. Deze token wordt vervolgens gebruikt om (geauthenticeerde) verzoeken naar de externe API's te versturen.
+Dit dynamisch diagram toont de authenticatieflow binnen de Triptop applicatie (zie afbeelding 9). De gebruiker logt in via de frontend, die de inloggegevens doorstuurt naar de backend. De backend valideert deze gegevens via de Authentication Service, die op zijn beurt een externe authenticatie service aanroept. Na successvolle validatie wordt een token gegenereerd en teruggestuurd naar de gebruiker. Deze token wordt vervolgens gebruikt om (geauthenticeerde) verzoeken naar de externe API's te versturen. Net zoals bij het component diagram is het belangrijk om te vermelden dat authenticatie service, desondanks het los staat van de backend, bij de backend hoort. Ook hier is de reden dat wij het los hebben vermeld om duidelijker de interactie tussen de 'controller'/frontend en de authenticatie service aan te tonen.
 
 ![Dynamisch Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramMischa.png)
 _Afbeelding 9: Dynamisch diagram authenticeren._
 
-### 7.4. Design & Code
-> [!IMPORTANT]
-> Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
+#### 7.3.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
+Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
 
-#### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?
+Het "Adapter pattern" houdt in dat er een "Adapter"-klasse is die tussen een externe service en de hoofdlogica van de applicatie zit.
+Deze klasse formateert de data die naar de externe service wordt doorgestuurd, maar ook de data die wij opvragen van de externe service. 
+Als de externe service iets verandert met de data die ze opsturen, of de data die ze opgestuurd willen krijgen. Kan je dit afvangen in de "Adapter"-klasse
+
+
+Verdere uitleg voor waarom wij voor het "Adapter pattern" hebben gekozen wordt behandeld in 
+[ADR-004](#84-adr-004-voor-exterene-apis-gebruiken-wij-de-adapter-pattern-)
+
+##### Component diagram
+![Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramJamiro.png)
+_Afbeelding 10: Component diagram Adapter pattern._
+
+##### Dynamisch diagram
+Dit dynamische diagram laat zien hoe een de gebruiker de details van een hotel binnen krijgt. 
+Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speelt in deze applicatie. 
+![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
+_Afbeelding 10: Sequence Diagram Adapter pattern._
+### 7.4. Design & Code
+#### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Klasse diagram
-Voor deze onderzoeksvraag heb ik met gebruik van het component diagram (zie afbeelding 8) een klasse diagram gemaakt. Voor dit klasse diagram heb ik gebruik gemaakt van het strategy pattern. Dit heb ik gedaan met het idee dat er makkelijk gewisseld kan worden tussen verschillende manieren voor authenticatie voor de verschillende API's zonder veel code aan te hoeven passen (zie afbeelding 10).
+Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 8) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders.
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
-_Afbeelding 10: Klasse diagram authenticeren._
+_Afbeelding 11: Klasse diagram authenticeren._
 
 #### Sequence diagram
-Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 11). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze verwerkt en doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een token gegenereerd en teruggestuurd. Deze token wordt vervolgens gebruikt voor geauthenticeerde verzoeken.
+Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 11). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een implementatie van authStrategy aangeroepen die de inloggegevens controleert. Bij een succesvolle inlog wordt er een token gegenereerd en teruggestuurd. Deze token kan vervolgens gebruikt worden voor geauthenticeerde verzoeken.
 
 ![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
-_Afbeelding 11: Sequence diagram authenticeren._
+_Afbeelding 12: Sequence diagram authenticeren._
 
 
-#### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?
+#### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 ##### Klasse diagram
-Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen inplaats van de gehele applicatie
+Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. 
+De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen in plaats van de gehele applicatie.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
+_Afbeelding 13: Klasse diagram adapter pattern._
 
 #### Sequence diagram
-Moet nog gerealiseerd worden
+Het sequence diagram laat zien waar de adapter klasse komt te staan en hoe deze gebruikt wordt.
+Om duidelijkheid tussen de verschillende lagen te creëren heeft iedere laag ook net een andere methode naam.
+De endpoint heet "getHotelDetail" want deze haalt natuurlijk de hoteldetails op.
+In de service noemen we de methode "retrieveHotelDetails" omdat je de details gaat retrieven van de adapter klasse.
+In de Adapter noemen we de methode "fetchHotelDetails" omdat je nu de details gaat fetchen van de externe Api.
+De vraag teken bij de externe api staat er bewust. 
+De reden hiervoor is omdat als je van API veranderd deze methode naam ook mee veranderd.
+Voor nu hebben wij hem dus open gelaten.
+En de responses die je krijgt worden steeds meer geformatteerd. 
+Totdat het weer op de frontend aankomt en de gebruiker de data ziet.
 
+![Sequence Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/SquenceDiagramAdapterPatternJamiro.png)
+_Afbeelding 14: Sequence Diagram Adapter pattern._
 
 ## 8. Architectural Decision Records
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes
@@ -221,13 +250,10 @@ Wij gaan de JWT tokens opslaan in de session storage. Hier hebben wij voor gekoz
 - Tokens moeten opnieuw worden opgehaald na het sluiten en heropenen van de browser, wat een extra stap kan zijn voor de gebruiker.
 
 ### 8.3. ADR-003 BookingAPI wordt gebruikt voor hotels, vluchten en autoverhuur
-
 #### Status
-
 Niet meer van toepassing
 
 #### Context
-
 Wij zochten API's die wij konden gebruiken voor het zoeken van hotels, vluchten en autoverhuur.
 
 #### Overwogen opties
@@ -245,11 +271,9 @@ _Tabel 3: ADR-003 Overwogen opties ._
 Booking.com en Priceline.com bieden uitgebreide documentatie, zijn betrouwbaar en schaalbaar door hun grote gebruikersbasis. Flights scraper is vaak minder betrouwbaar en schaalbaar, afhankelijk van het scrapen van gegevens. TravelData heeft gemiddelde documentatie, betrouwbaarheid en schaalbaarheid.
 
 #### Besluit
-
 Wij hebben besloten om Booking.com te gebruiken voor het zoeken van hotels, vluchten en autoverhuur. Dit is omdat Booking.com uitgebreide documentatie biedt, betrouwbaar is en schaalbaar is door zijn grote gebruikersbasis en het is bekender binnen de team dan Priceline.com.
 
 #### Consequenties
-
 ##### Positief
 - Kan hierdoor veel in bij dezelfde API afhandelen
 
@@ -258,14 +282,70 @@ Wij hebben besloten om Booking.com te gebruiken voor het zoeken van hotels, vluc
 - Mocht deze API ooit veranderen moeten we alles veranderen wat onder vluchten, hotels en auto verhuur valt.
 - Mocht deze API ooit vervallen/out of business gaan, werkt veel van onze applicatie niet meer
 
-### 8.4. ADR-004 Voor exterene Api's gebruiken wij de adapter pattern 
-
+### 8.4. ADR-004 Voor authenticeren en authoriseren gebruiken wij de strategy pattern
 #### Status
-
 Voorgesteld
 
 #### Context
+Bij de ontwerpvraag:
 
+```Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?```
+
+Hebben wij onderzocht hoe wij kunnen voorkomen dat wij consistent authenticatie en autorisatie kunnen toepassen bij de verschillende externe API's.
+
+#### Overwogen opties
+
+|                        	| Flexibiliteit 	| Onderhoudbaarheid 	| Complexiteit 	|
+|------------------------	|---------------	|-------------------	|--------------	|
+| State pattern          	| +             	| +                 	| --           	|
+| Adapter pattern        	| +             	| ++                	| -            	|
+| Strategy pattern       	| ++            	| ++                	| +            	|
+| Facade pattern         	| -             	| +                 	| +            	|
+| Factory method pattern 	| +             	| +                 	| -            	|
+
+_Tabel 4: Overwogen opties authenticeren strategy._
+
+##### Flexibiliteit
+- **State pattern**: Kan nuttig zijn voor toestandsafhankelijke authenticatie en autorisatie, maar is minder geschikt voor het toepassen van verschillende authenticatie- en autorisatiestrategieën.
+- **Adapter pattern**: Zorgt voor compatibiliteit tussen verschillende API-authenticatie- en autorisatiemethoden, maar biedt minder flexibiliteit in strategieën.
+- **Strategy pattern**: Biedt hoge flexibiliteit doordat verschillende authenticatie- en autorisatiestrategieën eenvoudig verwisselbaar zijn.
+- **Facade pattern**: Vereenvoudigt de toegang tot authenticatie en autorisatie, maar beperkt de flexibiliteit.
+
+##### Onderhoudbaarheid
+- **State pattern**: Code blijft redelijk onderhoudbaar, maar kan complex worden bij veel toestanden.
+- **Adapter pattern**: Hoge onderhoudbaarheid doordat het bestaande implementaties hergebruikt zonder deze te wijzigen.
+- **Strategy pattern**: Hoge onderhoudbaarheid doordat strategieën los van elkaar ontwikkeld en aangepast kunnen worden.
+- **Facade pattern**: Code blijft overzichtelijk, maar aanpassingen aan de onderliggende implementatie kunnen impact hebben op de gehele interface.
+- **Factory method**: Maakt het makkelijk om nieuwe strategieën toe te voegen, maar is minder gestructureerd dan het strategy pattern.
+
+##### Complexiteit
+- **State pattern**: Hoge complexiteit bij meerdere authenticatie- en autorisatietoestanden.
+- **Adapter pattern**: Lage complexiteit, maar minder krachtig voor het wisselen van strategieën.
+- **Strategy pattern**: Gematigde complexiteit, maar de beste balans tussen flexibiliteit en onderhoudbaarheid.
+- **Facade pattern**: Lage complexiteit, maar beperkt in functionaliteit.
+- **Factory method**: Lage tot gematigde complexiteit, afhankelijk van het aantal gecreëerde objecten.
+
+#### Besluit
+Wij hebben gekozen voor het **strategy pattern**. Dit patroon maakt het eenvoudig om verschillende authenticatie- en autorisatiestrategieën te definiëren en toe te passen zonder hiervoor de andere code te moeten wijzigen. Hierdoor kunnen we makkelijk communiceren met meerdere externe API's door hiervoor de juiste authenticatie- en autorisatiemethode aan te roepen.
+
+#### Consequenties
+##### Positief
+- Hoge flexibiliteit zorgt ervoor dat we eenvoudig verschillende authenticatie- en autorisatiestrategieën kunnen implementeren.
+- Code blijft overzichtelijk en goed onderhoudbaar.
+- Nieuwe authenticatie- en autorisatiemethoden kunnen gemakkelijk worden toegevoegd zonder de bestaande code te wijzigen.
+
+##### Neutraal
+- Initieel iets meer werk om het strategy pattern op te zetten, maar dit compenseert met de uitbreidbaarheid.
+
+##### Negatief
+- Meer afzonderlijke klassen en interfaces, wat het aantal klassen vergroot.
+- Ontwikkelaars moeten bekend zijn met het strategy pattern om de implementatie ervan goed te begrijpen en te gebruiken.
+
+### 8.5. ADR-005 Voor exterene Api's gebruiken wij de adapter pattern 
+#### Status
+Voorgesteld
+
+#### Context
 Bij de ontwerpvraag: 
 
 ```Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?```
@@ -273,44 +353,50 @@ Bij de ontwerpvraag:
 Hebben wij onderzocht hoe wij kunnen voorkomen dat wij de gehele applicatie zouden moeten aanpassen als een externe service wordt aangepast.
 
 #### Overwogen opties
-
 - State pattern
 - Adapter pattern
 - Strategy pattern
 - Facade pattern
 - Factory method
 
+##### State pattern
+Laat een object zijn gedrag veranderen afhankelijk van zijn interne toestand.
+##### Adapter pattern
+Maakt het mogelijk om twee incompatible interfaces met elkaar te laten samenwerken zonder bestaande code te wijzigen.
+##### Strategy pattern
+Defineerd een familie van algoritmen en maakt ze onderling verwisselbaar zonder de code ze gebruikt te veranderen.
+##### Facade pattern
+Vereenvoudigt een complex systeem door een enkele, gebruiksvriendelijk interface aan te bieden.
+##### Factory method pattern
+Biedt een manier om objecten te maken zonder expliciet de exacte klasse van het te maken object te specificeren.
 
 #### Besluit
-
 Na ons onderzoek bleek het *__Adapter Pattern__* de beste keuze te zijn.
-We hebben hiervoor gekozen omdat een adapter ervoor zorgt dat wijzigingen in de externe API of een overstap naar een andere API-provider slechts aanpassingen in één klasse vereisen.
+We hebben hiervoor gekozen. 
+Omdat een adapter het mogelijk maakt om wijzigingen in de externe API of een overstap naar een andere provider eenvoudig door te voeren.
+Dit vereist alleen aanpassingen in één klasse.
 Dit minimaliseert de impact op de rest van de applicatie en maakt onderhoud eenvoudiger.
 Dit beantwoordt ook de ontwerpvraag.
 
 #### Consequenties
-
 ##### Positief
-- Minimaliseert impact van API-wijzigingen
-- Makkelijker testen doordat je de mock-adapter kan aanmaken zonder echte API calls
-- Maakt overstappen naar een andere provider makkelijker
+- Decoupling, De hoofdlogica van de applicatie blijft onafhankelijk van externe API's of systemen
+- Eenvoudig van externe API's en systemen wisselen
+- Je kan de adapter mocken waardoor je beter kan testen
 
 ##### Neutraal
 - Extra code nodig 
 - Kan overkill zijn als een API nooit verandert
-- 
 ##### Negatief
-- Voegt complexiteit toe
+- Door de extra "Adapter" laag wordt de applicatie complexer
+- Door het extra formateren en transformeren van data kan dit zorgen voor een kleine vertraging
 
 
-### 8.5. ADR-005 Herziening van ADR-003 - Minder afhankelijkheid van Booking.com
-
+### 8.6. ADR-006 Herziening van ADR-003 - Minder afhankelijkheid van Booking.com
 #### Status
-
 Voorgesteld
 
 #### Context
-
 Bij [ADR-003](#83-adr-003-bookingapi-wordt-gebruikt-voor-hotels-vluchten-en-autoverhuur)
 wouden wij het besluit maken om de booking.com api te gebruiken voor hotels, vluchten en autoverhuur.
 Als groep gaan wij hier van af zien. De reden hiervoor is als deze API er uit ligt. 3 groten delen van onze applicatie niet meer werkt
@@ -320,43 +406,32 @@ De regel die wij willen hanteren is dat een API maar voor 1 onderdeel gebruikt m
 Je mag hotels ophalen boeken ect. Maar je mag Booking.com niet gebruiken voor vluchten of auto verhuur.
 
 #### Overwogen opties
-
 - Veel afhankelijkheden van dezelfde API
 - Weinig afhankelijkheid van een API
 
 #### Besluit
-
 Wij kiezen ervoor om zo min mogelijk afhankelijk te zijn van één enkele API. 
 Het doel is om te voorkomen dat de applicatie grotendeels niet meer werkt wanneer één API uitvalt of volledig verdwijnt.
 Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar blijft, kunnen we de risico’s beperken door meerdere API's te gebruiken voor verschillende doeleinden.
 
 #### Consequenties
-
 ##### Positief
 - Als een API niet werkt, ligt niet heel de applicatie plat
 
 ##### Negatief
 - Hiervoor moeten wij wel veel herschrijven/opnieuw doen
 
-## 9. Deployment, Operation and Support
-> [!TIP]
-> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
-
-### 8.5. ADR-006 Voorkeur voor externe api communicatie met authenticatie
-
+### 8.7. ADR-007 Voorkeur voor externe api communicatie met authenticatie
 #### Status
-
 Voorgesteld
 
 #### Context
-
 Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
 - Vanuit de frontend direct communiceren met de IdentityProvider
 - Vanuit de frontend met een eigen backend communiceren die vervolgens met de IdentityProvider communiceert
 - Een hybride oplossing waarbij de frontend en backend beide communiceren met de IdentityProvider
 
 #### Overwogen opties
-
 - Directe communicatie vanuit de frontend
     - Voordelen: Snel, geen extra laag
     - Nadelen: Minder veilig, minder controle
@@ -368,11 +443,9 @@ Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een e
     - Nadelen: Complexer, extra laag
 
 #### Besluit
-
 Wij hebben uiteindelijk besloten om niet de externe IdentityProvider direct vanuit de frontend te benaderen, maar wel om een eigen backend te gebruiken die vervolgens met de IdentityProvider communiceert.
 
 #### Consequenties
-
 Positief
 - Verhoogde veiligheid doordat de backend de communicatie met de IdentityProvider afhandelt.
 - Meer controle over de authenticatie- en autorisatieprocessen.

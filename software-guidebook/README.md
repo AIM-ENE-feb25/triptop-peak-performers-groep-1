@@ -470,7 +470,7 @@ Neutraal
 - Mogelijk langzamere prestaties door de extra communicatielaag.
 - Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
 
-### 8.8. ADR-008 Wij gaan het desing principe "Program to an interface" toepassen
+### 8.8. ADR-008 Wij gaan het design principe "Program to an interface" toepassen
 #### Status
 Voorgesteld
 

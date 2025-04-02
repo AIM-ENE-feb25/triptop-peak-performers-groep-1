@@ -3,14 +3,14 @@ title C4 Class Diagram - Triptop applicatie
 
 class HotelController {
     - final HotelServicePort: HOTELSERVICEPORT
-    + getHotelDetails(int HotelId) : Hotel
+    + getHotelDetails(int HotelId) : HotelDto
 }
 
 interface HotelServicePort {
-    + retrieveHotelDetails(int HotelId) : Hotel
+    + retrieveHotelDetails(int HotelId) : HotelDto
 }
 
-class Hotel {
+class HotelDto {
     - int: Id
     - String: Naam
     - String: Beschrijving
@@ -19,23 +19,33 @@ class Hotel {
 
 class HotelServiceImpl {
     - final HOTELSERVICEADAPTER : HotelServiceAdapter
-    + retrieveHotelDetails(int HotelId) : Hotel
+    + retrieveHotelDetails(int HotelId) : HotelDto
 }
 
-class HotelServiceAdapter {
+interface HotelApiAdapter {
+    + fetchHotelDetails(int HotelId) : HotelDto
+}
+
+class HotelApiAdapterImpl {
     - final BOOKINGAPI : BookingAPI
-    + fetchHotelDetails(int HotelId) : Hotel
+    + fetchHotelDetails(int HotelId) : HotelDto
 }
 
 class BookingAPI {
     <<external>>
 }
 
+
+interface "Booking.com API" <<External API>> {
+    + getHotelDetails(hotelId: int): String
+}
+
 HotelController --> HotelServicePort : Maakt gebruik van
-HotelController --> Hotel : : Maakt gebruik van
+HotelController --> HotelDto : : Maakt gebruik van
 
 HotelServicePort <|.. HotelServiceImpl : Implementeert
+HotelApiAdapter <|.. HotelApiAdapterImpl : Implementeert
 
-HotelServiceImpl --> HotelServiceAdapter : Haalt data op van
-HotelServiceAdapter --> BookingAPI : Haalt data op van
+HotelServiceImpl --> HotelApiAdapter : Haalt data op van
+HotelApiAdapterImpl --> BookingAPI : Haalt data op van
 @enduml

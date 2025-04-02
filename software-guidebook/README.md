@@ -97,15 +97,21 @@ Dit dynamisch diagram toont de authenticatieflow binnen de Triptop applicatie (z
 _Afbeelding 9: Dynamisch diagram authenticeren._
 
 #### 7.3.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
-Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
+Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. 
+Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
+En Het design principe "Program to an interface".
 
 Het "Adapter pattern" houdt in dat er een "Adapter"-klasse is die tussen een externe service en de hoofdlogica van de applicatie zit.
 Deze klasse formateert de data die naar de externe service wordt doorgestuurd, maar ook de data die wij opvragen van de externe service. 
 Als de externe service iets verandert met de data die ze opsturen, of de data die ze opgestuurd willen krijgen. Kan je dit afvangen in de "Adapter"-klasse
-
-
 Verdere uitleg voor waarom wij voor het "Adapter pattern" hebben gekozen wordt behandeld in 
 [ADR-004](#84-adr-004-voor-exterene-apis-gebruiken-wij-de-adapter-pattern-)
+
+Het design principe "Program to an interface" houd in dat de code alleen weet van de interface van een component,
+en niet van de specifieke implementatie ervan.
+Dit houd in dat je niet een implementatie van een object aanroept maar een interface.
+Verdere uitleg voor waarom wij voor het design principe "Program to an interface" hebben gekozen wordt behandeld in
+[ADR-008](#88-adr-008-wij-gaan-het-desing-principe-program-to-an-interface-toepassen)
 
 ##### Component diagram
 ![Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramJamiro.png)
@@ -135,6 +141,7 @@ _Afbeelding 12: Sequence diagram authenticeren._
 ##### Klasse diagram
 Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. 
 De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen in plaats van de gehele applicatie.
+Stel de API veranderd of je wilt een hele andere API gebruiken hoef je alleen de logica van de methodes in de adapter klasse aan te passen.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
 _Afbeelding 13: Klasse diagram adapter pattern._
@@ -457,6 +464,21 @@ Neutraal
 ##### Negatief
 - Mogelijk langzamere prestaties door de extra communicatielaag.
 - Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
+
+### 8.8. ADR-008 Wij gaan het desing principe "Program to an interface" toepassen
+#### Status
+Voorgesteld
+
+#### Context
+
+#### Overwogen opties
+
+#### Besluit
+
+#### Consequenties
+
+##### Negatief
+
 
 ## 9. Deployment, Operation and Support
 > [!TIP]

@@ -11,7 +11,7 @@
 - [ ] sequence diagram
 
 ## Mischa
-- [ ] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat
+- [x] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat
 - [x] prototype maken
 ## Iedereen
 - [ ] bekijk [feedback](./feedback/feedback-week2.md), en kruis alles af wat gedaan is en pas dingen aan indien nodig

@@ -1,7 +1,7 @@
 @startuml
 !include <C4/C4_Component>
 
-title C4 Dynamic Diagram - ???
+title C4 Dynamic Diagram - Adapter pattern
 
 LAYOUT_TOP_DOWN()
 Person(User, "Reiziger", "Logt in")

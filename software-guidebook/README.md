@@ -486,7 +486,7 @@ Voorgesteld
 
 
 ## 9. Deployment, Operation and Support
-### Prototype strategy pattern
+### 9.1. Prototype strategy pattern
 Om het prototype voor het strategy pattern en voor onderzoeksvraag "Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
 
 1. **Het prototype openen**: De eerste stap is vrij logisch, maar toch de moeite waard om te bespreken. Wij zullen dit uitleggen op basis van IntellIJ, andere IDE's kunnen hetzelfde zijn of wellicht iets anders gaan. Via IntellIJ moet je een project openen, ga hiervoor dan naar de [pom.xml](/Mischa/Prototype/triptop/pom.xml) in /Mischa/Prototype/triptop.pom.xml.
@@ -503,3 +503,34 @@ Om het prototype voor het strategy pattern en voor onderzoeksvraag "Hoe zorg je 
   "secret": "JohmaSalade"
 }.
 Roep deze endpoint aan met een POST en je zal als het goed is een token terugkrijgen. Als je wilt kan je ook nog een endpoint aanroepen voor de authorisatie. Deze zal er als volgt uit zien: http://localhost:8080/authorize?endpoint=HAN&httpMethod=Post. Hier wordt de token automatisch aan meegegeven, en zonder zal hij ook niet werken. Ongeacht de token zal deze endpoint altijd true zijn en aangeven dat je geautoriseerd bent.
+
+### 9.2. Prototype adapter pattern
+Om het prototype voor de adapter pattern en voor de onderzoeksvraag "Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
+#### Benodigt heden
+- Intellij IDE
+- Node
+- Werkende internet connectie
+
+#### Het prototype runnen
+1. **Het prototype openen**: De eerste stap is om het prototype te openen in de Intelij IDE. dit doe je door te navigeren naar de `pom.xml` en die te openen als project
+2. **Het prototype runnen**: Als je de terminal opent in Intelij en het commando: `mvn spring-boot:run` in typt en op enter drukt, begint het prototype met runnen.
+#### prototype testen booking.com
+Het prototype testen is heel simpel.
+1. **Open een terminal**: Nu het prototype runt in Intelij, kan je het prototype testen door het javascript bestand `adapter-TEST.js` te runnen.
+Dit bestand bevindt zich in de map `Prototype/adapter-TEST`. De makkelijkste manier op dit bestand te runnen is om de adapter-TEST map in visual studio code te openen,
+En om een terminal te openen in die map(In visual studio code kan je een Intergrated terminal openen door rechter muis knop te drukken op de map en `Open in intergrated terminal` te drukken).
+2. **Run het test bestand**: Als je in de terminal `node adapter-TEST.js` runt voert die de test uit. Als de test slaagt krijg je de response
+`{"locatie":"Juhu Beach, Maharastra","naam":"Novotel Mumbai Juhu Beach"}`.
+
+#### prototype testen tripadvisor
+Om het prototype te testen met de tripadvisor API zijn er wel wat meer stappen nodig dan het prototype runnen en het test script runnen.
+1. **Pas de adapter aan**: Om de Tripadvisor API te testen is er een ander logica nodig die wordt gebruikt voor de Booking.com API.
+als je naar `Protoype/adapter/src/main/java/com/triptop/adapter/adapter/HotelApiAdapterImpl.java` gaat, zie je de bron code van de adapter klasse.
+Hierin staat twee keer dezelfde methode. Nu kan je ook zien dat één van de methodes in commentaar staat. 
+Als je deze methode uit het commentaar haalt en de andere methode in commentaar zet om foutmeldingen te voorkomen, dan vraagt de adapter nu de hotel details van Tripadvisor op.
+2. **Pas het test script aan**: Om hotel details op te halen moet je ook een hotelId mee geven. Maar omdat dit twee verschillende API's zijn,
+Met dus 2 verschillende databases klopt de Id die we nu meegeven niet. Als je naar `Prototype/adapter-TEST/adapter-TEST.js` navigeerd zie je dat er twee hotel id's staan.
+En net zo als bij de `HotelApiAdapterImpl.java` het geval is, staat er één in commentaar en de andere niet. Als je deze omdraaidt geef je de juiste ID mee op Tripadvisor te testen.
+3. **Run het prototype en script**: Nadat de nodige aanpassingen zijn gedaan kan je kan je de applicatie in Intelij weer runnen met `mvn spring-boot:run`, en het script door in de terminal `node adapter-TEST.js` te runnen.
+De response is nu: 
+`{"naam":"Hotel Haarhuis","locatie":"Stationsplein 1, 6811 KG Arnhem The Netherlands"}`

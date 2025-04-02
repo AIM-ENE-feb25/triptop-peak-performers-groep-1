@@ -2,7 +2,7 @@
 - [ ] ADR voor en nadelen waren soms wat te algemeen (ADR van taha)
 - [ ] Duidelijker de patterns aangeven (Mischa)
 - [ ] Backend + een losse service?(Robs feedback op mischa???)
-- [ ] Losse enum lijst in diagram, (dacht van mischa)
+- [x] Losse enum lijst in diagram, (dacht van mischa)
 - [x] Jamiros component diagrammen MVC SPRING ADAPTER aanpassen naar java klassse(jamiro)
 - [x] Voordeel van het adapter is niet duidelijk genoeg (Jamiro)
 - [x] Jamiros component diagrammen missen labels bij bepaalde pijltjes(jamiro)

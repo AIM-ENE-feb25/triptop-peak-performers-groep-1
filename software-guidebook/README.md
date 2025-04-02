@@ -425,7 +425,7 @@ Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar bli
 ##### Negatief
 - Hiervoor moeten wij wel veel herschrijven/opnieuw doen
 
-### 8.7. ADR-007 Voorkeur voor externe api communicatie met authenticatie
+### 8.7. ADR-007 Voorkeur voor externe api communicatie met authenticatie gemaakt d.m.v. een facade design pattern
 #### Status
 Voorgesteld
 
@@ -436,6 +436,33 @@ Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een e
 - Een hybride oplossing waarbij de frontend en backend beide communiceren met de IdentityProvider
 
 #### Overwogen opties
+
+Gebruik maken van de volgende design patterns:
+- Facade pattern
+    - Voordelen:
+      - Facade verbergt de complexiteit van een systeem door een eenvoudige interface te bieden.
+    - Nadelen:
+      - Kan leiden tot een te grote afhankelijkheid van de facade, waardoor de onderliggende implementatie moeilijker te wijzigen is.
+- Adapter pattern
+  - Voordelen:
+    - Het maakt het mogelijk om samen te werken met oude en nieuwe interfaces zonder de bestaande code aan te passen.
+  - Nadelen:
+    - Overmatig gebruik kan leiden tot een onoverzichtelijke codebase waarin te veel verschillende adapters aanwezig zijn.
+- Strategy pattern
+  - Voordelen:
+    - Je kunt nieuwe strategieën toevoegen zonder bestaande code aan te passen, wat uitbreidbaarheid vergroot.
+  - Nadelen:
+    - Je moet meerdere klassen maken voor verschillende strategieën, wat extra ontwikkeltijd en onderhoud vereist.
+- State pattern
+  - Voordelen:
+    - Het maakt het mogelijk om objecten hun gedrag te laten veranderen op basis van hun interne toestand.
+  - Nadelen:
+    - Kan leiden tot een complexe codebase met veel toestanden en overgangen.
+- Factory method pattern
+  - Voordelen:
+    - De factory kan verschillende subklassen retourneren, waardoor het eenvoudig is om objectcreatie aan te passen zonder bestaande code te wijzigen.
+  - Nadelen:
+    - Voor eenvoudige objectcreatie kan een normale constructor voldoende zijn, waardoor een Factory-method overbodig wordt.
 
 Directe communicatie vanuit de frontend:
   - **Voordelen**: 
@@ -469,19 +496,23 @@ Hybride oplossing
 
 #### Besluit
 Wij hebben uiteindelijk besloten om niet de externe IdentityProvider direct vanuit de frontend te benaderen, maar wel om een eigen backend te gebruiken die vervolgens met de IdentityProvider communiceert.
-
+Het facade design pattern is gekozen om de communicatie met de IdentityProvider te vereenvoudigen en om de complexiteit van de backend te verbergen voor de frontend. Dit zorgt ervoor dat de frontend zich kan concentreren op de gebruikersinterface en niet op de details van de authenticatie- en autorisatieprocessen.
 #### Consequenties
 Positief
 - Verhoogde veiligheid doordat de backend de communicatie met de IdentityProvider afhandelt.
 - Meer controle over de authenticatie- en autorisatieprocessen.
 - Backend kan extra validaties en logging toevoegen voor betere monitoring.
+- Eenvoudiger om misbruik of foutieve authenticatiepogingen te detecteren.
+- De client-secret blijft veilig op de backend en wordt nooit blootgesteld aan de frontend.
 
 Neutraal
 - Extra laag in de architectuur kan de complexiteit verhogen, maar biedt ook meer flexibiliteit.
+- De backend kan eenvoudig worden uitgebreid met extra functionaliteiten, zoals caching of throttling, zonder dat de frontend hier iets van merkt.
 
 ##### Negatief
 - Mogelijk langzamere prestaties door de extra communicatielaag.
 - Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
+- Extra infrastructuur nodig voor de backend, wat kan leiden tot hogere kosten en meer ontwikkeltijd.
 
 ## 9. Deployment, Operation and Support
 ### Prototype strategy pattern

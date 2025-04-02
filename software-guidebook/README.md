@@ -430,7 +430,10 @@ Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar bli
 Voorgesteld
 
 #### Context
-Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
+Bij de ontwerpvraag:
+```Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?```
+
+Zochten wij manieren hoe je het beste kan communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
 - Vanuit de frontend direct communiceren met de IdentityProvider
 - Vanuit de frontend met een eigen backend communiceren die vervolgens met de IdentityProvider communiceert
 - Een hybride oplossing waarbij de frontend en backend beide communiceren met de IdentityProvider

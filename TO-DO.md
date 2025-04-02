@@ -1,12 +1,15 @@
 # Nieuw lijstje
 ## Jamiro
-- [ ] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat
+- [x] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat
 - [ ] prototype maken
-- [ ] maak dynamische diagrammen van vorige week
+- [x] maak dynamische diagrammen van vorige week
+- [x] sequence diagram
 ## Taha
 - [ ] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat
 - [ ] prototype maken
 - [ ] maak klasse diagram van vorige week
+- [ ] sequence diagram
+
 ## Mischa
 - [ ] bekijk eigen [feedback](./feedback/feedback-week2.md) in het feedback bestand en kruis alles af waar je eigen naam bij staat
 - [x] prototype maken

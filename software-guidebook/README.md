@@ -62,11 +62,11 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 ## 7. Software Architecture
 ### 7.1. Externe api's
-| Naam              | Doel          |
-|-------------------|---------------|
-| Booking.Com       | Hotels        |     
-| TripAdvisorApi    | Restaurants   |     
-| GoogleFlightsAPI  | Vluchten |  
+| Naam              | Doel        | Links | 
+|-------------------|-------------|-------|
+| Booking.Com       | Hotels      |       |    
+| TripAdvisorApi    | Restaurants |       |   
+| GoogleFlightsAPI  | Vluchten    |       |
 
 _Tabel 1: Externe api's._
 
@@ -97,6 +97,26 @@ Dit dynamisch diagram toont de authenticatieflow binnen de Triptop applicatie (z
 ![Dynamisch Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramMischa.png)
 _Afbeelding 9: Dynamisch diagram authenticeren._
 
+#### 7.3.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
+Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
+
+Het "Adapter pattern" houdt in dat er een "Adapter"-klasse is die tussen een externe service en de hoofdlogica van de applicatie zit.
+Deze klasse formateert de data die naar de externe service wordt doorgestuurd, maar ook de data die wij opvragen van de externe service. 
+Als de externe service iets verandert met de data die ze opsturen, of de data die ze opgestuurd willen krijgen. Kan je dit afvangen in de "Adapter"-klasse
+
+
+Verdere uitleg voor waarom wij voor het "Adapter pattern" hebben gekozen wordt behandeld in 
+[ADR-004](#84-adr-004-voor-exterene-apis-gebruiken-wij-de-adapter-pattern-)
+
+##### Component diagram
+![Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramJamiro.png)
+_Afbeelding 10: Component diagram Adapter pattern._
+
+##### Dynamisch diagram
+Dit dynamische diagram laat zien hoe een de gebruiker de details van een hotel binnen krijgt. 
+Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speelt in deze applicatie. 
+![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
+_Afbeelding 10: Sequence Diagram Adapter pattern._
 ### 7.4. Design & Code
 > [!IMPORTANT]
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
@@ -106,24 +126,37 @@ _Afbeelding 9: Dynamisch diagram authenticeren._
 Voor deze onderzoeksvraag heb ik met gebruik van het component diagram (zie afbeelding 8) een klasse diagram gemaakt. Voor dit klasse diagram heb ik gebruik gemaakt van het **strategy pattern**. Dit heb ik gedaan met het idee dat er makkelijk gewisseld kan worden tussen verschillende manieren voor authenticatie voor de verschillende API's zonder veel code aan te hoeven passen (zie afbeelding 10).
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
-_Afbeelding 10: Klasse diagram authenticeren._
+_Afbeelding 11: Klasse diagram authenticeren._
 
 #### Sequence diagram
 Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 11). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze verwerkt en doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een token gegenereerd en teruggestuurd. Deze token wordt vervolgens gebruikt voor geauthenticeerde verzoeken.
 
 ![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
-_Afbeelding 11: Sequence diagram authenticeren._
+_Afbeelding 12: Sequence diagram authenticeren._
 
 
-#### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?
+#### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 ##### Klasse diagram
-Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen inplaats van de gehele applicatie
+Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. 
+De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen in plaats van de gehele applicatie.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
+_Afbeelding 13: Klasse diagram adapter pattern._
 
 #### Sequence diagram
-Moet nog gerealiseerd worden
+Het sequence diagram laat zien waar de adapter klasse komt te staan en hoe deze gebruikt wordt.
+Om duidelijkheid tussen de verschillende lagen te creëren heeft iedere laag ook net een andere methode naam.
+De endpoint heet "getHotelDetail" want deze haalt natuurlijk de hoteldetails op.
+In de service noemen we de methode "retrieveHotelDetails" omdat je de details gaat retrieven van de adapter klasse.
+In de Adapter noemen we de methode "fetchHotelDetails" omdat je nu de details gaat fetchen van de externe Api.
+De vraag teken bij de externe api staat er bewust. 
+De reden hiervoor is omdat als je van API veranderd deze methode naam ook mee veranderd.
+Voor nu hebben wij hem dus open gelaten.
+En de responses die je krijgt worden steeds meer geformatteerd. 
+Totdat het weer op de frontend aankomt en de gebruiker de data ziet.
 
+![Sequence Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/SquenceDiagramAdapterPatternJamiro.png)
+_Afbeelding 14: Sequence Diagram Adapter pattern._
 
 ## 8. Architectural Decision Records
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes
@@ -280,27 +313,39 @@ Hebben wij onderzocht hoe wij kunnen voorkomen dat wij de gehele applicatie zoud
 - Facade pattern
 - Factory method
 
+##### State pattern
+Laat een object zijn gedrag veranderen afhankelijk van zijn interne toestand.
+##### Adapter pattern
+Maakt het mogelijk om twee incompatible interfaces met elkaar te laten samenwerken zonder bestaande code te wijzigen.
+##### Strategy pattern
+Defineerd een familie van algoritmen en maakt ze onderling verwisselbaar zonder de code ze gebruikt te veranderen.
+##### Facade pattern
+Vereenvoudigt een complex systeem door een enkele, gebruiksvriendelijk interface aan te bieden.
+##### Factory method pattern
+Biedt een manier om objecten te maken zonder expliciet de exacte klasse van het te maken object te specificeren.
 
 #### Besluit
 
 Na ons onderzoek bleek het *__Adapter Pattern__* de beste keuze te zijn.
-We hebben hiervoor gekozen omdat een adapter ervoor zorgt dat wijzigingen in de externe API of een overstap naar een andere API-provider slechts aanpassingen in één klasse vereisen.
+We hebben hiervoor gekozen. 
+Omdat een adapter het mogelijk maakt om wijzigingen in de externe API of een overstap naar een andere provider eenvoudig door te voeren.
+Dit vereist alleen aanpassingen in één klasse.
 Dit minimaliseert de impact op de rest van de applicatie en maakt onderhoud eenvoudiger.
 Dit beantwoordt ook de ontwerpvraag.
 
 #### Consequenties
 
 ##### Positief
-- Minimaliseert impact van API-wijzigingen
-- Makkelijker testen doordat je de mock-adapter kan aanmaken zonder echte API calls
-- Maakt overstappen naar een andere provider makkelijker
+- Decoupling, De hoofdlogica van de applicatie blijft onafhankelijk van externe API's of systemen
+- Eenvoudig van externe API's en systemen wisselen
+- Je kan de adapter mocken waardoor je beter kan testen
 
 ##### Neutraal
 - Extra code nodig 
 - Kan overkill zijn als een API nooit verandert
-- 
 ##### Negatief
-- Voegt complexiteit toe
+- Door de extra "Adapter" laag wordt de applicatie complexer
+- Door het extra formateren en transformeren van data kan dit zorgen voor een kleine vertraging
 
 
 ### 8.5. ADR-005 Herziening van ADR-003 - Minder afhankelijkheid van Booking.com
@@ -338,11 +383,7 @@ Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar bli
 ##### Negatief
 - Hiervoor moeten wij wel veel herschrijven/opnieuw doen
 
-## 9. Deployment, Operation and Support
-> [!TIP]
-> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
-
-### 8.5. ADR-006 Voorkeur voor externe api communicatie met authenticatie
+### 8.6. ADR-006 Voorkeur voor externe api communicatie met authenticatie
 
 #### Status
 

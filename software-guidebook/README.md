@@ -308,20 +308,21 @@ _Tabel 4: Overwogen opties authenticeren strategy._
 ##### Flexibiliteit
 - **State pattern**: Kan nuttig zijn voor toestandsafhankelijke authenticatie en autorisatie, maar is minder geschikt voor het toepassen van verschillende authenticatie- en autorisatiestrategieën.
 - **Adapter pattern**: Zorgt voor compatibiliteit tussen verschillende API-authenticatie- en autorisatiemethoden, maar biedt minder flexibiliteit in strategieën.
-- **Strategy pattern**: Biedt hoge flexibiliteit doordat verschillende authenticatie- en autorisatiestrategieën eenvoudig verwisselbaar zijn.
+- **Strategy pattern**: Biedt hoge flexibiliteit doordat verschillende authenticatie- en autorisatiestrategieën eenvoudig verwisselbaar zijn. In de [AuthenticationController](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/controllers/AuthenticationController.java) klasse van ons prototype is er één variabele die bepaalt welke methode om te authenticeren er wordt gebruikt. Deze aanpassen is alles wat je moet doen om een andere strategie te gebruiken.
 - **Facade pattern**: Vereenvoudigt de toegang tot authenticatie en autorisatie, maar beperkt de flexibiliteit.
+- **Factory method**: Nieuwe objecten kunnen simpel worden gecreeërt met behulp van de constructors, maar het zal vooral handig zijn in het maken van een nieuw object op basis van een ander object. Een compleet nieuw object maken zou wat ingewikkelder zijn, als niet moeilijk.
 
 ##### Onderhoudbaarheid
 - **State pattern**: Code blijft redelijk onderhoudbaar, maar kan complex worden bij veel toestanden.
 - **Adapter pattern**: Hoge onderhoudbaarheid doordat het bestaande implementaties hergebruikt zonder deze te wijzigen.
-- **Strategy pattern**: Hoge onderhoudbaarheid doordat strategieën los van elkaar ontwikkeld en aangepast kunnen worden.
+- **Strategy pattern**: Hoge onderhoudbaarheid doordat strategieën los van elkaar ontwikkeld en aangepast kunnen worden. In de [IAuthenticateStrategie](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/IAuthenticateStrategie.java) klasse van ons prototype staan alle functies die elke implementatie moet hebben. In de [KeyAuthentication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/KeyAuthentication.java) klasse van ons prototype kan je zien dat hij naast deze functie ook andere functies kan hebben zoals generateToken(). Ook is de implementatie van de authenticate functie ter eigen interpretatie zolang hij maar voldoet aan de return waarden van de interface. Hierdoor is het super gemakkelijk om bestaande strategieën aan te passen zonder andere code te hoeven aan te passen en ook is het erg makkelijk om nieuwe strategieën toe te voegen, sinds je alleen maar een nieuwe klasse hoeft te maken zoals de KeyAuthentication en deze method toevoegen aan de [AuthenticationService](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/services/AuthenticationService.java) klasse en aan de [AuthenticationMethods](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/domains/AuthenticationMethods.java) enum.
 - **Facade pattern**: Code blijft overzichtelijk, maar aanpassingen aan de onderliggende implementatie kunnen impact hebben op de gehele interface.
 - **Factory method**: Maakt het makkelijk om nieuwe strategieën toe te voegen, maar is minder gestructureerd dan het strategy pattern.
 
 ##### Complexiteit
 - **State pattern**: Hoge complexiteit bij meerdere authenticatie- en autorisatietoestanden.
 - **Adapter pattern**: Lage complexiteit, maar minder krachtig voor het wisselen van strategieën.
-- **Strategy pattern**: Gematigde complexiteit, maar de beste balans tussen flexibiliteit en onderhoudbaarheid.
+- **Strategy pattern**: Gematigde complexiteit, maar de beste balans tussen flexibiliteit en onderhoudbaarheid. Deze pattern is niet erg complex om te implementeren sinds het weinig verschilt van andere applicaties qua vorm en structuur. Het complexste aspect van dit pattern ligt bij hoe je ervoor zorgt dat de service laag weet welke strategie hij moet implementeren. Wij hebben dit zelf gedaan met behulp van een switch case (zie de [AuthenticationService](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/services/AuthenticationService.java) klasse).
 - **Facade pattern**: Lage complexiteit, maar beperkt in functionaliteit.
 - **Factory method**: Lage tot gematigde complexiteit, afhankelijk van het aantal gecreëerde objecten.
 
@@ -459,5 +460,20 @@ Neutraal
 - Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
 
 ## 9. Deployment, Operation and Support
-> [!TIP]
-> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
+### Prototype strategy pattern
+Om het prototype voor het strategy pattern en voor onderzoeksvraag "Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
+
+1. **Het prototype openen**: De eerste stap is vrij logisch, maar toch de moeite waard om te bespreken. Wij zullen dit uitleggen op basis van IntellIJ, andere IDE's kunnen hetzelfde zijn of wellicht iets anders gaan. Via IntellIJ moet je een project openen, ga hiervoor dan naar de [pom.xml](/Mischa/Prototype/triptop/pom.xml) in /Mischa/Prototype/triptop.pom.xml.
+
+2. **De prototype runnen**: Toen wij het prototype aan het bouwen waren, was het niet nodig om het te compilen voordat we het gingen runnen. Maar dit kan misschien anders zijn op een ander systeem. Om het te compilen moet je een terminal openen in IntelliJ en vervolgens de ```mvn clean install``` command runnen. Het prototype is te starten door de main te runnen in de [TriptopApplication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/TriptopApplication.java) klasse.
+
+3. **Authenticatie strategie instellen**: Standaard staat het prototype ingesteld om gebruik te maken van de [SecretAuthentication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/SecretAuthentication.java) methode. Als je een andere strategie wilt testen kan je in de [AuthenticationController](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/controllers/AuthenticationController.java) de AUTHENTICATIONMETHOD aanpassen naar een van de authenticatie methoden zoals ze in de [AuthenticationMethods](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/domains/AuthenticationMethods.java) enum staan.
+
+4. **Het prototype testen**: Via een externe applicatie om endpoints te testen (zoals bijvoorbeeld Postman) moet je een endpoint aanroepen voor de authenticate. De link zal er als volgt uit zien: http://localhost:8080/authenticate?endpoint=HAN&httpMethod=Post. Geef in de body de volgende body mee: 
+{
+  "username": "Mischa",
+  "password": "Lippmann",
+  "key": "12345",
+  "secret": "JohmaSalade"
+}.
+Roep deze endpoint aan met een POST en je zal als het goed is een token terugkrijgen. Als je wilt kan je ook nog een endpoint aanroepen voor de authorisatie. Deze zal er als volgt uit zien: http://localhost:8080/authorize?endpoint=HAN&httpMethod=Post. Hier wordt de token automatisch aan meegegeven, en zonder zal hij ook niet werken. Ongeacht de token zal deze endpoint altijd true zijn en aangeven dat je geautoriseerd bent.

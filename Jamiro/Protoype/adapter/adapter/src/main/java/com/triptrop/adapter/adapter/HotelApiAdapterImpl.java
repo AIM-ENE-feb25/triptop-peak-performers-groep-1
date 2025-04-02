@@ -14,6 +14,9 @@ import java.net.http.HttpResponse;
 
 @Component
 public class HotelApiAdapterImpl implements HotelApiAdapter {
+
+
+    //Dit is de fetchHotelDetail voor BOOKING.COM
     public HotelDto fetchHotelDetail(int hotelId,String arrivalDate, String departureDate){
         final int HOTELID = hotelId;
         final String ARRIVALDATE = arrivalDate;
@@ -38,13 +41,12 @@ public class HotelApiAdapterImpl implements HotelApiAdapter {
 
             // Extract hotel name (adjust path based on API response)
             String hotelName = rootNode.path("data").path("hotel_name").asText();
-            String hotelLocation = rootNode.path("data").path("city").asText();
+            String hotelLocation = rootNode.path("data").path("address").asText();
 
             // Populate HotelDto
             HotelDto hotel = new HotelDto();
             hotel.setHotelName(hotelName);
             hotel.setLocatie(hotelLocation);
-            System.out.println(hotel.getNaam());
 
             return hotel;
         } catch (IOException | InterruptedException e) {
@@ -53,4 +55,41 @@ public class HotelApiAdapterImpl implements HotelApiAdapter {
 
         return new HotelDto();
     }
+
+    //Dit is de fetchHotelDetail voor TRIPADVISOR
+//    public HotelDto fetchHotelDetail(int hotelId,String arrivalDate, String departureDate){
+//        final int HOTELID = hotelId;
+//        final String ARRIVALDATE = arrivalDate;
+//        final String DEPARTUREDATE = departureDate;
+//        String uri = "https://tripadvisor16.p.rapidapi.com/api/v1/hotels/getHotelDetails?id="+HOTELID+"&checkIn="+ARRIVALDATE+"&checkOut="+DEPARTUREDATE+"&currency=USD";
+//
+//        try {
+//            HttpRequest request = HttpRequest.newBuilder()
+//                    .uri(URI.create(uri))
+//                    .header("x-rapidapi-key", "fe78ddf025mshec614b485c4c5fbp12989fjsne86a995cf15f")
+//                    .header("x-rapidapi-host", "tripadvisor16.p.rapidapi.com")
+//                    .method("GET", HttpRequest.BodyPublishers.noBody())
+//                    .build();
+//            HttpClient client = HttpClient.newHttpClient();
+//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+//
+//            // Parse JSON response
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            JsonNode rootNode = objectMapper.readTree(response.body());
+//
+//            // Extract Details
+//            String hotelName = rootNode.path("data").path("title").asText();
+//            String hotelLocation = rootNode.path("data").path("location").path("address").asText();
+//
+//            HotelDto hotel = new HotelDto();
+//            hotel.setHotelName(hotelName);
+//            hotel.setLocatie(hotelLocation);
+//
+//            return hotel;
+//        } catch (IOException | InterruptedException e) {
+//            e.printStackTrace();  // Print detailed error message
+//        }
+//
+//        return new HotelDto();
+//    }
 }

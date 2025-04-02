@@ -20,6 +20,6 @@ public class HotelController {
 
     @GetMapping("/getHotelDetails")
     public ResponseEntity<HotelDto> getHotelDetails(@RequestParam int hotelId, String arrivalDate, String departureDate) {
-        return ResponseEntity.ok(HOTELSERVICEIMPL.getHotelDetails(hotelId,arrivalDate,departureDate));
+        return ResponseEntity.ok(HOTELSERVICEIMPL.retrieveHotelDetails(hotelId,arrivalDate,departureDate));
     }
 }

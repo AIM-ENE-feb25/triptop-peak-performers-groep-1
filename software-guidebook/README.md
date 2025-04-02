@@ -123,7 +123,7 @@ _Afbeelding 10: Sequence Diagram Adapter pattern._
 ### 7.4. Design & Code
 #### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Klasse diagram
-Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 8) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders.
+Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 8) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders. Wij zullen tijdens het implementeren van het prototype gebruik maken van het **open/closed principe**. Dit betekent dat de klassen open staan voor uitbreiding, maar niet voor aanpassing. Dit principe sluit erg mooi aan met het strategy pattern, sinds je hier de strategieën wel kan uitbreiden met nieuwe strategieën maar je ze hier niet voor hoeft aan te passen.
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
 _Afbeelding 11: Klasse diagram authenticeren._

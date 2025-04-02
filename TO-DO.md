@@ -22,6 +22,7 @@
 - [ ] Component diagram samenvoegen??? vraag eerst na
 - [ ] Class/sequence diagrammen (component uitwerken??? ook navragen)
 - [ ] 
+- [ ] principes hoofdstuk in SGB invullen
 
 
 

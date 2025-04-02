@@ -6,7 +6,7 @@ import com.triptop.triptop.domains.Token;
 import java.util.Date;
 
 public class SecretAuthentication implements IAuthenticateStrategie {
-    private final String CORRECTSECRET = "YuMoSaNa";
+    private final String CORRECTSECRET = "JohmaSalade";
 
     @Override
     public Token authenticate(String endpoint, String httpMethod, Credentials credentials) {

@@ -16,7 +16,7 @@ System_Boundary(c4, "Externe API's") {
     Component(ExternalAPI2, "External API 2", "Extern Systeem", "Ontvangt geauthenticeerde verzoeken")
 }
 
-Rel(User, Frontend, "Interactie met de")
+Rel(User, Frontend, "Stuurt inloggegevens naar de")
 Rel(Frontend, Backend, "Stuurt requests naar")
 Rel(Backend, AuthenticationService, "Maakt gebruik van")
 Rel(AuthenticationService, Backend, "Stuurt geauthenticeerde token terug naar de")

@@ -68,11 +68,11 @@ Tijdens het maken van onze prototypes gaan we gebruik maken van de volgende arch
 
 ## 7. Software Architecture
 ### 7.1. Externe api's
-| Naam              | Doel        | Links | 
-|-------------------|-------------|-------|
-| Booking.Com       | Hotels      | https://developers.booking.com/       |    
-| TripAdvisorApi    | Restaurants | https://www.tripadvisor.com/developers      |   
-| GoogleFlightsAPI  | Vluchten    | https://serpapi.com/google-flights-api      |
+| Naam              | Doel        | Links                                   | 
+|-------------------|-------------|-----------------------------------------|
+| Booking.Com       | Hotels      | https://developers.booking.com/         |    
+| TripAdvisorApi    | Restaurants | https://www.tripadvisor.com/developers  |   
+| GoogleFlightsAPI  | Vluchten    | https://serpapi.com/google-flights-api  |
 
 _Tabel 1: Externe api's._
 
@@ -105,7 +105,7 @@ _Afbeelding 9: Dynamisch diagram authenticeren._
 #### 7.3.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. 
 Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
-En Het design principe "Program to an interface".
+En het design principe "Program to an interface".
 
 Het "Adapter pattern" houdt in dat er een "Adapter"-klasse is die tussen een externe service en de hoofdlogica van de applicatie zit.
 Deze klasse formateert de data die naar de externe service wordt doorgestuurd, maar ook de data die wij opvragen van de externe service. 
@@ -146,8 +146,8 @@ _Afbeelding 13: Sequence diagram authenticeren._
 #### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 ##### Klasse diagram
 Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. 
-De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aantepassen in plaats van de gehele applicatie.
-Stel de API veranderd of je wilt een hele andere API gebruiken hoef je alleen de logica van de methodes in de adapter klasse aan te passen.
+De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aan te passen in plaats van de gehele applicatie.
+Stel de API verandert of je wilt een hele andere API gebruiken hoef je alleen de logica van de methodes in de adapter klasse aan te passen.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
 _Afbeelding 14: Klasse diagram adapter pattern._
@@ -158,7 +158,7 @@ Om duidelijkheid tussen de verschillende lagen te creëren heeft iedere laag ook
 De endpoint heet "getHotelDetail" want deze haalt natuurlijk de hoteldetails op.
 In de service noemen we de methode "retrieveHotelDetails" omdat je de details gaat retrieven van de adapter klasse.
 In de Adapter noemen we de methode "fetchHotelDetails" omdat je nu de details gaat fetchen van de externe Api.
-De vraag teken bij de externe api staat er bewust. 
+De vraag teken bij de externe API staat er bewust. 
 De reden hiervoor is omdat als je van API veranderd deze methode naam ook mee veranderd.
 Voor nu hebben wij hem dus open gelaten.
 En de responses die je krijgt worden steeds meer geformatteerd. 

@@ -36,9 +36,6 @@ class BookingAPI {
 }
 
 
-interface "Booking.com API" <<External API>> {
-    + getHotelDetails(hotelId: int): String
-}
 
 HotelController --> HotelServicePort : Maakt gebruik van
 HotelController --> HotelDto : : Maakt gebruik van

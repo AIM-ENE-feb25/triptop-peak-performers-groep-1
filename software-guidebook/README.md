@@ -146,7 +146,8 @@ _Afbeelding 12: Component diagram facade pattern._
 
 ##### Dynamisch diagram
 Dit dynamische diagram laat zien hoe de facade wordt gebruikt om authenticatie-verzoeken af te handelen.
-![Dynamic diagram facade pattern](/opdracht-diagrammen/C4-Diagrammen/DynamicDiagramFacade.svg)
+
+![Dynamic diagram facade pattern](/opdracht-diagrammen/C4-Diagrammen/DynamicDiagramFacade.svg)  
 _Afbeelding 13: Dynamic diagram facade pattern._
 
 ### 7.4. Design & Code

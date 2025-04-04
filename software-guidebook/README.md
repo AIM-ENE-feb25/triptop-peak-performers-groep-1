@@ -537,7 +537,18 @@ Neutraal:
 
 
 ## 9. Deployment, Operation and Support
-### 9.1. Prototype strategy pattern
+### 9.1. Benodigdheden
+Op de prototypes te testen heb je een aantal dingen nodig. Dit is wat wij hebben gebruikt en raden dit dus ook aan.
+Sommige benodigdheden kan je alternative voor gebruiken en/of oudere versies, maar dan kunnen wij niet geranderen dat het prototype blijft werken.
+
+- [IntelliJ IDEA Ultimate v2024.3.5 +](https://www.jetbrains.com/idea/download///?section=windows)  
+- [Node.js v23.11.0 +](https://nodejs.org/en/download)
+- [De laatste versie van Java](https://www.java.com/en/download/manual.jsp)
+- [Apache Maven v3.9.9 +](https://maven.apache.org/download.cgi)
+- [Visual studio code v1.99 + ](https://code.visualstudio.com/)
+- [Postman v11.39.5 ](https://www.postman.com/downloads/)
+
+### 9.2. Prototype strategy pattern
 Om het prototype voor het strategy pattern en voor onderzoeksvraag "Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
 
 1. **Het prototype openen**: De eerste stap is vrij logisch, maar toch de moeite waard om te bespreken. Wij zullen dit uitleggen op basis van IntellIJ, andere IDE's kunnen hetzelfde zijn of wellicht iets anders gaan. Via IntellIJ moet je een project openen, ga hiervoor dan naar de [pom.xml](/prototypes/strategy/Prototype/triptop/pom.xml) in /prototypes/strategy/Prototype/triptop.pom.xml.
@@ -555,13 +566,8 @@ Om het prototype voor het strategy pattern en voor onderzoeksvraag "Hoe zorg je 
 }.
 Roep deze endpoint aan met een POST en je zal als het goed is een token terugkrijgen. Als je wilt kan je ook nog een endpoint aanroepen voor de authorisatie. Deze zal er als volgt uit zien: http://localhost:8080/authorize?endpoint=HAN&httpMethod=Post. Hier wordt de token automatisch aan meegegeven, en zonder zal hij ook niet werken. Ongeacht de token zal deze endpoint altijd true zijn en aangeven dat je geautoriseerd bent.
 
-### 9.2. Prototype adapter pattern
+### 9.3. Prototype adapter pattern
 Om het prototype voor de adapter pattern en voor de onderzoeksvraag "Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
-
-#### Benodigdheden
-- Intellij IDE
-- Node
-- Werkende internet connectie
 
 #### Het prototype runnen
 1. **Het prototype openen**: De eerste stap is om het prototype te openen in de Intelij IDE. dit doe je door te navigeren naar de `pom.xml` en die te openen als project

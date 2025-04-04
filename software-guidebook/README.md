@@ -438,42 +438,98 @@ Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar bli
 ##### Negatief
 - Hiervoor moeten wij wel veel herschrijven/opnieuw doen.
 
-### 8.7. ADR-007 Voorkeur voor externe api communicatie met authenticatie
+### 8.7. ADR-007 Voorkeur voor externe api communicatie met authenticatie gemaakt d.m.v. een facade design pattern
 #### Status
 Voorgesteld
 
 #### Context
-Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
+Bij de ontwerpvraag:
+```Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?```
+
+Zochten wij manieren hoe je het beste kan communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
 - Vanuit de frontend direct communiceren met de IdentityProvider
 - Vanuit de frontend met een eigen backend communiceren die vervolgens met de IdentityProvider communiceert
 - Een hybride oplossing waarbij de frontend en backend beide communiceren met de IdentityProvider
 
 #### Overwogen opties
-- Directe communicatie vanuit de frontend
-    - Voordelen: Snel, geen extra laag
-    - Nadelen: Minder veilig, minder controle
-- Communicatie via een eigen backend
-    - Voordelen: Meer controle, veiliger
-    - Nadelen: Langzamer, extra laag
-- Hybride oplossing
-    - Voordelen: Controle, snelheid
-    - Nadelen: Complexer, extra laag
+
+Gebruik maken van de volgende design patterns:
+- Facade pattern
+    - Voordelen:
+      - Facade verbergt de complexiteit van een systeem door een eenvoudige interface te bieden.
+    - Nadelen:
+      - Kan leiden tot een te grote afhankelijkheid van de facade, waardoor de onderliggende implementatie moeilijker te wijzigen is.
+- Adapter pattern
+  - Voordelen:
+    - Het maakt het mogelijk om samen te werken met oude en nieuwe interfaces zonder de bestaande code aan te passen.
+  - Nadelen:
+    - Overmatig gebruik kan leiden tot een onoverzichtelijke codebase waarin te veel verschillende adapters aanwezig zijn.
+- Strategy pattern
+  - Voordelen:
+    - Je kunt nieuwe strategieën toevoegen zonder bestaande code aan te passen, wat uitbreidbaarheid vergroot.
+  - Nadelen:
+    - Je moet meerdere klassen maken voor verschillende strategieën, wat extra ontwikkeltijd en onderhoud vereist.
+- State pattern
+  - Voordelen:
+    - Het maakt het mogelijk om objecten hun gedrag te laten veranderen op basis van hun interne toestand.
+  - Nadelen:
+    - Kan leiden tot een complexe codebase met veel toestanden en overgangen.
+- Factory method pattern
+  - Voordelen:
+    - De factory kan verschillende subklassen retourneren, waardoor het eenvoudig is om objectcreatie aan te passen zonder bestaande code te wijzigen.
+  - Nadelen:
+    - Voor eenvoudige objectcreatie kan een normale constructor voldoende zijn, waardoor een Factory-method overbodig wordt.
+
+Directe communicatie vanuit de frontend:
+  - **Voordelen**: 
+    - Sneller, omdat de frontend direct een token ophaalt en geen extra tussenlaag hoeft te wachten.
+    - Minder infrastructuur nodig, wat het eenvoudiger maakt om te implementeren.
+  - **Nadelen**:
+    - De client-secret zou mogelijk in de frontend terecht kunnen komen, wat kwetsbaar is voor aanvallen.
+    - Als een token gevaar gebracht raakt, kan de frontend niet eenvoudig de toegang intrekken zonder afhankelijk te zijn van de IdentityProvider.
+    - Moeilijker om misbruik of foutieve authenticatiepogingen te detecteren. 
+
+Communicatie via een eigen backend:
+- Voordelen:
+  - De client-secret blijft veilig op de backend en wordt nooit blootgesteld aan de frontend.
+  - De backend kan extra validaties uitvoeren, zoals IP-beperkingen, rolgebaseerde toegang of extra logging.
+  - De backend kan tokens opslaan en vernieuwen zonder de IdentityProvider onnodig te belasten.
+- Nadelen:
+  - Extra latentie, omdat de frontend eerst de backend moet aanroepen, en de backend daarna de IdentityProvider, kan er een vertraging optreden.
+  - De backend moet correct worden geconfigureerd en beveiligd, wat extra ontwikkel- en onderhoudswerk vraagt.
+  - Problemen zoals netwerkfouten, timeouts of verlopen tokens moeten correct door de backend worden afgehandeld en teruggekoppeld naar de frontend.
+
+Hybride oplossing
+- Voordelen:
+  - De frontend kan bijvoorbeeld een publieke endpoint van de IdentityProvider direct benaderen, terwijl de backend geavanceerde autorisatiecontrole uitvoert.
+  - Afhankelijk van de use case kan bepaald worden of authenticatie volledig via de backend of deels via de frontend verloopt.
+- Nadelen:
+  - Hogere complexiteit in architectuur:
+    - Frontend en backend moeten goed op elkaar afgestemd zijn om te voorkomen dat inconsistenties ontstaan in sessiebeheer.
+    - Meerdere authenticatiestromen (bijv. OAuth, JWT, API-sleutels) moeten worden beheerd, wat foutgevoelig is.
+    - Mogelijk extra configuratie vereist voor Cross-Origin Resource Sharing (CORS) en beveiligingsheaders.
+  - Aangezien meerdere componenten moeten samenwerken, kan het langer duren om een stabiele oplossing te implementeren en te testen.
 
 #### Besluit
 Wij hebben uiteindelijk besloten om niet de externe IdentityProvider direct vanuit de frontend te benaderen, maar wel om een eigen backend te gebruiken die vervolgens met de IdentityProvider communiceert.
-
+Het facade design pattern is gekozen om de communicatie met de IdentityProvider te vereenvoudigen en om de complexiteit van de backend te verbergen voor de frontend. Dit zorgt ervoor dat de frontend zich kan concentreren op de gebruikersinterface en niet op de details van de authenticatie- en autorisatieprocessen.
 #### Consequenties
 Positief:
 - Verhoogde veiligheid doordat de backend de communicatie met de IdentityProvider afhandelt.
 - Meer controle over de authenticatie- en autorisatieprocessen.
 - Backend kan extra validaties en logging toevoegen voor betere monitoring.
+- Eenvoudiger om misbruik of foutieve authenticatiepogingen te detecteren.
+- De client-secret blijft veilig op de backend en wordt nooit blootgesteld aan de frontend.
+- Dankzij het gebruik van de Facade pattern wordt het '**Encapsulate what varies**' principle toegepast, wat betekent dat de frontend niet hoeft te weten hoe de backend werkt of welke externe API's worden gebruikt. Dit maakt het eenvoudiger om de backend in de toekomst te wijzigen zonder dat de frontend hier iets van merkt.
 
 Neutraal:
 - Extra laag in de architectuur kan de complexiteit verhogen, maar biedt ook meer flexibiliteit.
+- De backend kan eenvoudig worden uitgebreid met extra functionaliteiten, zoals caching of throttling, zonder dat de frontend hier iets van merkt.
 
 ##### Negatief
 - Mogelijk langzamere prestaties door de extra communicatielaag.
 - Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
+- Extra infrastructuur nodig voor de backend, wat kan leiden tot hogere kosten en meer ontwikkeltijd.
 
 ### 8.8. ADR-008 Wij gaan het design principe "Program to an interface" toepassen
 #### Status

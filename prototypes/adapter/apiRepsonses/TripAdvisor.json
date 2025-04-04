@@ -1,0 +1,965 @@
+{
+    "status": true,
+    "message": "Success",
+    "timestamp": 1743755945355,
+    "data": {
+      "photos": [
+        {
+          "maxHeight": 1005,
+          "maxWidth": 1500,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/6e/64/f6/hotel-haarhuis-exterior.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 4480,
+          "maxWidth": 6720,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/66/caption.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 2048,
+          "maxWidth": 1365,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/57/blou-rooftop-bar.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 2048,
+          "maxWidth": 1365,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/5c/restaurant-locals.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 4297,
+          "maxWidth": 6445,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/61/caption.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 2048,
+          "maxWidth": 1365,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/5b/blou-rooftopbar.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 1365,
+          "maxWidth": 2048,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/56/blou-rooftop-bar.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 4268,
+          "maxWidth": 6402,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/60/caption.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 3000,
+          "maxWidth": 4500,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/65/caption.jpg?w={width}&h={height}&s=1"
+        },
+        {
+          "maxHeight": 1365,
+          "maxWidth": 2048,
+          "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/43/cf/5a/receptie.jpg?w={width}&h={height}&s=1"
+        }
+      ],
+      "title": "Hotel Haarhuis",
+      "rating": 4,
+      "numberReviews": 690,
+      "rankingDetails": "#2 of 14 hotels in <a>Arnhem</a>",
+      "price": {
+        "strikeThroughPrice": null,
+        "status": "IN_PROGRESS",
+        "providerName": "Booking.com",
+        "freeCancellation": null,
+        "pricingPeriod": null
+      },
+      "about": {
+        "content": [
+          {
+            "title": "Available languages",
+            "content": [
+              {
+                "title": "",
+                "content": "English, Dutch, German"
+              }
+            ]
+          },
+          {
+            "title": "Amenities",
+            "content": [
+              {
+                "title": "Paid public parking nearby"
+              },
+              {
+                "title": "Free High Speed Internet (WiFi)"
+              },
+              {
+                "title": "Fitness / spa changing rooms"
+              },
+              {
+                "title": "Bar / lounge"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          "Business",
+          "Classic",
+          "Centrally Located",
+          "Mid-range"
+        ]
+      },
+      "reviews": {
+        "content": [
+          {
+            "title": "Great friendly hotel. ",
+            "text": "Amazing hotel in a great location. Close to the train / bus station and plenty of restaurants, bars, shops. We visited on a remembrance of \"operation market garden.\" The staff were polite and helpful. Multi lingual to make all guests feel welcome. The one area that needs work is accessibility for disabled people. We would definitely recommend the hotel to others and would love to visit the hotel again soon.",
+            "bubbleRatingText": "Mar 2025 • Couples",
+            "publishedDate": "Written 01/04/25",
+            "userProfile": {
+              "deprecatedContributionCount": "27 contributions",
+              "avatar": {
+                "maxHeight": 1200,
+                "maxWidth": 1200,
+                "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/eb/6d/default-avatar-2020-19.jpg?w={width}&h={height}&s=1"
+              }
+            },
+            "photos": []
+          },
+          {
+            "title": "Enjoyable stay!",
+            "text": "The location of Haarhuis is great being virtually 30 seconds from Arnhem's central station for both buses & trains making getting to the hotel a breeze from Amsterdam's Schiphol Airport. The hotel itself was modern & had a cosy atmosphere, with friendly staff to greet you upon arrival. Plenty of seating in the reception area, and an easy to navigate layout.<br />As the other reviews suggest, the breakfast is great for its price, and although I didn't visit the restaurant for other meals, the food looked amazing. Blou- the rooftop bar has great views during sunset, and would highly recommend a visit during your stay. As for the toilet, it's an experience!<br />The room I stayed in was spacious and the bed is super comfy, even a mini fridge for drinks etc. <br />It's close to the town centre & a short walk (about 20 minutes) from the Gelredome, which is handy if you are planning to stay here for an event held there.",
+            "bubbleRatingText": "Sept 2024 • Solo",
+            "publishedDate": "Written 20/09/24",
+            "userProfile": {
+              "deprecatedContributionCount": "16 contributions",
+              "avatar": {
+                "maxHeight": 450,
+                "maxWidth": 450,
+                "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/b7/37/c6/caption.jpg?w={width}&h={height}&s=1"
+              }
+            },
+            "photos": [
+              {
+                "__typename": "AppPresentation_Photo",
+                "link": {
+                  "__typename": "AppPresentation_InternalLink",
+                  "text": null,
+                  "accessibilityString": null,
+                  "route": {
+                    "__typename": "Routing_Route",
+                    "page": "PhotoDetails",
+                    "url": "/PhotoDetails?ff=764714964&t=p&locationId=230901&geo=230901&cfg=mvqa&ep=review&rid=970619286",
+                    "nonCanonicalUrl": "/PhotoDetails?ff=764714964&t=p&locationId=230901&geo=230901&cfg=mvqa&ep=review&rid=970619286",
+                    "fragment": null,
+                    "typedParams": {
+                      "__typename": "Routing_PhotoDetailsParameters",
+                      "locationId": 230901,
+                      "locationIdStr": "230901",
+                      "albumId": null,
+                      "positionId": null,
+                      "from": null,
+                      "to": null,
+                      "mediaId": 764714964,
+                      "mediaType": "p",
+                      "galleryConfig": "mvqa",
+                      "entryPoint": "review",
+                      "reviewId": "970619286"
+                    }
+                  },
+                  "trackingContext": "server_reviewPhoto_764714964",
+                  "webviewRoute": null
+                },
+                "photo": {
+                  "__typename": "Photo",
+                  "photoSizes": [
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 0,
+                      "width": 0,
+                      "url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/94/9f/d4/caption.jpg?w=100&h=100&s=1"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 50,
+                      "width": 50,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-t/2d/94/9f/d4/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 205,
+                      "width": 115,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-f/2d/94/9f/d4/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 150,
+                      "width": 150,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-l/2d/94/9f/d4/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 200,
+                      "width": 180,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-i/2d/94/9f/d4/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 450,
+                      "width": 253,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-s/2d/94/9f/d4/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 978,
+                      "width": 550,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-p/2d/94/9f/d4/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 1280,
+                      "width": 720,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2d/94/9f/d4/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 1820,
+                      "width": 1024,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-w/2d/94/9f/d4/caption.jpg"
+                    }
+                  ],
+                  "photoSizeDynamic": {
+                    "__typename": "PhotoSizeDynamic",
+                    "maxHeight": 4032,
+                    "maxWidth": 2268,
+                    "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/94/9f/d4/caption.jpg?w={width}&h={height}&s=1"
+                  }
+                }
+              },
+              {
+                "__typename": "AppPresentation_Photo",
+                "link": {
+                  "__typename": "AppPresentation_InternalLink",
+                  "text": null,
+                  "accessibilityString": null,
+                  "route": {
+                    "__typename": "Routing_Route",
+                    "page": "PhotoDetails",
+                    "url": "/PhotoDetails?ff=764714968&t=p&locationId=230901&geo=230901&cfg=mvqa&ep=review&rid=970619286",
+                    "nonCanonicalUrl": "/PhotoDetails?ff=764714968&t=p&locationId=230901&geo=230901&cfg=mvqa&ep=review&rid=970619286",
+                    "fragment": null,
+                    "typedParams": {
+                      "__typename": "Routing_PhotoDetailsParameters",
+                      "locationId": 230901,
+                      "locationIdStr": "230901",
+                      "albumId": null,
+                      "positionId": null,
+                      "from": null,
+                      "to": null,
+                      "mediaId": 764714968,
+                      "mediaType": "p",
+                      "galleryConfig": "mvqa",
+                      "entryPoint": "review",
+                      "reviewId": "970619286"
+                    }
+                  },
+                  "trackingContext": "server_reviewPhoto_764714968",
+                  "webviewRoute": null
+                },
+                "photo": {
+                  "__typename": "Photo",
+                  "photoSizes": [
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 0,
+                      "width": 0,
+                      "url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/94/9f/d8/caption.jpg?w=100&h=100&s=1"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 50,
+                      "width": 50,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-t/2d/94/9f/d8/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 205,
+                      "width": 115,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-f/2d/94/9f/d8/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 150,
+                      "width": 150,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-l/2d/94/9f/d8/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 200,
+                      "width": 180,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-i/2d/94/9f/d8/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 450,
+                      "width": 253,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-s/2d/94/9f/d8/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 978,
+                      "width": 550,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-p/2d/94/9f/d8/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 1280,
+                      "width": 720,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2d/94/9f/d8/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 1820,
+                      "width": 1024,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-w/2d/94/9f/d8/caption.jpg"
+                    }
+                  ],
+                  "photoSizeDynamic": {
+                    "__typename": "PhotoSizeDynamic",
+                    "maxHeight": 4032,
+                    "maxWidth": 2268,
+                    "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/94/9f/d8/caption.jpg?w={width}&h={height}&s=1"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title": "Top hotel with great restaurant",
+            "text": "Very friendly staff, great location. Delicious 5-course dinner in Locals. Highly recommended. Our wellness room had a spacious sauna for 2 people and a roof terrace with a view over the center. Very much enjoyed and recommend this hotel!",
+            "bubbleRatingText": "Mar 2025 • Couples",
+            "publishedDate": "Written 30/03/25",
+            "userProfile": {
+              "deprecatedContributionCount": "1 contribution",
+              "avatar": {
+                "maxHeight": 1200,
+                "maxWidth": 1200,
+                "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/e2/a7/default-avatar-2020-44.jpg?w={width}&h={height}&s=1"
+              }
+            },
+            "photos": [
+              {
+                "__typename": "AppPresentation_Photo",
+                "link": {
+                  "__typename": "AppPresentation_InternalLink",
+                  "text": null,
+                  "accessibilityString": null,
+                  "route": {
+                    "__typename": "Routing_Route",
+                    "page": "PhotoDetails",
+                    "url": "/PhotoDetails?ff=796569135&t=p&locationId=230901&geo=230901&cfg=mvqa&ep=review&rid=1000399944",
+                    "nonCanonicalUrl": "/PhotoDetails?ff=796569135&t=p&locationId=230901&geo=230901&cfg=mvqa&ep=review&rid=1000399944",
+                    "fragment": null,
+                    "typedParams": {
+                      "__typename": "Routing_PhotoDetailsParameters",
+                      "locationId": 230901,
+                      "locationIdStr": "230901",
+                      "albumId": null,
+                      "positionId": null,
+                      "from": null,
+                      "to": null,
+                      "mediaId": 796569135,
+                      "mediaType": "p",
+                      "galleryConfig": "mvqa",
+                      "entryPoint": "review",
+                      "reviewId": "1000399944"
+                    }
+                  },
+                  "trackingContext": "server_reviewPhoto_796569135",
+                  "webviewRoute": null
+                },
+                "photo": {
+                  "__typename": "Photo",
+                  "photoSizes": [
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 0,
+                      "width": 0,
+                      "url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/7a/ae/2f/caption.jpg?w=100&h=100&s=1"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 50,
+                      "width": 50,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-t/2f/7a/ae/2f/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 150,
+                      "width": 150,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-l/2f/7a/ae/2f/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 205,
+                      "width": 154,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-f/2f/7a/ae/2f/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 200,
+                      "width": 180,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-i/2f/7a/ae/2f/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 450,
+                      "width": 338,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-s/2f/7a/ae/2f/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 733,
+                      "width": 550,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-p/2f/7a/ae/2f/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 1280,
+                      "width": 960,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2f/7a/ae/2f/caption.jpg"
+                    },
+                    {
+                      "__typename": "PhotoSize",
+                      "height": 1365,
+                      "width": 1024,
+                      "url": "https://media-cdn.tripadvisor.com/media/photo-w/2f/7a/ae/2f/caption.jpg"
+                    }
+                  ],
+                  "photoSizeDynamic": {
+                    "__typename": "PhotoSizeDynamic",
+                    "maxHeight": 4032,
+                    "maxWidth": 3024,
+                    "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/7a/ae/2f/caption.jpg?w={width}&h={height}&s=1"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "count": 690,
+        "ratingValue": 4,
+        "ratingCounts": {
+          "average": {
+            "percentage": 17,
+            "count": "119"
+          },
+          "excellent": {
+            "percentage": 40,
+            "count": "279"
+          },
+          "poor": {
+            "percentage": 7,
+            "count": "45"
+          },
+          "terrible": {
+            "percentage": 4,
+            "count": "28"
+          },
+          "veryGood": {
+            "percentage": 32,
+            "count": "219"
+          }
+        }
+      },
+      "location": {
+        "title": "The area",
+        "address": "Stationsplein 1, 6811 KG Arnhem The Netherlands",
+        "neighborhood": {},
+        "gettingThere": {
+          "title": "How to get there",
+          "content": [
+            "Niederrhein Airport • 45 km",
+            "Eindhoven Airport • 69 km"
+          ]
+        },
+        "walkability": null
+      },
+      "geoPoint": {
+        "latitude": 51.983215,
+        "longitude": 5.902589
+      },
+      "restaurantsNearby": {
+        "sectionTitle": "Restaurants nearby",
+        "content": [
+          {
+            "title": "Vlees & Co Arnhem",
+            "bubbleRating": {
+              "rating": 4.4,
+              "numberReviews": "492"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • Steakhouse • Dutch • Gluten free options",
+            "distance": "0.1 km",
+            "cardPhoto": {
+              "maxHeight": 1200,
+              "maxWidth": 1600,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/49/fa/75/charcoal-grilled-t-bones.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Restaurant Karakter",
+            "bubbleRating": {
+              "rating": 4.6,
+              "numberReviews": "562"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • French • Dutch • Vegetarian friendly",
+            "distance": "0.4 km",
+            "cardPhoto": {
+              "maxHeight": 4000,
+              "maxWidth": 6000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/05/aa/eb/terras.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Batavia",
+            "bubbleRating": {
+              "rating": 4.3,
+              "numberReviews": "618"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • Asian • Indonesian • Vegetarian friendly",
+            "distance": "0.1 km",
+            "cardPhoto": {
+              "maxHeight": 6936,
+              "maxWidth": 9248,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/d3/0a/07/caption.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Graave",
+            "bubbleRating": {
+              "rating": 4.5,
+              "numberReviews": "412"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • Dutch • Bar • Vegetarian friendly",
+            "distance": "0.5 km",
+            "cardPhoto": {
+              "maxHeight": 1440,
+              "maxWidth": 1440,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/29/50/f2/plank.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Foodvia",
+            "bubbleRating": {
+              "rating": 4.8,
+              "numberReviews": "140"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • Contemporary • Vegetarian friendly",
+            "distance": "0.7 km",
+            "cardPhoto": {
+              "maxHeight": 2513,
+              "maxWidth": 2513,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/67/25/7b/wekelijks-wisselend-hoofdgerec.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Eetcafe Mej. Janssen",
+            "bubbleRating": {
+              "rating": 4.5,
+              "numberReviews": "121"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • French • Dutch • Vegetarian friendly",
+            "distance": "0.2 km",
+            "cardPhoto": {
+              "maxHeight": 3376,
+              "maxWidth": 6000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/ec/53/50/eetcafe-mej-janssen.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Rhodos",
+            "bubbleRating": {
+              "rating": 4.2,
+              "numberReviews": "160"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • Seafood • Mediterranean",
+            "distance": "44 m",
+            "cardPhoto": {
+              "maxHeight": 1080,
+              "maxWidth": 1920,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/86/cb/75/dsc-0850-largejpg.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Bistro-Cafe Robinhood",
+            "bubbleRating": {
+              "rating": 4.4,
+              "numberReviews": "108"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • Seafood • International • Vegetarian friendly",
+            "distance": "0.1 km",
+            "cardPhoto": {
+              "maxHeight": 2048,
+              "maxWidth": 2048,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/ab/c7/82/photo6jpg.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Goed Proeven Arnhem",
+            "bubbleRating": {
+              "rating": 4.1,
+              "numberReviews": "592"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • International • European • Vegetarian friendly",
+            "distance": "1 km",
+            "cardPhoto": {
+              "maxHeight": 640,
+              "maxWidth": 960,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/a6/74/cb/goed-proeven.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Arneym",
+            "bubbleRating": {
+              "rating": 4.2,
+              "numberReviews": "169"
+            },
+            "primaryInfo": "₹₹ - ₹₹₹ • Dutch • European • Vegetarian friendly",
+            "distance": "0.3 km",
+            "cardPhoto": {
+              "maxHeight": 283,
+              "maxWidth": 425,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/af/5a/39/interior.jpg?w={width}&h={height}&s=1"
+            }
+          }
+        ]
+      },
+      "attractionsNearby": {
+        "sectionTitle": "Attractions nearby",
+        "content": [
+          {
+            "title": "Fillip Studios",
+            "bubbleRating": {},
+            "primaryInfo": "Art Galleries",
+            "distance": "48 m",
+            "cardPhoto": {}
+          },
+          {
+            "title": "Arnhem Central Station",
+            "bubbleRating": {
+              "rating": 4.2,
+              "numberReviews": "478"
+            },
+            "primaryInfo": "Architectural Buildings",
+            "distance": "0.2 km",
+            "cardPhoto": {
+              "maxHeight": 1500,
+              "maxWidth": 2000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/ea/90/fe/station-arnhem.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Lichtkerk",
+            "bubbleRating": {
+              "rating": 5,
+              "numberReviews": "7"
+            },
+            "primaryInfo": "Speciality Museums • Points of Interest & Landmarks",
+            "distance": "0.1 km",
+            "cardPhoto": {
+              "maxHeight": 1648,
+              "maxWidth": 2472,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/4b/13/ba/inside-dali-exhibition.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Korenmarkt",
+            "bubbleRating": {
+              "rating": 4.1,
+              "numberReviews": "22"
+            },
+            "primaryInfo": "Points of Interest & Landmarks",
+            "distance": "0.2 km",
+            "cardPhoto": {
+              "maxHeight": 3000,
+              "maxWidth": 4000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/42/1b/8d/mooi-zicht-op-de-korenmarkt.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Historische Kelders",
+            "bubbleRating": {
+              "rating": 3.3,
+              "numberReviews": "51"
+            },
+            "primaryInfo": "Speciality Museums",
+            "distance": "0.2 km",
+            "cardPhoto": {
+              "maxHeight": 2160,
+              "maxWidth": 3840,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/3e/0e/51/caption.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Willemeen",
+            "bubbleRating": {
+              "rating": 4.3,
+              "numberReviews": "3"
+            },
+            "primaryInfo": "Civic Centres",
+            "distance": "0.2 km",
+            "cardPhoto": {
+              "maxHeight": 983,
+              "maxWidth": 1311,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/f2/26/73/willemeen-een-fenomeen.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Introdans",
+            "bubbleRating": {
+              "rating": 3.7,
+              "numberReviews": "3"
+            },
+            "primaryInfo": "Ballets",
+            "distance": "0.3 km",
+            "cardPhoto": {
+              "maxHeight": 2048,
+              "maxWidth": 1536,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/15/eb/0a/photo0jpg.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Erfgoedcentrum Rozet",
+            "bubbleRating": {
+              "rating": 4.3,
+              "numberReviews": "16"
+            },
+            "primaryInfo": "History Museums",
+            "distance": "0.3 km",
+            "cardPhoto": {
+              "maxHeight": 900,
+              "maxWidth": 1352,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/46/f5/3d/erfgoedcentrum-rozet.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Koepelkerk",
+            "bubbleRating": {
+              "rating": 3.8,
+              "numberReviews": "20"
+            },
+            "primaryInfo": "Churches & Cathedrals",
+            "distance": "0.3 km",
+            "cardPhoto": {
+              "maxHeight": 4405,
+              "maxWidth": 3524,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/fd/38/a7/arnhem-koepelkerk.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "title": "Arnhem De.Groen.Fine.Art.Collection",
+            "bubbleRating": {
+              "rating": 4.3,
+              "numberReviews": "6"
+            },
+            "primaryInfo": "Art Galleries",
+            "distance": "0.4 km",
+            "cardPhoto": {
+              "maxHeight": 1536,
+              "maxWidth": 2048,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/99/73/74/photo0jpg.jpg?w={width}&h={height}&s=1"
+            }
+          }
+        ]
+      },
+      "qA": {
+        "content": [
+          {
+            "title": "Does this hotel have a lift?",
+            "writtenDate": "30 September 2019",
+            "memberProfile": {
+              "profileImage": {}
+            },
+            "topAnswer": {
+              "text": "Yes indeed. no probs!",
+              "writtenDate": "30 September 2019",
+              "thumbsUpCount": 0,
+              "memberProfile": {
+                "displayName": "Mark Vandael",
+                "hometown": "Hoboken, Belgium",
+                "profileImage": {
+                  "maxHeight": 1200,
+                  "maxWidth": 1200,
+                  "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f6/f3/23/default-avatar-2020-28.jpg?w={width}&h={height}&s=1"
+                },
+                "contributionCounts": null,
+                "deprecatedContributionCount": "351 contributions"
+              }
+            }
+          },
+          {
+            "title": "Is it possible to find rooms that are actually quiet, since this hotel is right by the train station? Also, the double room price is much lower than the twin room, I wonder how much a roller bed would cost in each room instead of getting two twin rooms. THanks :)",
+            "writtenDate": "4 January 2019",
+            "memberProfile": {
+              "profileImage": {}
+            },
+            "topAnswer": {
+              "text": "This Hotel is pretty quite in night times...",
+              "writtenDate": "19 May 2019",
+              "thumbsUpCount": 0,
+              "memberProfile": {
+                "displayName": "kiranreddy p",
+                "hometown": "Newcastle upon Tyne, UK",
+                "profileImage": {
+                  "maxHeight": 1024,
+                  "maxWidth": 1024,
+                  "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/76/eb/e5/effie10.jpg?w={width}&h={height}&s=1"
+                },
+                "contributionCounts": null,
+                "deprecatedContributionCount": "158 contributions"
+              }
+            }
+          }
+        ]
+      },
+      "amenitiesScreen": [
+        {
+          "title": "Parking",
+          "content": [
+            "Paid public parking nearby",
+            "Parking"
+          ]
+        },
+        {
+          "title": "Internet",
+          "content": [
+            "Free High Speed Internet (WiFi)",
+            "Wifi"
+          ]
+        },
+        {
+          "title": "Fitness",
+          "content": [
+            "Fitness / spa changing rooms",
+            "Sauna"
+          ]
+        },
+        {
+          "title": "Food & drink",
+          "content": [
+            "Bar / lounge",
+            "Coffee shop",
+            "Restaurant",
+            "Breakfast available",
+            "Breakfast buffet",
+            "Breakfast in the room",
+            "Rooftop bar"
+          ]
+        },
+        {
+          "title": "Pets",
+          "content": [
+            "Pets Allowed ( Dog / Pet Friendly )"
+          ]
+        },
+        {
+          "title": "Business",
+          "content": [
+            "Business Centre with Internet Access",
+            "Conference facilities",
+            "Banquet room",
+            "Meeting rooms"
+          ]
+        },
+        {
+          "title": "Beauty & wellness",
+          "content": [
+            "Spa",
+            "Full body massage",
+            "Head massage",
+            "Massage",
+            "Neck massage"
+          ]
+        },
+        {
+          "title": "Comfort",
+          "content": [
+            "Bathrobes"
+          ]
+        },
+        {
+          "title": "Room features",
+          "content": [
+            "Air conditioning",
+            "Desk",
+            "Housekeeping",
+            "Interconnected rooms available",
+            "Room service",
+            "Safe",
+            "Telephone",
+            "VIP room facilities",
+            "Wardrobe / wardrobe",
+            "Bottled water",
+            "Laptop safe",
+            "Private bathrooms",
+            "Wake-up service / alarm clock"
+          ]
+        },
+        {
+          "title": "Kitchen",
+          "content": [
+            "Coffee / tea maker"
+          ]
+        },
+        {
+          "title": "Entertainment",
+          "content": [
+            "Flatscreen TV"
+          ]
+        },
+        {
+          "title": "Bed",
+          "content": [
+            "Sofa bed"
+          ]
+        },
+        {
+          "title": "Bath",
+          "content": [
+            "Walk-in shower",
+            "Whirlpool bathtub",
+            "Bath / shower",
+            "Complimentary toiletries",
+            "Hair dryer"
+          ]
+        },
+        {
+          "title": "Room types",
+          "content": [
+            "Non-smoking rooms",
+            "Suites"
+          ]
+        },
+        {
+          "title": "General",
+          "content": [
+            "Rooftop terrace",
+            "Baggage storage",
+            "Concierge",
+            "Non-smoking hotel",
+            "First aid kit",
+            "Umbrella"
+          ]
+        },
+        {
+          "title": "Reception services",
+          "content": [
+            "24-hour front desk",
+            "Private check-in / check-out"
+          ]
+        },
+        {
+          "title": "Cleaning services",
+          "content": [
+            "Dry cleaning",
+            "Laundry service",
+            "Ironing service",
+            "Shoeshine"
+          ]
+        }
+      ]
+    }
+  }

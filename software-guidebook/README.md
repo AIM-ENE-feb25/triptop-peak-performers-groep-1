@@ -320,21 +320,21 @@ _Tabel 5: Overwogen opties authenticeren strategy._
 ##### Flexibiliteit
 - **State pattern**: Kan nuttig zijn voor toestandsafhankelijke authenticatie en autorisatie, maar is minder geschikt voor het toepassen van verschillende authenticatie- en autorisatiestrategieën.
 - **Adapter pattern**: Zorgt voor compatibiliteit tussen verschillende API-authenticatie- en autorisatiemethoden, maar biedt minder flexibiliteit in strategieën.
-- **Strategy pattern**: Biedt hoge flexibiliteit doordat verschillende authenticatie- en autorisatiestrategieën eenvoudig verwisselbaar zijn. In de [AuthenticationController](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/controllers/AuthenticationController.java) klasse van ons prototype is er één variabele die bepaalt welke methode om te authenticeren er wordt gebruikt. Deze aanpassen is alles wat je moet doen om een andere strategie te gebruiken.
+- **Strategy pattern**: Biedt hoge flexibiliteit doordat verschillende authenticatie- en autorisatiestrategieën eenvoudig verwisselbaar zijn. In de [AuthenticationController](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/controllers/AuthenticationController.java) klasse van ons prototype is er één variabele die bepaalt welke methode om te authenticeren er wordt gebruikt. Deze aanpassen is alles wat je moet doen om een andere strategie te gebruiken.
 - **Facade pattern**: Vereenvoudigt de toegang tot authenticatie en autorisatie, maar beperkt de flexibiliteit.
 - **Factory method**: Nieuwe objecten kunnen simpel worden gecreeërt met behulp van de constructors, maar het zal vooral handig zijn in het maken van een nieuw object op basis van een ander object. Een compleet nieuw object maken zou wat ingewikkelder zijn, als niet moeilijk.
 
 ##### Onderhoudbaarheid
 - **State pattern**: Code blijft redelijk onderhoudbaar, maar kan complex worden bij veel toestanden.
 - **Adapter pattern**: Hoge onderhoudbaarheid doordat het bestaande implementaties hergebruikt zonder deze te wijzigen.
-- **Strategy pattern**: Hoge onderhoudbaarheid doordat strategieën los van elkaar ontwikkeld en aangepast kunnen worden. In de [IAuthenticateStrategie](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/IAuthenticateStrategie.java) klasse van ons prototype staan alle functies die elke implementatie moet hebben. In de [KeyAuthentication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/KeyAuthentication.java) klasse van ons prototype kan je zien dat hij naast deze functie ook andere functies kan hebben zoals generateToken(). Ook is de implementatie van de authenticate functie ter eigen interpretatie zolang hij maar voldoet aan de return waarden van de interface. Hierdoor is het super gemakkelijk om bestaande strategieën aan te passen zonder andere code te hoeven aan te passen en ook is het erg makkelijk om nieuwe strategieën toe te voegen, sinds je alleen maar een nieuwe klasse hoeft te maken zoals de KeyAuthentication en deze method toevoegen aan de [AuthenticationService](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/services/AuthenticationService.java) klasse en aan de [AuthenticationMethods](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/domains/AuthenticationMethods.java) enum.
+- **Strategy pattern**: Hoge onderhoudbaarheid doordat strategieën los van elkaar ontwikkeld en aangepast kunnen worden. In de [IAuthenticateStrategie](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/IAuthenticateStrategie.java) klasse van ons prototype staan alle functies die elke implementatie moet hebben. In de [KeyAuthentication](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/KeyAuthentication.java) klasse van ons prototype kan je zien dat hij naast deze functie ook andere functies kan hebben zoals generateToken(). Ook is de implementatie van de authenticate functie ter eigen interpretatie zolang hij maar voldoet aan de return waarden van de interface. Hierdoor is het super gemakkelijk om bestaande strategieën aan te passen zonder andere code te hoeven aan te passen en ook is het erg makkelijk om nieuwe strategieën toe te voegen, sinds je alleen maar een nieuwe klasse hoeft te maken zoals de KeyAuthentication en deze method toevoegen aan de [AuthenticationService](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/services/AuthenticationService.java) klasse en aan de [AuthenticationMethods](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/domains/AuthenticationMethods.java) enum.
 - **Facade pattern**: Code blijft overzichtelijk, maar aanpassingen aan de onderliggende implementatie kunnen impact hebben op de gehele interface.
 - **Factory method**: Maakt het makkelijk om nieuwe strategieën toe te voegen, maar is minder gestructureerd dan het strategy pattern.
 
 ##### Complexiteit
 - **State pattern**: Hoge complexiteit bij meerdere authenticatie- en autorisatietoestanden.
 - **Adapter pattern**: Lage complexiteit, maar minder krachtig voor het wisselen van strategieën.
-- **Strategy pattern**: Gematigde complexiteit, maar de beste balans tussen flexibiliteit en onderhoudbaarheid. Deze pattern is niet erg complex om te implementeren sinds het weinig verschilt van andere applicaties qua vorm en structuur. Het complexste aspect van dit pattern ligt bij hoe je ervoor zorgt dat de service laag weet welke strategie hij moet implementeren. Wij hebben dit zelf gedaan met behulp van een switch case (zie de [AuthenticationService](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/services/AuthenticationService.java) klasse).
+- **Strategy pattern**: Gematigde complexiteit, maar de beste balans tussen flexibiliteit en onderhoudbaarheid. Deze pattern is niet erg complex om te implementeren sinds het weinig verschilt van andere applicaties qua vorm en structuur. Het complexste aspect van dit pattern ligt bij hoe je ervoor zorgt dat de service laag weet welke strategie hij moet implementeren. Wij hebben dit zelf gedaan met behulp van een switch case (zie de [AuthenticationService](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/services/AuthenticationService.java) klasse).
 - **Facade pattern**: Lage complexiteit, maar beperkt in functionaliteit.
 - **Factory method**: Lage tot gematigde complexiteit, afhankelijk van het aantal gecreëerde objecten.
 
@@ -443,42 +443,98 @@ Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar bli
 ##### Negatief
 - Hiervoor moeten wij wel veel herschrijven/opnieuw doen.
 
-### 8.7. ADR-007 Voorkeur voor externe api communicatie met authenticatie
+### 8.7. ADR-007 Voorkeur voor externe api communicatie met authenticatie gemaakt d.m.v. een facade design pattern
 #### Status
 Voorgesteld
 
 #### Context
-Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
+Bij de ontwerpvraag:
+```Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?```
+
+Zochten wij manieren hoe je het beste kan communiceren met een externe IdentityProvider. De drie opties waar wij uit konden kiezen waren:
 - Vanuit de frontend direct communiceren met de IdentityProvider
 - Vanuit de frontend met een eigen backend communiceren die vervolgens met de IdentityProvider communiceert
 - Een hybride oplossing waarbij de frontend en backend beide communiceren met de IdentityProvider
 
 #### Overwogen opties
-- Directe communicatie vanuit de frontend
-    - Voordelen: Snel, geen extra laag
-    - Nadelen: Minder veilig, minder controle
-- Communicatie via een eigen backend
-    - Voordelen: Meer controle, veiliger
-    - Nadelen: Langzamer, extra laag
-- Hybride oplossing
-    - Voordelen: Controle, snelheid
-    - Nadelen: Complexer, extra laag
+
+Gebruik maken van de volgende design patterns:
+- Facade pattern
+    - Voordelen:
+      - Facade verbergt de complexiteit van een systeem door een eenvoudige interface te bieden.
+    - Nadelen:
+      - Kan leiden tot een te grote afhankelijkheid van de facade, waardoor de onderliggende implementatie moeilijker te wijzigen is.
+- Adapter pattern
+  - Voordelen:
+    - Het maakt het mogelijk om samen te werken met oude en nieuwe interfaces zonder de bestaande code aan te passen.
+  - Nadelen:
+    - Overmatig gebruik kan leiden tot een onoverzichtelijke codebase waarin te veel verschillende adapters aanwezig zijn.
+- Strategy pattern
+  - Voordelen:
+    - Je kunt nieuwe strategieën toevoegen zonder bestaande code aan te passen, wat uitbreidbaarheid vergroot.
+  - Nadelen:
+    - Je moet meerdere klassen maken voor verschillende strategieën, wat extra ontwikkeltijd en onderhoud vereist.
+- State pattern
+  - Voordelen:
+    - Het maakt het mogelijk om objecten hun gedrag te laten veranderen op basis van hun interne toestand.
+  - Nadelen:
+    - Kan leiden tot een complexe codebase met veel toestanden en overgangen.
+- Factory method pattern
+  - Voordelen:
+    - De factory kan verschillende subklassen retourneren, waardoor het eenvoudig is om objectcreatie aan te passen zonder bestaande code te wijzigen.
+  - Nadelen:
+    - Voor eenvoudige objectcreatie kan een normale constructor voldoende zijn, waardoor een Factory-method overbodig wordt.
+
+Directe communicatie vanuit de frontend:
+  - **Voordelen**: 
+    - Sneller, omdat de frontend direct een token ophaalt en geen extra tussenlaag hoeft te wachten.
+    - Minder infrastructuur nodig, wat het eenvoudiger maakt om te implementeren.
+  - **Nadelen**:
+    - De client-secret zou mogelijk in de frontend terecht kunnen komen, wat kwetsbaar is voor aanvallen.
+    - Als een token gevaar gebracht raakt, kan de frontend niet eenvoudig de toegang intrekken zonder afhankelijk te zijn van de IdentityProvider.
+    - Moeilijker om misbruik of foutieve authenticatiepogingen te detecteren. 
+
+Communicatie via een eigen backend:
+- Voordelen:
+  - De client-secret blijft veilig op de backend en wordt nooit blootgesteld aan de frontend.
+  - De backend kan extra validaties uitvoeren, zoals IP-beperkingen, rolgebaseerde toegang of extra logging.
+  - De backend kan tokens opslaan en vernieuwen zonder de IdentityProvider onnodig te belasten.
+- Nadelen:
+  - Extra latentie, omdat de frontend eerst de backend moet aanroepen, en de backend daarna de IdentityProvider, kan er een vertraging optreden.
+  - De backend moet correct worden geconfigureerd en beveiligd, wat extra ontwikkel- en onderhoudswerk vraagt.
+  - Problemen zoals netwerkfouten, timeouts of verlopen tokens moeten correct door de backend worden afgehandeld en teruggekoppeld naar de frontend.
+
+Hybride oplossing
+- Voordelen:
+  - De frontend kan bijvoorbeeld een publieke endpoint van de IdentityProvider direct benaderen, terwijl de backend geavanceerde autorisatiecontrole uitvoert.
+  - Afhankelijk van de use case kan bepaald worden of authenticatie volledig via de backend of deels via de frontend verloopt.
+- Nadelen:
+  - Hogere complexiteit in architectuur:
+    - Frontend en backend moeten goed op elkaar afgestemd zijn om te voorkomen dat inconsistenties ontstaan in sessiebeheer.
+    - Meerdere authenticatiestromen (bijv. OAuth, JWT, API-sleutels) moeten worden beheerd, wat foutgevoelig is.
+    - Mogelijk extra configuratie vereist voor Cross-Origin Resource Sharing (CORS) en beveiligingsheaders.
+  - Aangezien meerdere componenten moeten samenwerken, kan het langer duren om een stabiele oplossing te implementeren en te testen.
 
 #### Besluit
 Wij hebben uiteindelijk besloten om niet de externe IdentityProvider direct vanuit de frontend te benaderen, maar wel om een eigen backend te gebruiken die vervolgens met de IdentityProvider communiceert.
-
+Het facade design pattern is gekozen om de communicatie met de IdentityProvider te vereenvoudigen en om de complexiteit van de backend te verbergen voor de frontend. Dit zorgt ervoor dat de frontend zich kan concentreren op de gebruikersinterface en niet op de details van de authenticatie- en autorisatieprocessen.
 #### Consequenties
 Positief:
 - Verhoogde veiligheid doordat de backend de communicatie met de IdentityProvider afhandelt.
 - Meer controle over de authenticatie- en autorisatieprocessen.
 - Backend kan extra validaties en logging toevoegen voor betere monitoring.
+- Eenvoudiger om misbruik of foutieve authenticatiepogingen te detecteren.
+- De client-secret blijft veilig op de backend en wordt nooit blootgesteld aan de frontend.
+- Dankzij het gebruik van de Facade pattern wordt het '**Encapsulate what varies**' principle toegepast, wat betekent dat de frontend niet hoeft te weten hoe de backend werkt of welke externe API's worden gebruikt. Dit maakt het eenvoudiger om de backend in de toekomst te wijzigen zonder dat de frontend hier iets van merkt.
 
 Neutraal:
 - Extra laag in de architectuur kan de complexiteit verhogen, maar biedt ook meer flexibiliteit.
+- De backend kan eenvoudig worden uitgebreid met extra functionaliteiten, zoals caching of throttling, zonder dat de frontend hier iets van merkt.
 
 ##### Negatief
 - Mogelijk langzamere prestaties door de extra communicatielaag.
 - Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
+- Extra infrastructuur nodig voor de backend, wat kan leiden tot hogere kosten en meer ontwikkeltijd.
 
 ### 8.8. ADR-008 Wij gaan het design principe "Program to an interface" toepassen
 #### Status
@@ -499,11 +555,11 @@ Voorgesteld
 ### 9.1. Prototype strategy pattern
 Om het prototype voor het strategy pattern en voor onderzoeksvraag "Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
 
-1. **Het prototype openen**: De eerste stap is vrij logisch, maar toch de moeite waard om te bespreken. Wij zullen dit uitleggen op basis van IntellIJ, andere IDE's kunnen hetzelfde zijn of wellicht iets anders gaan. Via IntellIJ moet je een project openen, ga hiervoor dan naar de [pom.xml](/Mischa/Prototype/triptop/pom.xml) in /Mischa/Prototype/triptop.pom.xml.
+1. **Het prototype openen**: De eerste stap is vrij logisch, maar toch de moeite waard om te bespreken. Wij zullen dit uitleggen op basis van IntellIJ, andere IDE's kunnen hetzelfde zijn of wellicht iets anders gaan. Via IntellIJ moet je een project openen, ga hiervoor dan naar de [pom.xml](/prototypes/strategy/Prototype/triptop/pom.xml) in /prototypes/strategy/Prototype/triptop.pom.xml.
 
-2. **De prototype runnen**: Toen wij het prototype aan het bouwen waren, was het niet nodig om het te compilen voordat we het gingen runnen. Maar dit kan misschien anders zijn op een ander systeem. Om het te compilen moet je een terminal openen in IntelliJ en vervolgens de ```mvn clean install``` command runnen. Het prototype is te starten door de main te runnen in de [TriptopApplication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/TriptopApplication.java) klasse.
+2. **De prototype runnen**: Toen wij het prototype aan het bouwen waren, was het niet nodig om het te compilen voordat we het gingen runnen. Maar dit kan misschien anders zijn op een ander systeem. Om het te compilen moet je een terminal openen in IntelliJ en vervolgens de ```mvn clean install``` command runnen. Het prototype is te starten door de main te runnen in de [TriptopApplication](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/TriptopApplication.java) klasse.
 
-3. **Authenticatie strategie instellen**: Standaard staat het prototype ingesteld om gebruik te maken van de [SecretAuthentication](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/SecretAuthentication.java) methode. Als je een andere strategie wilt testen kan je in de [AuthenticationController](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/controllers/AuthenticationController.java) de AUTHENTICATIONMETHOD aanpassen naar een van de authenticatie methoden zoals ze in de [AuthenticationMethods](/Mischa/Prototype/triptop/src/main/java/com/triptop/triptop/domains/AuthenticationMethods.java) enum staan.
+3. **Authenticatie strategie instellen**: Standaard staat het prototype ingesteld om gebruik te maken van de [SecretAuthentication](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/strategies/AuthenticateStrategie/SecretAuthentication.java) methode. Als je een andere strategie wilt testen kan je in de [AuthenticationController](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/controllers/AuthenticationController.java) de AUTHENTICATIONMETHOD aanpassen naar een van de authenticatie methoden zoals ze in de [AuthenticationMethods](/prototypes/strategy/Prototype/triptop/src/main/java/com/triptop/triptop/domains/AuthenticationMethods.java) enum staan.
 
 4. **Het prototype testen**: Via een externe applicatie om endpoints te testen (zoals bijvoorbeeld Postman) moet je een endpoint aanroepen voor de authenticate. De link zal er als volgt uit zien: http://localhost:8080/authenticate?endpoint=HAN&httpMethod=Post. Geef in de body de volgende body mee: 
 {

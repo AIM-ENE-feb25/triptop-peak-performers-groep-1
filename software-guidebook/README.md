@@ -588,12 +588,12 @@ En om een terminal te openen in die map(In visual studio code kan je een Intergr
 Om het prototype te testen met de tripadvisor API zijn er wel wat meer stappen nodig dan het prototype runnen en het test script runnen.
 
 1. **Pas de adapter aan**: Om de Tripadvisor API te testen is er een ander logica nodig die wordt gebruikt voor de Booking.com API.
-als je naar `Protoype/adapter/src/main/java/com/triptop/adapter/adapter/HotelApiAdapterImpl.java` gaat, zie je de bron code van de adapter klasse.
+als je naar [HotelApiAdapterImpl.java](/prototypes/adapter/adapter/src/main/java/com/triptrop/adapter/adapter/HotelApiAdapterImpl.java) gaat, zie je de bron code van de adapter klasse.
 Hierin staat twee keer dezelfde methode. Nu kan je ook zien dat één van de methodes in commentaar staat. 
 Als je deze methode uit het commentaar haalt en de andere methode in commentaar zet om foutmeldingen te voorkomen, dan vraagt de adapter nu de hotel details van Tripadvisor op.
 
 2. **Pas het test script aan**: Om hotel details op te halen moet je ook een hotelId mee geven. Maar omdat dit twee verschillende API's zijn,
-Met dus 2 verschillende databases klopt de Id die we nu meegeven niet. Als je naar `Prototype/adapter-TEST/adapter-TEST.js` navigeerd zie je dat er twee hotel id's staan.
+Met dus 2 verschillende databases klopt de Id die we nu meegeven niet. Als je naar [Adapter-TEST.js](/prototypes/adapter/adapter-TEST/adapter-TEST.js) navigeerd zie je dat er twee hotel id's staan.
 En net zo als bij de `HotelApiAdapterImpl.java` het geval is, staat er één in commentaar en de andere niet. Als je deze omdraaidt geef je de juiste ID mee op Tripadvisor te testen.
 
 3. **Run het prototype en script**: Nadat de nodige aanpassingen zijn gedaan kan je kan je de applicatie in Intelij weer runnen met `mvn spring-boot:run`, en het script door in de terminal `node adapter-TEST.js` te runnen.

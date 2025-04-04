@@ -90,6 +90,8 @@ _Afbeelding 7: Dynamic Diagram reis boeken._
 #### 7.3.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Component diagram
 Voor deze onderzoeksvraag hebben we als eerste een component diagram gemaakt. Wij hebben voor het onderzoeken van deze onderzoeksvraag gebruik gemaakt van het **strategy pattern**. Dit houdt in dat er door een interface de juiste implementatie van de methode (om te authenticeren) wordt aangeroepen. Zo kan je verschillende strategieën (zoals username, key of secret) implementeren voor het authenticeren zonder andere code in je applicatie te hoeven wijzigen. Dit maakt het mogelijk om eenvoudig te schakelen tussen verschillende authenticatiemethoden.
+Verdere uitleg voor waarom wij voor het "strategy pattern" hebben gekozen wordt behandeld in
+[ADR-004](#84-adr-004-voor-authenticeren-en-authoriseren-gebruiken-wij-de-strategy-pattern)
 
 Dit diagram toont de architectuur van de Triptop applicatie, inclusief de interactie tussen de gebruiker en het systeem. Dit diagram is gefocust op het authenticeren van een gebruiker voor het versturen van API verzoeken (zie afbeelding 8). Het is hierbij belangrijk om te vermelden dat de authentication service, ondanks dat hij los staat van de backend, wel in de backend hoort. Deze hebben wij hier losgekoppeld om duidelijk de interactie aan te geven tussen de 'controller'/frontend en de authenticatie service.
 
@@ -109,11 +111,11 @@ En het design principe "Program to an interface".
 
 Het "Adapter pattern" houdt in dat er een "Adapter"-klasse is die tussen een externe service en de hoofdlogica van de applicatie zit.
 Deze klasse formateert de data die naar de externe service wordt doorgestuurd, maar ook de data die wij opvragen van de externe service. 
-Als de externe service iets verandert met de data die ze opsturen, of de data die ze opgestuurd willen krijgen. Kan je dit afvangen in de "Adapter"-klasse
+Als de externe service iets verandert met de data die ze opsturen, of de data die ze opgestuurd willen krijgen. Kan je dit afvangen in de "Adapter"-klasse.
 Verdere uitleg voor waarom wij voor het "Adapter pattern" hebben gekozen wordt behandeld in 
-[ADR-004](#84-adr-004-voor-exterene-apis-gebruiken-wij-de-adapter-pattern-)
+[ADR-005](#85-adr-005-voor-externe-apis-gebruiken-wij-de-adapter-pattern-)
 
-Het design principe "Program to an interface" houd in dat de code alleen weet van de interface van een component,
+Het design principe "Program to an interface" houdt in dat de code alleen weet van de interface van een component,
 en niet van de specifieke implementatie ervan.
 Dit houdt in dat je niet een implementatie van een object aanroept maar een interface.
 

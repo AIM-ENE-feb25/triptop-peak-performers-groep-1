@@ -39,18 +39,17 @@ public class HotelApiAdapterImpl implements HotelApiAdapter {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(response.body());
 
-            // Extract hotel name (adjust path based on API response)
+            // Extract Details
             String hotelName = rootNode.path("data").path("hotel_name").asText();
             String hotelLocation = rootNode.path("data").path("address").asText();
 
-            // Populate HotelDto
             HotelDto hotel = new HotelDto();
             hotel.setHotelName(hotelName);
             hotel.setLocatie(hotelLocation);
 
             return hotel;
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();  // Print detailed error message
+            e.printStackTrace();
         }
 
         return new HotelDto();

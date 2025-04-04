@@ -599,8 +599,8 @@ Sommige benodigdheden kan je alternative voor gebruiken en/of oudere versies, ma
 - [Node.js v23.11.0 +](https://nodejs.org/en/download)
 - [De laatste versie van Java](https://www.java.com/en/download/manual.jsp)
 - [Apache Maven v3.9.9 +](https://maven.apache.org/download.cgi)
-- [Visual studio code v1.99 + ](https://code.visualstudio.com/)
-- [Postman v11.39.5 ](https://www.postman.com/downloads/)
+- [Visual studio code v1.99 +](https://code.visualstudio.com/)
+- [Postman v11.39.5 +](https://www.postman.com/downloads/)
 
 ### 9.2. Prototype strategy pattern
 Om het prototype voor het strategy pattern en voor onderzoeksvraag "Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
@@ -654,11 +654,6 @@ De response is nu:
 
 #### Prototype facade pattern
 Om het prototype voor de facade pattern en voor de onderzoeksvraag "Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
-
-#### Benodigdheden
-- Intellij IDE
-- Werkende internet connectie
-- Node
 
 #### Het prototype runnen
 1. **Het prototype openen**: De eerste stap is om het prototype te openen in de Intelij IDE. Dit doe je door te navigeren naar de `pom.xml` en die te openen als project

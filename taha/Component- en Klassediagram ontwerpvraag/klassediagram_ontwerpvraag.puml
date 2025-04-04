@@ -1,15 +1,24 @@
 @startuml
 
+title Backend die met externe service communiceert met Facade Pattern (Klassendiagram)
+
 class AuthFacade {
+    -userService: UserService
+    -tokenService: TokenService
+    -loggerService: LoggerService
     +login(username: String, password: String): String
     +checkAppAccess(token: String, username: String, application: String): String
 }
 
 class UserService {
+    - httpClient: HttpClient
+    - static final String: LOGIN_URL
     +login(username: String, password: String): String
 }
 
 class TokenService {
+    - httpClient: HttpClient
+    - static final String: CHECK_ACCESS_URL
     +checkAppAccess(token: String, username: String, application: String): String
 }
 
@@ -18,6 +27,7 @@ class LoggerService {
 }
 
 class AuthController {
+    -authFacade: AuthFacade
     +login(username: String, password: String): String
     +checkAppAccess(token: String, username: String, application: String): String
 }
@@ -28,15 +38,10 @@ class AuthRequest {
     +toJson(): String
 }
 
-class Main {
-    +main(args: String[])
-}
-
 AuthFacade --> UserService : maakt instantie van
 AuthFacade --> TokenService : maakt instantie van
 AuthFacade --> LoggerService : maakt instantie van
 AuthController --> AuthFacade : maakt instantie van
-Main --> AuthController : maakt instantie van
 UserService --> AuthRequest : gebruikt
 
 @enduml

@@ -1,10 +1,10 @@
 @startuml
 actor User
-participant "AuthController" as AC
-participant "AuthFacade" as AF
-participant "UserService" as US
-participant "TokenService" as TS
-participant "LoggerService" as LS
+participant "AuthController: \nAuthController" as AC
+participant "AuthFacade: \nAuthFacade" as AF
+participant "UserService: \nUserService" as US
+participant "TokenService: \nTokenService" as TS
+participant "LoggerService: \nLoggerService" as LS
 
 User -> AC: POST /auth/login (username, password)
 AC -> AF: login(username, password)

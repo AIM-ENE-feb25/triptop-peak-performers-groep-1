@@ -394,6 +394,11 @@ Dit vereist alleen aanpassingen in één klasse.
 Dit minimaliseert de impact op de rest van de applicatie en maakt onderhoud eenvoudiger.
 Dit beantwoordt ook de ontwerpvraag.
 
+Om dit te bewijzen, is er een prototype gemaakt. Dit prototype staat in `prototypes/adapter/adapter`. Je kan ook zien in de [adapter klasse](/prototypes/adapter/adapter/src/main/java/com/triptrop/adapter/adapter/HotelApiAdapter.java)
+Hoe dit in zijn werking gaat. Hierin wordt data opgehaald en je stuurt een Dto naar de service laag terug. 
+Ook staat er een voorbeeld in van een andere API en hoe de logica veranderd op basis van als een API veranderd/een nieuwe API wil toevoegen.
+
+
 #### Consequenties
 ##### Positief
 - Decoupling, De hoofdlogica van de applicatie blijft onafhankelijk van externe API's of systemen.

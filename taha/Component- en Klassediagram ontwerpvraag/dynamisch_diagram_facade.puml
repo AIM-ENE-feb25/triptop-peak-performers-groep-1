@@ -5,9 +5,9 @@ title Dynamic Diagram: Authenticatie Flow met Facade Pattern
 
 Person(user, "Gebruiker")
 
-Container(frontend, "Frontend", "React App")
+Component(frontend, "Frontend", "React App")
 
-Container(controller, "AuthenticationController", "REST Controller")
+Component(controller, "AuthenticationController", "REST Controller")
 Component(authenticationFacade, "AuthenticationFacade", "Facade")
 Component(authenticationService, "AuthenticationService", "Service")
 Component(userService, "UserService", "Service")

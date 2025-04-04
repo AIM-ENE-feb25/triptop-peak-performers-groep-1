@@ -66,6 +66,7 @@ Tijdens het maken van onze prototypes gaan we gebruik maken van de volgende arch
 
 - **Program to an Interface principe**: Dit houdt in dat je code schrijft die afhankelijk is van interfaces in plaats van concrete implementaties. Hierdoor wordt de code flexibeler en minder afhankelijk van specifieke implementaties. Dit vermakkelijkt onderhoudbaarheid en uitbreidbaarheid.
 
+- **Law of Demeter**: Dit principe stelt dat een object alleen moet communiceren met zijn directe buren en niet met de buren van zijn buren. Dit helpt om de afhankelijkheden tussen objecten te verminderen en maakt de code gemakkelijker te begrijpen en te onderhouden.
 ## 7. Software Architecture
 ### 7.1. Externe api's
 | Naam              | Doel        | Links                                   | 
@@ -130,19 +131,37 @@ Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speel
 ![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
 _Afbeelding 11: Dynamisch Diagram Adapter pattern._
 
+#### 7.3.3. Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?
+Voor deze onderzoeksvraag hebben wij een component diagram gemaakt met het **Facade pattern**.
+
+Het facade pattern is een ontwerppatroon dat een vereenvoudigde interface biedt voor een complex subsysteem. Dit maakt het gemakkelijker om met het subsysteem te communiceren zonder dat de gebruiker zich zorgen hoeft te maken over de interne details. Het facade pattern is nuttig in situaties waarin je een complexe API of een reeks API's wilt verbergen achter een eenvoudige interface.
+[ADR-007](#87-adr-007-voorkeur-voor-externe-api-communicatie-met-authenticatie-gemaakt-dmv-een-facade-design-pattern) legt verder uit waarom wij voor het facade pattern hebben gekozen.
+
+Het facade pattern is een goed voorbeeld van het principe "Law of demeter". Dit houdt in dat een object alleen moet communiceren met zijn directe buren en niet met de buren van zijn buren. Dit helpt om de afhankelijkheden tussen objecten te verminderen en maakt de code gemakkelijker te begrijpen en te onderhouden.
+[ADR-007](#87-adr-007-voorkeur-voor-externe-api-communicatie-met-authenticatie-gemaakt-dmv-een-facade-design-pattern) legt verder uit waarom het design principe "Law of demeter" is toegepast.
+
+##### Component diagram
+![Component diagram facade pattern](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramTaha.svg)
+_Afbeelding 12: Component diagram facade pattern._
+
+##### Dynamisch diagram
+Dit dynamische diagram laat zien hoe de facade wordt gebruikt om authenticatie-verzoeken af te handelen.
+![Dynamic diagram facade pattern](/opdracht-diagrammen/C4-Diagrammen/DynamicDiagramFacade.svg)
+_Afbeelding 13: Dynamic diagram facade pattern._
+
 ### 7.4. Design & Code
 #### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Klasse diagram
 Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 12) op basis van de eerder benoemde strategy pattern. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders. Wij zullen tijdens het implementeren van het prototype gebruik maken van het **open/closed principe**. Dit betekent dat de klassen open staan voor uitbreiding, maar niet voor aanpassing. Dit principe sluit erg mooi aan met het strategy pattern, sinds je hier de strategieën wel kan uitbreiden met nieuwe strategieën maar je ze hier niet voor hoeft aan te passen.
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
-_Afbeelding 12: Klasse diagram authenticeren._
+_Afbeelding 14: Klasse diagram authenticeren._
 
 #### Sequence diagram
 Het sequence diagram laat duidelijk de interacties tussen de verschillende klasses zien tijdens het authenticeren (zie afbeelding 13). De gebruiker voert inloggegevens in via de frontend, waarna de Authentication Controller deze doorstuurt naar de Authentication Service. Afhankelijk van de gewenste authenticatiemethode (bijv. gebruikersnaam/wachtwoord, API-sleutel of geheime token), wordt een implementatie van authStrategy aangeroepen die de inloggegevens controleert. Bij een succesvolle inlog wordt er een token gegenereerd en teruggestuurd. Deze token kan vervolgens gebruikt worden voor geauthenticeerde verzoeken.
 
 ![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
-_Afbeelding 13: Sequence diagram authenticeren._
+_Afbeelding 15: Sequence diagram authenticeren._
 
 #### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 ##### Klasse diagram
@@ -151,7 +170,7 @@ De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapt
 Stel de API verandert of je wilt een hele andere API gebruiken dan hoef je alleen de logica van de methodes in de adapter klasse aan te passen.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
-_Afbeelding 14: Klasse diagram adapter pattern._
+_Afbeelding 16: Klasse diagram adapter pattern._
 
 #### Sequence diagram
 Het sequence diagram laat zien waar de adapter klasse komt te staan en hoe deze gebruikt wordt.
@@ -166,7 +185,35 @@ En de responses die je krijgt worden steeds meer geformatteerd.
 Totdat het weer op de frontend aankomt en de gebruiker de data ziet.
 
 ![Sequence Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/SquenceDiagramAdapterPatternJamiro.png)
-_Afbeelding 15: Sequence Diagram Adapter pattern._
+_Afbeelding 17: Sequence Diagram Adapter pattern._
+
+#### 7.4.3. Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?
+
+Voor deze onderzoeksvraag hebben wij een klassediagram gemaakt met het Facade pattern. De reden hiervoor is dat dit patroon helpt om de communicatie met externe services te versimpelen en te verbergen achter een duidelijke interface. Hierdoor hoeft de front-end niet rechtstreeks met externe services te communiceren. 
+
+![Klassediagram Facade pattern.](/opdracht-diagrammen/C4-Diagrammen/C4_Klassediagram_Taha.svg)
+_Afbeelding 18: Klassediagram Facade pattern._
+
+#### Sequence diagram
+
+Het sequence diagram toont de interacties tussen de verschillende componenten van het systeem bij het gebruik van het Facade pattern. Hier is een beschrijving van de stappen in het sequence diagram:
+
+
+1. User stuurt een verzoek naar de Frontend. 
+2. Frontend stuurt het verzoek door naar de AuthenticationController in de backend. 
+3. AuthenticationController roept de AuthenticationFacade aan om de authenticatie af te handelen. 
+4. AuthenticationFacade communiceert met de AuthenticationService om de authenticatie logica uit te voeren. 
+5. AuthenticationService stuurt een authenticatieverzoek naar de IdentityProvider. 
+6. IdentityProvider valideert de authenticatie en stuurt een JWT-token terug naar de AuthenticationService. 
+7. AuthenticationService geeft het JWT-token door aan de AuthenticationFacade. 
+8. AuthenticationFacade geeft het resultaat terug aan de AuthenticationController. 
+9. AuthenticationController stuurt het antwoord terug naar de Frontend. 
+10. Frontend geeft het antwoord terug aan de User.
+
+![Sequence diagram Facade pattern.](/opdracht-diagrammen/C4-Diagrammen/Sequence_Diagram_Taha.svg)
+_Afbeelding 19: Sequence diagram Facade pattern._
+
+Dit diagram illustreert hoe het Facade pattern de complexiteit van de backend verbergt voor de frontend door een eenvoudige interface te bieden voor de authenticatie- en autorisatieprocessen.
 
 ## 8. Architectural Decision Records
 ### 8.1. ADR-001 Het gebruik van postman voor prototypes
@@ -519,6 +566,10 @@ Hybride oplossing
 #### Besluit
 Wij hebben uiteindelijk besloten om niet de externe IdentityProvider direct vanuit de frontend te benaderen, maar wel om een eigen backend te gebruiken die vervolgens met de IdentityProvider communiceert.
 Het facade design pattern is gekozen om de communicatie met de IdentityProvider te vereenvoudigen en om de complexiteit van de backend te verbergen voor de frontend. Dit zorgt ervoor dat de frontend zich kan concentreren op de gebruikersinterface en niet op de details van de authenticatie- en autorisatieprocessen.
+
+Om deze beslissing te onderbouwen hebben wij een prototype gemaakt waarin de communicatie met de IdentityProvider via de backend verloopt. 
+Dit prototype maakt gebruik van het facade design pattern [AuthFacade](/prototypes/facade/facade/src/main/java/com/example/prototype/Prototype_Taha/Facade/AuthFacade.java) om de complexiteit van de backend te verbergen en een eenvoudige interface te bieden voor de frontend. 
+De backend handelt alle communicatie met de IdentityProvider af, inclusief het ophalen van tokens en het valideren van gebruikers.
 #### Consequenties
 Positief:
 - Verhoogde veiligheid doordat de backend de communicatie met de IdentityProvider afhandelt.
@@ -526,7 +577,7 @@ Positief:
 - Backend kan extra validaties en logging toevoegen voor betere monitoring.
 - Eenvoudiger om misbruik of foutieve authenticatiepogingen te detecteren.
 - De client-secret blijft veilig op de backend en wordt nooit blootgesteld aan de frontend.
-- Dankzij het gebruik van de Facade pattern wordt het '**Encapsulate what varies**' principle toegepast, wat betekent dat de frontend niet hoeft te weten hoe de backend werkt of welke externe API's worden gebruikt. Dit maakt het eenvoudiger om de backend in de toekomst te wijzigen zonder dat de frontend hier iets van merkt.
+- Dankzij het gebruik van de Facade pattern wordt het '**Law of demeter**' principle toegepast. Dit zorgt ervoor dat de frontend niet direct met de IdentityProvider of services achter de facade hoeft te communiceren, maar alleen met de backend en de facade(s). Dit maakt de code minder kwetsbaar voor wijzigingen in de IdentityProvider en zorgt ervoor dat de frontend zich kan concentreren op zijn eigen verantwoordelijkheden en niet het achterliggende code hoeft te zien.
 
 Neutraal:
 - Extra laag in de architectuur kan de complexiteit verhogen, maar biedt ook meer flexibiliteit.
@@ -599,3 +650,24 @@ En net zo als bij de `HotelApiAdapterImpl.java` het geval is, staat er één in 
 3. **Run het prototype en script**: Nadat de nodige aanpassingen zijn gedaan kan je kan je de applicatie in Intelij weer runnen met `mvn spring-boot:run`, en het script door in de terminal `node adapter-TEST.js` te runnen.
 De response is nu: 
 `{"naam":"Hotel Haarhuis","locatie":"Stationsplein 1, 6811 KG Arnhem The Netherlands"}`
+
+#### Prototype facade pattern
+Om het prototype voor de facade pattern en voor de onderzoeksvraag "Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
+
+#### Benodigdheden
+- Intellij IDE
+- Werkende internet connectie
+- Node
+
+#### Het prototype runnen
+1. **Het prototype openen**: De eerste stap is om het prototype te openen in de Intelij IDE. Dit doe je door te navigeren naar de `pom.xml` en die te openen als project
+2. **Het prototype runnen**: Als je de terminal opent in Intelij en het commando: `mvn spring-boot:run` in typt en op enter drukt, begint het prototype met runnen.
+
+#### prototype testen login
+Om het prototype te testen doe je de volgende:
+
+1. **Open een terminal**: Nu het prototype runt in Intelij, kan je het prototype testen door het javascript bestand `facade-TEST.js` te runnen.
+Dit bestand bevindt zich in de map `Prototype/facade-TEST`. De makkelijkste manier op dit bestand te runnen is om de facade-TEST map in visual studio code te openen,
+   En om een terminal te openen in die map(In visual studio code kan je een Intergrated terminal openen door rechter muis knop te drukken op de map en `Open in intergrated terminal` te drukken).
+2. **Run het test bestand**: Als je in de terminal `node facade-TEST.js` runt voert die de test uit. Als de test slaagt krijg je een willekeurige token in de response:
+`{"token": "<willekeurige token>"}`

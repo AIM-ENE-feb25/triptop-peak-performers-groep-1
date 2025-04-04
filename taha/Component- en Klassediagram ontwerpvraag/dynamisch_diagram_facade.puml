@@ -1,0 +1,32 @@
+@startuml
+!include <C4/C4_Dynamic>
+
+title Dynamic Diagram: Authenticatie Flow met Facade Pattern
+
+Person(user, "Gebruiker")
+
+Container(frontend, "Frontend", "React App")
+
+Container(controller, "AuthenticationController", "REST Controller")
+Component(authenticationFacade, "AuthenticationFacade", "Facade")
+Component(authenticationService, "AuthenticationService", "Service")
+Component(userService, "UserService", "Service")
+Component_Ext(identityProvider, "Identity Provider", "Externe authenticatie")
+
+Rel(user, frontend, "Doet login verzoek")
+Rel(frontend, controller, "Stuurt login-verzoek naar")
+
+Rel(controller, authenticationFacade, "Stuurt verzoek door naar")
+
+Rel(authenticationFacade, authenticationService, "Valideert inloggegevens")
+Rel(authenticationService, identityProvider, "Vraagt JWT-token aan")
+Rel(identityProvider, authenticationService, "Retourneert JWT-token")
+Rel(authenticationService, authenticationFacade, "Geeft JWT-token terug")
+
+Rel(authenticationFacade, userService, "Haalt gebruikersgegevens op")
+Rel(userService, authenticationFacade, "Retourneert gebruikersgegevens")
+
+Rel(authenticationFacade, controller, "Retourneert loginresultaat")
+Rel(controller, frontend, "Stuurt JWT-token + gebruikersdata")
+
+@enduml

@@ -131,7 +131,7 @@ Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speel
 ![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
 _Afbeelding 11: Dynamisch Diagram Adapter pattern._
 
-#### 7.3.3. Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?
+#### 7.3.3. Wie roept een specifieke externe service aan, gebeurt dat vanuit de front-end of vanuit de back-end? Welke redenen zijn er om voor de ene of de andere aanpak te kiezen?(Taha)
 Voor deze onderzoeksvraag hebben wij een component diagram gemaakt met het **Facade pattern**.
 
 Het facade pattern is een ontwerppatroon dat een vereenvoudigde interface biedt voor een complex subsysteem. Dit maakt het gemakkelijker om met het subsysteem te communiceren zonder dat de gebruiker zich zorgen hoeft te maken over de interne details. Het facade pattern is nuttig in situaties waarin je een complexe API of een reeks API's wilt verbergen achter een eenvoudige interface.

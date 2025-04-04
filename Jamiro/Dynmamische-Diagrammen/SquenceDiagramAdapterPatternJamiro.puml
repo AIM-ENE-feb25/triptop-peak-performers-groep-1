@@ -1,10 +1,11 @@
 @startuml
+title Sequence Diagram - Adapter Pattern
 actor User
-participant TriptopFrontend
-participant HotelController
-participant HotelService
-participant HotelApiAdapter
-participant ExternalHotelAPI
+participant "tripTop: \nFrontend" as TriptopFrontend
+participant "hotelController: \nHotelController" as HotelController
+participant "hotelService: \nHotelService" as HotelService
+participant "hotelApiAdapter: \nHotelApiAdapter" as HotelApiAdapter
+participant "externalHotelAPI: \nExternalHotelAPI" as ExternalHotelAPI
 
 
 User -> TriptopFrontend: Goes to hotel detail page

@@ -115,9 +115,8 @@ Verdere uitleg voor waarom wij voor het "Adapter pattern" hebben gekozen wordt b
 
 Het design principe "Program to an interface" houd in dat de code alleen weet van de interface van een component,
 en niet van de specifieke implementatie ervan.
-Dit houd in dat je niet een implementatie van een object aanroept maar een interface.
-Verdere uitleg voor waarom wij voor het design principe "Program to an interface" hebben gekozen wordt behandeld in
-[ADR-008](#88-adr-008-wij-gaan-het-desing-principe-program-to-an-interface-toepassen)
+Dit houdt in dat je niet een implementatie van een object aanroept maar een interface.
+
 
 ##### Component diagram
 ![Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/ComponentDiagramJamiro.png)
@@ -127,7 +126,7 @@ _Afbeelding 10: Component diagram Adapter pattern._
 Dit dynamische diagram laat zien hoe een de gebruiker de details van een hotel binnen krijgt. 
 Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speelt in deze applicatie. 
 ![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
-_Afbeelding 11: Sequence Diagram Adapter pattern._
+_Afbeelding 11: Dynamisch Diagram Adapter pattern._
 
 ### 7.4. Design & Code
 #### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
@@ -535,20 +534,6 @@ Neutraal:
 - Mogelijk langzamere prestaties door de extra communicatielaag.
 - Meer onderhoud nodig voor de backend code die de communicatie afhandelt.
 - Extra infrastructuur nodig voor de backend, wat kan leiden tot hogere kosten en meer ontwikkeltijd.
-
-### 8.8. ADR-008 Wij gaan het design principe "Program to an interface" toepassen
-#### Status
-Voorgesteld
-
-#### Context
-
-#### Overwogen opties
-
-#### Besluit
-
-#### Consequenties
-
-##### Negatief
 
 
 ## 9. Deployment, Operation and Support

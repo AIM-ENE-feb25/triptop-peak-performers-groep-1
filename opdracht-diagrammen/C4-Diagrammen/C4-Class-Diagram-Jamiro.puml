@@ -1,5 +1,5 @@
 @startuml
-title C4 Class Diagram - Triptop applicatie
+title Klasse Diagram - Triptop applicatie
 
 class HotelController {
     - final HotelServicePort: HOTELSERVICEPORT

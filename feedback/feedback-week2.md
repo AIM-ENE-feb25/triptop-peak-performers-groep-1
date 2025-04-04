@@ -1,9 +1,9 @@
 # Feedback week 2 
 ## Taha
-- [ ] ADR voor en nadelen waren soms wat te algemeen (ADR van taha)
-- [ ] Zet de ontwerpvraag ook bij je uitwerking (Taha)
+- [x] ADR voor en nadelen waren soms wat te algemeen (ADR van taha)
+- [x] Zet de ontwerpvraag ook bij je uitwerking (Taha)
 - [ ] Noem concreet wat gebruikerslogica is (in UserService) (Taha)
-- [ ] Formulering in ADR is erg kort.. Niet helemaal duidelijk wat je met extra laag bedoelt, ten opzichte van wat? De twee lagen zijn er toch sowieso al (in dit geval eigenlijk tiers ipv lagen) (Taha)
+- [x] Formulering in ADR is erg kort.. Niet helemaal duidelijk wat je met extra laag bedoelt, ten opzichte van wat? De twee lagen zijn er toch sowieso al (in dit geval eigenlijk tiers ipv lagen) (Taha)
 ## Mischa
 - [x] Duidelijker de patterns aangeven (Mischa)
 - [x] Backend + een losse service in een diagram(mischa)

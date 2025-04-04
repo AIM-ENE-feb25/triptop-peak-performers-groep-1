@@ -53,7 +53,7 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 * Security -> Confidentiality (Degree to which a system, product or component ensures that data are accessible only to those authorized to have access)
 
 ## 5. Beperkingen
-Tijdens het maken van de keuzes zijn we op sommigen aspecten beperkt. Deze beperkingen hebben we van te voren beschreven.
+Tijdens het maken van de keuzes zijn we op sommigen aspecten beperkt. Deze beperkingen hebben we van te voren vastgesteld:
 1. **Beperkte tijd**: We hebben voor het maken van het prototype maar één week de tijd om het prototype te implementeren. Dit zorgt ervoor dat we geen tijd hebben voor erg gecomplexeerde prototypes.
 
 2. **Beperkte strategieën**: Voor het kiezen van de juiste strategie kregen we voornamelijk de keuze tussen vijf verschillende strategy patterns. Uiteraard hadden we wel de mogelijkheid om nog een andere strategy pattern te kiezen, maar het handigst was om een keuze te maken tussen één van deze vijf sinds we hier mee geoefend hebben en deze ook behandeld hebben in de les.
@@ -89,7 +89,7 @@ _Afbeelding 7: Dynamic Diagram reis boeken._
 ### 7.3. Componenten
 #### 7.3.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Component diagram
-Voor deze onderzoeksvraag hebben we als eerste een component diagram gemaakt. Wij hebben voor het onderzoeken van deze onderzoeksvraag gebruik gemaakt van het strategy pattern. Dit houdt in dat er door een interface de juiste implementatie van de methode (om te authenticeren) wordt aangeroepen. Zo kan je verschillende strategieën (zoals username, key of secret) implementeren voor het authenticeren zonder andere code in je applicatie te hoeven wijzigen. Dit maakt het mogelijk om eenvoudig te schakelen tussen verschillende authenticatiemethoden.
+Voor deze onderzoeksvraag hebben we als eerste een component diagram gemaakt. Wij hebben voor het onderzoeken van deze onderzoeksvraag gebruik gemaakt van het **strategy pattern**. Dit houdt in dat er door een interface de juiste implementatie van de methode (om te authenticeren) wordt aangeroepen. Zo kan je verschillende strategieën (zoals username, key of secret) implementeren voor het authenticeren zonder andere code in je applicatie te hoeven wijzigen. Dit maakt het mogelijk om eenvoudig te schakelen tussen verschillende authenticatiemethoden.
 
 Dit diagram toont de architectuur van de Triptop applicatie, inclusief de interactie tussen de gebruiker en het systeem. Dit diagram is gefocust op het authenticeren van een gebruiker voor het versturen van API verzoeken (zie afbeelding 8). Het is hierbij belangrijk om te vermelden dat de authentication service, ondanks dat hij los staat van de backend, wel in de backend hoort. Deze hebben wij hier losgekoppeld om duidelijk de interactie aan te geven tussen de 'controller'/frontend en de authenticatie service.
 
@@ -104,7 +104,7 @@ _Afbeelding 9: Dynamisch diagram authenticeren._
 
 #### 7.3.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 Voor deze onderzoeksvraag hebben wij een Component diagram gemaakt. 
-Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het adapter pattern te volgen.
+Om de onderzoeksvraag te beantwoorden hebben wij ervoor gekozen om het **adapter pattern** te volgen.
 En het design principe "Program to an interface".
 
 Het "Adapter pattern" houdt in dat er een "Adapter"-klasse is die tussen een externe service en de hoofdlogica van de applicatie zit.
@@ -128,10 +128,11 @@ Dit dynamische diagram laat zien hoe een de gebruiker de details van een hotel b
 Je kan hierin zien hoe de adapter wordt gebruikt en hoe de adapter een rol speelt in deze applicatie. 
 ![Dynamisch Component Diagram Adapter pattern](/opdracht-diagrammen/C4-Diagrammen/DynamischDiagramAdapterJamiro.png)
 _Afbeelding 11: Sequence Diagram Adapter pattern._
+
 ### 7.4. Design & Code
 #### 7.4.1. Hoe zorg je ervoor dat authenticatie en autorisatie consistent worden toegepast bij het communiceren met verschillende externe API's? (Mischa)
 ##### Klasse diagram
-Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 12) op basis van de eerder benoemde **strategy pattern**. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders. Wij zullen tijdens het implementeren van het prototype gebruik maken van het **open/closed principe**. Dit betekent dat de klassen open staan voor uitbreiding, maar niet voor aanpassing. Dit principe sluit erg mooi aan met het strategy pattern, sinds je hier de strategieën wel kan uitbreiden met nieuwe strategieën maar je ze hier niet voor hoeft aan te passen.
+Wij hebben voor deze onderzoeksvraag een klasse diagram ontworpen (zie afbeelding 12) op basis van de eerder benoemde strategy pattern. Het is belangrijk om te vermelden dat we alleen hebben gefocust op het authenticeren. Dit is gedaan met de gedachten dat het autorisatie op dezelfde manier geïmplementeert kan worden als authenticatie met alleen de code in de functies zelf anders. Wij zullen tijdens het implementeren van het prototype gebruik maken van het **open/closed principe**. Dit betekent dat de klassen open staan voor uitbreiding, maar niet voor aanpassing. Dit principe sluit erg mooi aan met het strategy pattern, sinds je hier de strategieën wel kan uitbreiden met nieuwe strategieën maar je ze hier niet voor hoeft aan te passen.
 
 ![Klasse Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Mischa.png)
 _Afbeelding 12: Klasse diagram authenticeren._
@@ -142,12 +143,11 @@ Het sequence diagram laat duidelijk de interacties tussen de verschillende klass
 ![Sequence Diagram Authenticeren](/opdracht-diagrammen/C4-Diagrammen/SequenceDiagramMischa.png)
 _Afbeelding 13: Sequence diagram authenticeren._
 
-
 #### 7.4.2. Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen? (Jamiro)
 ##### Klasse diagram
-Voor deze onderzoeksvraag hebben wij een klassen diagram gemaakt met de adapter pattern. 
+Voor deze onderzoeksvraag hebben wij een klasse diagram gemaakt met het adapter pattern. 
 De reden hiervoor is dat als een API veranderingen maakt, dat je alleen de adapter hoeft aan te passen in plaats van de gehele applicatie.
-Stel de API verandert of je wilt een hele andere API gebruiken hoef je alleen de logica van de methodes in de adapter klasse aan te passen.
+Stel de API verandert of je wilt een hele andere API gebruiken dan hoef je alleen de logica van de methodes in de adapter klasse aan te passen.
 
 ![Klasse Diagram Adapter](/opdracht-diagrammen/C4-Diagrammen/C4-Class-Diagram-Jamiro-Triptop.png)
 _Afbeelding 14: Klasse diagram adapter pattern._
@@ -157,8 +157,8 @@ Het sequence diagram laat zien waar de adapter klasse komt te staan en hoe deze 
 Om duidelijkheid tussen de verschillende lagen te creëren heeft iedere laag ook net een andere methode naam.
 De endpoint heet "getHotelDetail" want deze haalt natuurlijk de hoteldetails op.
 In de service noemen we de methode "retrieveHotelDetails" omdat je de details gaat retrieven van de adapter klasse.
-In de Adapter noemen we de methode "fetchHotelDetails" omdat je nu de details gaat fetchen van de externe Api.
-De vraag teken bij de externe API staat er bewust. 
+In de Adapter noemen we de methode "fetchHotelDetails" omdat je nu de details gaat fetchen van de externe API.
+Het vraagteken bij de externe API staat er bewust. 
 De reden hiervoor is omdat als je van API veranderd deze methode naam ook mee veranderd.
 Voor nu hebben wij hem dus open gelaten.
 En de responses die je krijgt worden steeds meer geformatteerd. 
@@ -174,7 +174,7 @@ Voorgesteld
 
 #### Context 
 Als groep hebben wij prototypes moeten maken voor de API's die wij benoemen in het containerdiagram/C4-diagrammen.
-Als groep wouden wij een manier hebben hoe wij test's schreven voor de API's, Zodat we voorkomen dat de ene een hele Java-Applicatie gaat maken en de ander Postman gaat gebruiken. 
+Als groep wilden wij een manier hebben hoe wij tests schreven voor de API's, Zodat we voorkomen dat de ene een hele Java-Applicatie gaat maken en de ander Postman gaat gebruiken. 
 
 #### Overwogen opties
 |                       | Beveiligingsopties | Mocking Functionaliteit | Samenwerking & Delen | Ondersteuning voor verschillende API's | 
@@ -241,14 +241,14 @@ Het is handig om te vermelden dat alhoewel we bedoelen met persistentie of dat d
 
 ##### Toegankelijkheid
 - **Local Storage**: Tokens in local storage zijn gemakkelijk toegankelijk voor JavaScript en blijven beschikbaar tussen verschillende plekken op de website, wat de toegankelijkheid verhoogt.
-- **Session Storage**: Tokens in session storage zijn alleen toegankelijk binnen de huidige sessie, en van zichzelf op dezelfde plek. Mocht je deze willen gebruiken op andere plekken op de website, zal je ze moeten doorsturen. Dit vermindert de toegankelijkheid wel.
+- **Session Storage**: Tokens in session storage zijn alleen toegankelijk binnen de huidige sessie, en van zichzelf op dezelfde plek. Mocht je deze willen gebruiken op andere plekken op de website, zal je ze moeten doorsturen. Dit vermindert wel de toegankelijkheid.
 
 ##### Persistentie
 - **Local Storage**: Tokens in local storage blijven bewaard zelfs als de browser wordt gesloten en opnieuw geopend, wat de persistentie verhoogt. Maar de veiligheid aanzienlijk vermindert.
 - **Session Storage**: Tokens in session storage worden verwijderd zodra de browser of tabblad wordt gesloten. Dit betekent dat ze niet persistent zijn, maar daardoor wel een flink stuk veiliger.
 
 #### Besluit
-Wij gaan de JWT tokens opslaan in de session storage. Hier hebben wij voor gekozen sinds dit een veiligere optie is dan de Local Storage terwijl het niet veel minder toegankelijk is. Daarnaast hebben wij in het team ook meer kennis over session storage dan local storage.
+Wij gaan de JWT tokens opslaan in de session storage. Hier hebben wij voor gekozen sinds dit een veiligere optie is dan de local storage terwijl het niet veel minder toegankelijk is. Daarnaast hebben wij in het team ook meer kennis over session storage dan local storage.
 
 #### Consequenties
 ##### Positief
@@ -271,12 +271,12 @@ Wij zochten API's die wij konden gebruiken voor het zoeken van hotels, vluchten 
 
 #### Overwogen opties
 
-|                 | Documentatie | Betrouwbaarheid | Schaalbaarheid | Api dekking |
-|-----------------|--------------|-----------------|----------------|-------------|
-| Booking.com     | ++           | ++              | ++             |             |
-| Flights scraper | -            | -               | -              |             | 
-| Priceline.com   | ++           | ++              | ++             |             | 
-| TravelData      | +            | +               | +              |             |
+|                 | Documentatie | Betrouwbaarheid | Schaalbaarheid |
+|-----------------|--------------|-----------------|----------------|
+| Booking.com     | ++           | ++              | ++             |
+| Flights scraper | -            | -               | -              |
+| Priceline.com   | ++           | ++              | ++             |
+| TravelData      | +            | +               | +              |
 
 
 _Tabel 4: ADR-003 Overwogen opties ._
@@ -284,16 +284,15 @@ _Tabel 4: ADR-003 Overwogen opties ._
 Booking.com en Priceline.com bieden uitgebreide documentatie, zijn betrouwbaar en schaalbaar door hun grote gebruikersbasis. Flights scraper is vaak minder betrouwbaar en schaalbaar, afhankelijk van het scrapen van gegevens. TravelData heeft gemiddelde documentatie, betrouwbaarheid en schaalbaarheid.
 
 #### Besluit
-Wij hebben besloten om Booking.com te gebruiken voor het zoeken van hotels, vluchten en autoverhuur. Dit is omdat Booking.com uitgebreide documentatie biedt, betrouwbaar is en schaalbaar is door zijn grote gebruikersbasis en het is bekender binnen de team dan Priceline.com.
+Wij hebben besloten om Booking.com te gebruiken voor het zoeken van hotels, vluchten en autoverhuur. Dit is omdat Booking.com uitgebreide documentatie biedt, betrouwbaar is en schaalbaar is door zijn grote gebruikersbasis en het is bekender binnen het team dan Priceline.com.
 
 #### Consequenties
 ##### Positief
-- Kan hierdoor veel in bij dezelfde API afhandelen
-
+- Kan hierdoor veel in dezelfde API afhandelen.
 
 ##### Negatief
 - Mocht deze API ooit veranderen moeten we alles veranderen wat onder vluchten, hotels en auto verhuur valt.
-- Mocht deze API ooit vervallen/out of business gaan, werkt veel van onze applicatie niet meer
+- Mocht deze API ooit vervallen/out of business gaan, werkt veel van onze applicatie niet meer.
 
 ### 8.4. ADR-004 Voor authenticeren en authoriseren gebruiken wij de strategy pattern
 #### Status
@@ -355,7 +354,7 @@ Wij hebben gekozen voor het **strategy pattern**. Dit patroon maakt het eenvoudi
 - Meer afzonderlijke klassen en interfaces, wat het aantal klassen vergroot.
 - Ontwikkelaars moeten bekend zijn met het strategy pattern om de implementatie ervan goed te begrijpen en te gebruiken.
 
-### 8.5. ADR-005 Voor exterene Api's gebruiken wij de adapter pattern 
+### 8.5. ADR-005 Voor externe Api's gebruiken wij de adapter pattern 
 #### Status
 Voorgesteld
 
@@ -375,35 +374,39 @@ Hebben wij onderzocht hoe wij kunnen voorkomen dat wij de gehele applicatie zoud
 
 ##### State pattern
 Laat een object zijn gedrag veranderen afhankelijk van zijn interne toestand.
+
 ##### Adapter pattern
 Maakt het mogelijk om twee incompatible interfaces met elkaar te laten samenwerken zonder bestaande code te wijzigen.
+
 ##### Strategy pattern
-Defineerd een familie van algoritmen en maakt ze onderling verwisselbaar zonder de code ze gebruikt te veranderen.
+Definieerd een familie van algoritmen en maakt ze onderling verwisselbaar zonder de code die ze gebruiken te veranderen.
+
 ##### Facade pattern
 Vereenvoudigt een complex systeem door een enkele, gebruiksvriendelijk interface aan te bieden.
+
 ##### Factory method pattern
 Biedt een manier om objecten te maken zonder expliciet de exacte klasse van het te maken object te specificeren.
 
 #### Besluit
 Na ons onderzoek bleek het *__Adapter Pattern__* de beste keuze te zijn.
-We hebben hiervoor gekozen. 
-Omdat een adapter het mogelijk maakt om wijzigingen in de externe API of een overstap naar een andere provider eenvoudig door te voeren.
+We hebben hiervoor gekozen, omdat een adapter het mogelijk maakt om wijzigingen in de externe API of een overstap naar een andere provider eenvoudig door te voeren.
 Dit vereist alleen aanpassingen in één klasse.
 Dit minimaliseert de impact op de rest van de applicatie en maakt onderhoud eenvoudiger.
 Dit beantwoordt ook de ontwerpvraag.
 
 #### Consequenties
 ##### Positief
-- Decoupling, De hoofdlogica van de applicatie blijft onafhankelijk van externe API's of systemen
-- Eenvoudig van externe API's en systemen wisselen
-- Je kan de adapter mocken waardoor je beter kan testen
+- Decoupling, De hoofdlogica van de applicatie blijft onafhankelijk van externe API's of systemen.
+- Eenvoudig van externe API's en systemen wisselen.
+- Je kan de adapter mocken waardoor je beter kan testen.
 
 ##### Neutraal
-- Extra code nodig 
-- Kan overkill zijn als een API nooit verandert
+- Extra code nodig.
+- Kan overkill zijn als een API nooit verandert.
+
 ##### Negatief
-- Door de extra "Adapter" laag wordt de applicatie complexer
-- Door het extra formateren en transformeren van data kan dit zorgen voor een kleine vertraging
+- Door de extra "Adapter" laag wordt de applicatie complexer.
+- Door het extra formateren en transformeren van data kan dit zorgen voor een kleine vertraging.
 
 
 ### 8.6. ADR-006 Herziening van ADR-003 - Minder afhankelijkheid van Booking.com
@@ -413,11 +416,11 @@ Voorgesteld
 #### Context
 Bij [ADR-003](#83-adr-003-bookingapi-wordt-gebruikt-voor-hotels-vluchten-en-autoverhuur)
 wouden wij het besluit maken om de booking.com api te gebruiken voor hotels, vluchten en autoverhuur.
-Als groep gaan wij hier van af zien. De reden hiervoor is als deze API er uit ligt. 3 groten delen van onze applicatie niet meer werkt
+Als groep gaan wij hier van af zien. De reden hiervoor is als deze API er uit ligt drie grote delen van onze applicatie niet meer werkt.
 
-Het idee is dus dat wij niet geheel of grotendeels afhankelijk willen zijn van 1 API. 
-De regel die wij willen hanteren is dat een API maar voor 1 onderdeel gebruikt mag worden. Voorbeeld: Booking.com regels alles voor Hotels.
-Je mag hotels ophalen boeken ect. Maar je mag Booking.com niet gebruiken voor vluchten of auto verhuur.
+Het idee is dus dat wij niet geheel of grotendeels afhankelijk willen zijn van één API. 
+De regel die wij willen hanteren is dat een API maar voor 1 onderdeel gebruikt mag worden. Voorbeeld: Booking.com regelt alles voor hotels.
+Je mag hotels ophalen boeken ect. Maar je mag Booking.com niet ook gebruiken voor vluchten of auto verhuur.
 
 #### Overwogen opties
 - Veel afhankelijkheden van dezelfde API
@@ -430,10 +433,10 @@ Hoewel het nooit mogelijk is om te garanderen dat een API altijd beschikbaar bli
 
 #### Consequenties
 ##### Positief
-- Als een API niet werkt, ligt niet heel de applicatie plat
+- Als een API niet werkt, ligt niet heel de applicatie plat.
 
 ##### Negatief
-- Hiervoor moeten wij wel veel herschrijven/opnieuw doen
+- Hiervoor moeten wij wel veel herschrijven/opnieuw doen.
 
 ### 8.7. ADR-007 Voorkeur voor externe api communicatie met authenticatie
 #### Status
@@ -460,12 +463,12 @@ Wij zochten manieren hoe wij volgens ons het beste kunnen communiceren met een e
 Wij hebben uiteindelijk besloten om niet de externe IdentityProvider direct vanuit de frontend te benaderen, maar wel om een eigen backend te gebruiken die vervolgens met de IdentityProvider communiceert.
 
 #### Consequenties
-Positief
+Positief:
 - Verhoogde veiligheid doordat de backend de communicatie met de IdentityProvider afhandelt.
 - Meer controle over de authenticatie- en autorisatieprocessen.
 - Backend kan extra validaties en logging toevoegen voor betere monitoring.
 
-Neutraal
+Neutraal:
 - Extra laag in de architectuur kan de complexiteit verhogen, maar biedt ook meer flexibiliteit.
 
 ##### Negatief
@@ -508,7 +511,8 @@ Roep deze endpoint aan met een POST en je zal als het goed is een token terugkri
 
 ### 9.2. Prototype adapter pattern
 Om het prototype voor de adapter pattern en voor de onderzoeksvraag "Hoe zorg je ervoor dat je bij een wijziging in de datastructuur van een externe service niet de hele applicatie hoeft aan te passen?" te deployen en te runnen op je eigen machine zijn er maar enkele simpele stappen nodig.
-#### Benodigt heden
+
+#### Benodigdheden
 - Intellij IDE
 - Node
 - Werkende internet connectie
@@ -516,8 +520,10 @@ Om het prototype voor de adapter pattern en voor de onderzoeksvraag "Hoe zorg je
 #### Het prototype runnen
 1. **Het prototype openen**: De eerste stap is om het prototype te openen in de Intelij IDE. dit doe je door te navigeren naar de `pom.xml` en die te openen als project
 2. **Het prototype runnen**: Als je de terminal opent in Intelij en het commando: `mvn spring-boot:run` in typt en op enter drukt, begint het prototype met runnen.
+
 #### prototype testen booking.com
 Het prototype testen is heel simpel.
+
 1. **Open een terminal**: Nu het prototype runt in Intelij, kan je het prototype testen door het javascript bestand `adapter-TEST.js` te runnen.
 Dit bestand bevindt zich in de map `Prototype/adapter-TEST`. De makkelijkste manier op dit bestand te runnen is om de adapter-TEST map in visual studio code te openen,
 En om een terminal te openen in die map(In visual studio code kan je een Intergrated terminal openen door rechter muis knop te drukken op de map en `Open in intergrated terminal` te drukken).
@@ -526,13 +532,16 @@ En om een terminal te openen in die map(In visual studio code kan je een Intergr
 
 #### prototype testen tripadvisor
 Om het prototype te testen met de tripadvisor API zijn er wel wat meer stappen nodig dan het prototype runnen en het test script runnen.
+
 1. **Pas de adapter aan**: Om de Tripadvisor API te testen is er een ander logica nodig die wordt gebruikt voor de Booking.com API.
 als je naar `Protoype/adapter/src/main/java/com/triptop/adapter/adapter/HotelApiAdapterImpl.java` gaat, zie je de bron code van de adapter klasse.
 Hierin staat twee keer dezelfde methode. Nu kan je ook zien dat één van de methodes in commentaar staat. 
 Als je deze methode uit het commentaar haalt en de andere methode in commentaar zet om foutmeldingen te voorkomen, dan vraagt de adapter nu de hotel details van Tripadvisor op.
+
 2. **Pas het test script aan**: Om hotel details op te halen moet je ook een hotelId mee geven. Maar omdat dit twee verschillende API's zijn,
 Met dus 2 verschillende databases klopt de Id die we nu meegeven niet. Als je naar `Prototype/adapter-TEST/adapter-TEST.js` navigeerd zie je dat er twee hotel id's staan.
 En net zo als bij de `HotelApiAdapterImpl.java` het geval is, staat er één in commentaar en de andere niet. Als je deze omdraaidt geef je de juiste ID mee op Tripadvisor te testen.
+
 3. **Run het prototype en script**: Nadat de nodige aanpassingen zijn gedaan kan je kan je de applicatie in Intelij weer runnen met `mvn spring-boot:run`, en het script door in de terminal `node adapter-TEST.js` te runnen.
 De response is nu: 
 `{"naam":"Hotel Haarhuis","locatie":"Stationsplein 1, 6811 KG Arnhem The Netherlands"}`
